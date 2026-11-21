@@ -2,7 +2,7 @@
 
 From industrial mechanic to backend and DevOps developer, in English and German.
 
-Live: https://martin1088.github.io/journey-/
+Live: https://martin1088.github.io/journey/
 
 - `index.html`: English
 - `de/index.html`: Deutsch
