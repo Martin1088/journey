@@ -1,12 +1,11 @@
-# My journey as a blind developer
+# Martin Jurk – website (experiment copy)
 
-From industrial mechanic to backend and DevOps developer, in English and German.
+A copy of the site from Martin1088/martin1088, for trying out new ideas.
 
-Live: https://martin1088.github.io/journey/
+Live: https://martin1088.github.io/journey-/
 
-- `index.html`: English
-- `de/index.html`: Deutsch
+- `index.html`: main page (work and projects)
+- `coaching/index.html`: coaching
+- `journey/index.html`: my journey, English
+- `journey/de/index.html`: mein Weg, Deutsch
 - `styles.css`: shared styles (light and dark mode)
-
-Built to be accessible with a screen reader: a heading per chapter, a named
-navigation, language markup, and a skip link.
