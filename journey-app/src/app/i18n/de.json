@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "skip": "Zum Inhalt springen",
+    "main": "Hauptnavigation",
+    "work": "Projekte",
+    "journey": "Mein Weg",
+    "coaching": "Coaching",
+    "search": "Suche",
+    "switch": "English",
+    "switchLang": "en"
+  },
+  "home": {
+    "metaTitle": "Mein Weg als blinder Entwickler | Martin Jurk",
+    "metaDescription": "Reha bei QuikStep, Ausbildung am DKFZ, Arbeit in der Krebsforschung – mit durchsuchbaren Praxis-Tipps für Screenreader, Linux- und Windows-Terminal, SQL, Rust und Kubernetes.",
+    "eyebrow": "Mein Weg",
+    "title": "Von der Reha in die Krebsforschung",
+    "lead": "Ich bin 2015 erblindet und habe in der Softwareentwicklung neu angefangen. Hier zeige ich die drei wichtigsten Abschnitte meines Weges – und zu jedem praktische Tipps, wie ich mit Screenreader im Terminal arbeite.",
+    "facts": "Auf einen Blick",
+    "fact1": "Reha bei QuikStep",
+    "fact2": "Abschluss Fachinformatiker (IHK)",
+    "fact3": "Datenplattformen in technischer Leitung",
+    "fact4": "Praxis-Tipps, durchsuchbar",
+    "chaptersHeading": "Drei Kapitel",
+    "chaptersIntro": "Jedes Kapitel erzählt einen Abschnitt und hat aufklappbare Tipp-Karten mit Befehlen zum Kopieren und interaktive Demos.",
+    "tips": "{{count}} Tipps",
+    "searchHeading": "Tipps durchsuchen",
+    "searchIntro": "Suche nach Werkzeugen, Befehlen oder Themen – zum Beispiel „psql“, „Fenrir“ oder „PowerShell“.",
+    "howHeading": "Für wen diese Seite ist",
+    "howText": "Für Arbeitgeber, die sehen möchten, wie ich arbeite. Für Menschen, die selbst mit Screenreader programmieren wollen oder es lernen. Und für alle, die einen blinden Kollegen oder eine blinde Auszubildende im Team haben.",
+    "contactHeading": "Kontakt",
+    "contactText": "Ich bin offen für Stellen im Backend und DevOps – remote oder im Pendelbereich von Karlsruhe. Fragen zu den Tipps oder zu deinem eigenen Setup beantworte ich gern.",
+    "email": "E-Mail schreiben",
+    "projects": "Meine Projekte ansehen"
+  },
+  "chapter": {
+    "inChapter": "In diesem Kapitel",
+    "chapterOf": "Kapitel {{n}} von 3",
+    "prev": "Vorheriges Kapitel",
+    "next": "Nächstes Kapitel",
+    "overview": "Zur Übersicht",
+    "pager": "Weitere Kapitel"
+  },
+  "toolbar": {
+    "label": "Tipps filtern",
+    "platform": "Plattform",
+    "all": "Alle",
+    "linux": "Linux",
+    "windows": "Windows",
+    "expandAll": "Alle aufklappen",
+    "collapseAll": "Alle zuklappen",
+    "shown": "{{n}} von {{total}} Tipps angezeigt."
+  },
+  "tip": {
+    "platform": "Plattform:",
+    "linux": "Linux",
+    "windows": "Windows",
+    "both": "Linux und Windows",
+    "copy": "Kopieren",
+    "copyLabel": "Befehl kopieren",
+    "copied": "Kopiert",
+    "copiedMsg": "Befehl in die Zwischenablage kopiert.",
+    "copyFail": "Kopieren nicht möglich. Bitte den Text manuell markieren."
+  },
+  "search": {
+    "metaTitle": "Suche | Mein Weg | Martin Jurk",
+    "metaDescription": "Alle Praxis-Tipps und Abschnitte durchsuchen: Screenreader, Terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
+    "title": "Tipps und Abschnitte durchsuchen",
+    "intro": "Die Suche findet Text, Tipp-Titel und Befehle. Ergebnisse erscheinen beim Tippen.",
+    "label": "Suchbegriff",
+    "submit": "Suchen",
+    "chapter": "Kapitel",
+    "allChapters": "Alle Kapitel",
+    "resultsOne": "1 Treffer für „{{q}}“.",
+    "resultsMany": "{{count}} Treffer für „{{q}}“.",
+    "none": "Keine Treffer für „{{q}}“. Versuche ein anderes Wort oder entferne einen Filter.",
+    "examples": "Beispiele",
+    "tip": "Tipp",
+    "section": "Abschnitt",
+    "noJs": "Die Suche braucht JavaScript. Alle Inhalte findest du auch über die drei Kapitel."
+  },
+  "demo": {
+    "badge": "Interaktive Demo",
+    "loading": "Demo wird geladen …",
+    "speak": "Vorlesen",
+    "stop": "Stopp",
+    "sql": {
+      "title": "Demo: Was der Screenreader aus einer SQL-Ausgabe macht",
+      "intro": "Dieselbe Abfrage, zwei Ausgabeformate. Wechsle das Format und vergleiche, was vorgelesen wird.",
+      "mode": "Ausgabeformat",
+      "table": "Tabelle (Standard)",
+      "line": "Zeile für Zeile (.mode line / \\x)",
+      "output": "Terminal-Ausgabe",
+      "speech": "So klingt das mit Screenreader",
+      "speechTable": "Plus Strich Strich Strich Strich Plus Strich Strich Strich Strich Strich Strich Strich Strich Strich Strich Plus … senkrechter Strich id senkrechter Strich firma senkrechter Strich status senkrechter Strich … Plus Strich Strich Strich …",
+      "speechLine": "id gleich 1. firma gleich Beispiel GmbH. status gleich offen. Leerzeile. id gleich 2. firma gleich Muster AG. status gleich Gespräch."
+    },
+    "form": {
+      "title": "Demo: Fehlermeldungen, die ankommen – oder nicht",
+      "intro": "Sende das Formular mit einer ungültigen E-Mail-Adresse ab. Vergleiche, was ein Screenreader in beiden Varianten ansagt.",
+      "variant": "Variante",
+      "bad": "Nur rote Umrandung",
+      "good": "Barrierefrei verknüpft",
+      "email": "E-Mail",
+      "submit": "Absenden",
+      "error": "Bitte eine gültige E-Mail-Adresse eingeben.",
+      "success": "Danke, die Adresse ist gültig.",
+      "announce": "Das sagt der Screenreader im Feld",
+      "announceBadText": "E-Mail, Eingabefeld, {{value}}.",
+      "announceGoodText": "E-Mail, Eingabefeld, ungültige Eingabe, {{value}}. Bitte eine gültige E-Mail-Adresse eingeben.",
+      "announceIdle": "Noch nichts abgesendet.",
+      "explainBad": "Die Fehlermeldung steht zwar sichtbar unter dem Feld, ist aber nicht verknüpft. Der Fokus bleibt auf dem Button, niemand sagt den Fehler an.",
+      "explainGood": "aria-invalid und aria-describedby verknüpfen Feld und Fehlermeldung, der Fokus springt ins Feld, und eine Live-Region sagt den Fehler sofort an."
+    }
+  },
+  "footer": {
+    "coaching": "Ich coache außerdem Menschen, die mit Screenreader arbeiten und programmieren möchten –",
+    "coachingLink": "mehr dazu hier",
+    "copyright": "© 2026 Martin Jurk. Diese Seite ist bewusst barrierefrei gebaut."
+  }
+}

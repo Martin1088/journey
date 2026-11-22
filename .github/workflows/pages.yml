@@ -1,0 +1,71 @@
+name: Pages
+
+# Builds the Angular journey app (prerendered, static) and publishes it
+# together with the static pages (index.html, coaching/) to GitHub Pages.
+# Repository settings → Pages → Source must be set to "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: journey-app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: journey-app
+        run: npm ci
+
+      - name: Build journey app (prerendered)
+        working-directory: journey-app
+        # base_path is e.g. "/journey" for a project site, "" for a custom domain.
+        run: npx ng build --base-href="${{ steps.pages.outputs.base_path }}/journey/"
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html styles.css .nojekyll _site/
+          cp -r coaching _site/
+          cp -r journey-app/dist/journey-app/browser _site/journey
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

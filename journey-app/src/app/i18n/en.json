@@ -1,0 +1,120 @@
+{
+  "nav": {
+    "skip": "Skip to content",
+    "main": "Main",
+    "work": "Work",
+    "journey": "Journey",
+    "coaching": "Coaching",
+    "search": "Search",
+    "switch": "Deutsch",
+    "switchLang": "de"
+  },
+  "home": {
+    "metaTitle": "My journey as a blind developer | Martin Jurk",
+    "metaDescription": "Rehabilitation at QuikStep, apprenticeship at the DKFZ, work in cancer research – with searchable practical tips on screen readers, the Linux and Windows terminal, SQL, Rust and Kubernetes.",
+    "eyebrow": "My journey",
+    "title": "From rehabilitation to cancer research",
+    "lead": "I lost my sight in 2015 and started again in software development. Here I show the three most important parts of that journey – each with practical tips on how I work in the terminal with a screen reader.",
+    "facts": "At a glance",
+    "fact1": "rehabilitation at QuikStep",
+    "fact2": "qualified as IT specialist (IHK)",
+    "fact3": "data platforms as technical lead",
+    "fact4": "practical tips, searchable",
+    "chaptersHeading": "Three chapters",
+    "chaptersIntro": "Each chapter tells one part of the story and has expandable tip cards with copyable commands and interactive demos.",
+    "tips": "{{count}} tips",
+    "searchHeading": "Search the tips",
+    "searchIntro": "Search for tools, commands or topics – for example “psql”, “Fenrir” or “PowerShell”.",
+    "howHeading": "Who this page is for",
+    "howText": "For employers who want to see how I work. For people who program with a screen reader or want to learn it. And for anyone with a blind colleague or apprentice on their team.",
+    "contactHeading": "Contact",
+    "contactText": "I am open to backend and DevOps roles – remote, or within commuting distance of Karlsruhe. I am also happy to answer questions about these tips or your own setup.",
+    "email": "Send me an email",
+    "projects": "See my work"
+  },
+  "chapter": {
+    "inChapter": "In this chapter",
+    "chapterOf": "Chapter {{n}} of 3",
+    "prev": "Previous chapter",
+    "next": "Next chapter",
+    "overview": "Back to the overview",
+    "pager": "More chapters"
+  },
+  "toolbar": {
+    "label": "Filter tips",
+    "platform": "Platform",
+    "all": "All",
+    "linux": "Linux",
+    "windows": "Windows",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "shown": "{{n}} of {{total}} tips shown."
+  },
+  "tip": {
+    "platform": "Platform:",
+    "linux": "Linux",
+    "windows": "Windows",
+    "both": "Linux and Windows",
+    "copy": "Copy",
+    "copyLabel": "Copy command",
+    "copied": "Copied",
+    "copiedMsg": "Command copied to the clipboard.",
+    "copyFail": "Copying failed. Please select the text manually."
+  },
+  "search": {
+    "metaTitle": "Search | My journey | Martin Jurk",
+    "metaDescription": "Search all practical tips and sections: screen readers, terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
+    "title": "Search tips and sections",
+    "intro": "The search covers text, tip titles and commands. Results appear as you type.",
+    "label": "Search term",
+    "submit": "Search",
+    "chapter": "Chapter",
+    "allChapters": "All chapters",
+    "resultsOne": "1 result for “{{q}}”.",
+    "resultsMany": "{{count}} results for “{{q}}”.",
+    "none": "No results for “{{q}}”. Try another word or remove a filter.",
+    "examples": "Examples",
+    "tip": "Tip",
+    "section": "Section",
+    "noJs": "Search needs JavaScript. You can also reach all content through the three chapters."
+  },
+  "demo": {
+    "badge": "Interactive demo",
+    "loading": "Loading demo …",
+    "speak": "Read aloud",
+    "stop": "Stop",
+    "sql": {
+      "title": "Demo: what a screen reader makes of SQL output",
+      "intro": "The same query, two output formats. Switch the format and compare what gets read out.",
+      "mode": "Output format",
+      "table": "Table (default)",
+      "line": "Line by line (.mode line / \\x)",
+      "output": "Terminal output",
+      "speech": "What it sounds like with a screen reader",
+      "speechTable": "Plus dash dash dash dash plus dash dash dash dash dash dash dash dash dash dash plus … vertical bar id vertical bar company vertical bar status vertical bar … plus dash dash dash …",
+      "speechLine": "id equals 1. company equals Example Ltd. status equals open. Blank. id equals 2. company equals Sample Inc. status equals interview."
+    },
+    "form": {
+      "title": "Demo: error messages that get through – or don’t",
+      "intro": "Submit the form with an invalid email address. Compare what a screen reader announces in both versions.",
+      "variant": "Version",
+      "bad": "Red border only",
+      "good": "Accessibly linked",
+      "email": "Email",
+      "submit": "Submit",
+      "error": "Please enter a valid email address.",
+      "success": "Thank you, the address is valid.",
+      "announce": "What the screen reader says in the field",
+      "announceBadText": "Email, edit text, {{value}}.",
+      "announceGoodText": "Email, edit text, invalid entry, {{value}}. Please enter a valid email address.",
+      "announceIdle": "Nothing submitted yet.",
+      "explainBad": "The error message is visible below the field but not linked to it. Focus stays on the button and nobody announces the error.",
+      "explainGood": "aria-invalid and aria-describedby link field and message, focus moves into the field, and a live region announces the error immediately."
+    }
+  },
+  "footer": {
+    "coaching": "I also coach people who want to work and program with a screen reader –",
+    "coachingLink": "more about that here",
+    "copyright": "© 2026 Martin Jurk. This site is built to be accessible, on purpose."
+  }
+}
