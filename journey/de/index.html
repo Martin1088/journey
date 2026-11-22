@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mein Weg – Von der Werkhalle zu Kubernetes | Martin Jurk</title>
-<meta name="description" content="Wie Martin Jurk vom Fertigungsmechaniker zum blinden Backend-Entwickler und DevOps Engineer wurde: Rehabilitation, inklusive Ausbildung am Deutschen Krebsforschungszentrum und technische Leitung.">
+<meta name="description" content="Wie Martin Jurk vom Fertigungsmechaniker zum blinden Backend-Entwickler wurde – Station für Station, mit praktischen Tipps zu Screenreader, Linux- und Windows-Terminal, SQL, Git, Rust, Kubernetes und NeoVim.">
 <link rel="canonical" href="https://martin1088.github.io/journey-/journey/de/">
 <link rel="alternate" hreflang="en" href="https://martin1088.github.io/journey-/journey/">
 <link rel="alternate" hreflang="de" href="https://martin1088.github.io/journey-/journey/de/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Von der Werkhalle zu Kubernetes – mein Weg als blinder Entwickler">
-<meta property="og:description" content="Fertigungsmechaniker, Erblindung, Rehabilitation, Ausbildung, technische Leitung, DevOps.">
+<meta property="og:description" content="Station für Station: Reha, Ausbildung, technische Leitung – mit praktischen Tipps für die Arbeit mit Screenreader und Terminal.">
 <meta property="og:url" content="https://martin1088.github.io/journey-/journey/de/">
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../journey.css">
+<script src="../journey.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#content">Zum Inhalt springen</a>
@@ -23,7 +25,7 @@
     <a class="brand" href="../../">Martin Jurk</a>
     <nav aria-label="Hauptnavigation">
       <ul>
-        <li><a href="../../" lang="en">Projekte</a></li>
+        <li><a href="../../">Projekte</a></li>
         <li><a href="./" aria-current="page">Mein Weg</a></li>
         <li><a href="../../coaching/">Coaching</a></li>
         <li><a href="../" lang="en" hreflang="en">English</a></li>
@@ -39,15 +41,17 @@
       <h1>Von der Werkhalle zu Kubernetes</h1>
       <p class="lead">
         Ich habe als Fertigungsmechaniker angefangen, bin 2015 erblindet und
-        habe in der Softwareentwicklung neu begonnen. Heute entwerfe und
-        betreibe ich Backend-Systeme für die medizinische Forschung. So ist
-        es dazu gekommen.
+        habe in der Softwareentwicklung neu begonnen. Hier erzähle ich den Weg
+        Station für Station &ndash; und zu jeder Station gibt es praktische
+        Tipps: Werkzeuge und Arbeitsabläufe, mit denen ich mit Screenreader
+        im Terminal arbeite.
       </p>
       <ul class="facts" role="list" aria-label="Auf einen Blick">
         <li><strong>2015</strong> <span>erblindet</span></li>
         <li><strong>2024</strong> <span>Abschluss Fachinformatiker (IHK)</span></li>
         <li><strong>2</strong> <span>föderierte Datenplattformen in technischer Leitung</span></li>
         <li><strong>CKAD</strong> <span>zertifizierter Kubernetes-Entwickler</span></li>
+        <li><strong>25</strong> <span>Praxis-Tipps für Linux und Windows</span></li>
       </ul>
     </header>
   </div>
@@ -57,47 +61,62 @@
   <main id="content">
 
     <section aria-labelledby="overview">
-      <h2 id="overview">Überblick</h2>
-      <ol class="timeline">
-        <li><span class="when">2005 – 2012</span> <a href="#industry">Fertigungsmechaniker bei Daimler</a></li>
-        <li><span class="when">2012 – 2015</span> <a href="#university">Studium</a></li>
-        <li><span class="when">2015 – 2021</span> <a href="#restart">Erblindung und Neuanfang</a></li>
-        <li><span class="when">2021 – 2024</span> <a href="#apprenticeship">Ausbildung am Deutschen Krebsforschungszentrum</a></li>
-        <li><span class="when">2024 – 2025</span> <a href="#developer">Entwickler und Administrator</a></li>
-        <li><span class="when">2025 – 2026</span> <a href="#lead">Technische Leitung</a></li>
-        <li><span class="when">Seit 2026</span> <a href="#today">DevOps und eigene Plattform</a></li>
+      <h2 id="overview">Die Stationen</h2>
+      <p>
+        Jede Station hat aufklappbare Tipp-Karten. Du kannst sie nach
+        Plattform filtern und jeden Befehl direkt kopieren. Ohne JavaScript
+        funktionieren die Karten genauso, nur ohne Filter.
+      </p>
+      <ol class="station-nav">
+        <li><a href="#station-1"><span class="when">2005 – 2015</span><span class="name">Werkhalle und Studium</span><span class="count"></span></a></li>
+        <li><a href="#station-2"><span class="when">2015 – 2021</span><span class="name">Erblindung und Neuanfang</span><span class="count">4 Tipps</span></a></li>
+        <li><a href="#station-3"><span class="when">2021 – 2022</span><span class="name">1. Lehrjahr: Terminal und SQL</span><span class="count">5 Tipps</span></a></li>
+        <li><a href="#station-4"><span class="when">2022 – 2023</span><span class="name">2. Lehrjahr: Webentwicklung</span><span class="count">3 Tipps</span></a></li>
+        <li><a href="#station-5"><span class="when">2023 – 2024</span><span class="name">3. Lehrjahr: Rust und Abschluss</span><span class="count">3 Tipps</span></a></li>
+        <li><a href="#station-6"><span class="when">2024 – 2025</span><span class="name">Entwickler und Administrator</span><span class="count">4 Tipps</span></a></li>
+        <li><a href="#station-7"><span class="when">2025 – 2026</span><span class="name">Technische Leitung</span><span class="count">3 Tipps</span></a></li>
+        <li><a href="#station-8"><span class="when">Seit 2026</span><span class="name">DevOps und eigene Plattform</span><span class="count">3 Tipps</span></a></li>
       </ol>
     </section>
 
-    <section class="chapter" aria-labelledby="industry">
-      <p class="eyebrow">2005 – 2012</p>
-      <h2 id="industry">Fertigungsmechaniker bei Daimler</h2>
+    <div class="tip-toolbar" hidden>
+      <fieldset>
+        <legend>Plattform</legend>
+        <span class="chip"><input type="radio" name="platform" id="pf-all" value="all" checked><label for="pf-all">Alle</label></span>
+        <span class="chip"><input type="radio" name="platform" id="pf-linux" value="linux"><label for="pf-linux">Linux</label></span>
+        <span class="chip"><input type="radio" name="platform" id="pf-windows" value="windows"><label for="pf-windows">Windows</label></span>
+      </fieldset>
+      <button type="button" class="tool-btn" id="tip-toggle" aria-expanded="false">Alle aufklappen</button>
+      <p class="tip-status" id="tip-status"></p>
+    </div>
+    <div id="tip-live" class="sr-only" aria-live="polite"></div>
+
+    <!-- ===================== Station 1 ===================== -->
+    <section class="station" id="station-1" aria-labelledby="h-station-1">
+      <span class="station-no" aria-hidden="true">1</span>
+      <p class="eyebrow">2005 – 2015</p>
+      <h2 id="h-station-1">Werkhalle und Studium</h2>
       <p>
         Mein Berufsleben begann in der Produktion. Im Daimler-LKW-Werk
         Mannheim habe ich die Ausbildung zum Fertigungsmechaniker gemacht und
         nebenbei die Fachhochschulreife erworben. Danach habe ich in der
         Motorenzerspanung, im CNC-Werkzeugmanagement und in der Gießerei
-        gearbeitet.
+        gearbeitet. Anschließend habe ich in Aschaffenburg studiert: zuerst
+        Wirtschaftsingenieurwesen, dann Betriebswirtschaft und Recht.
       </p>
       <p>
         Aus der Produktion habe ich mitgenommen, worauf ich mich bis heute
         verlasse: Abläufe müssen reproduzierbar sein, und ein kleiner Fehler
-        am Anfang der Kette wird am Ende teuer.
+        am Anfang der Kette wird am Ende teuer. Genau so denke ich heute über
+        Builds, Deployments und Datenpipelines.
       </p>
     </section>
 
-    <section class="chapter" aria-labelledby="university">
-      <p class="eyebrow">2012 – 2015</p>
-      <h2 id="university">Studium</h2>
-      <p>
-        Danach habe ich in Aschaffenburg studiert: zuerst
-        Wirtschaftsingenieurwesen, dann Betriebswirtschaft und Recht.
-      </p>
-    </section>
-
-    <section class="chapter" aria-labelledby="restart">
+    <!-- ===================== Station 2 ===================== -->
+    <section class="station" id="station-2" aria-labelledby="h-station-2">
+      <span class="station-no" aria-hidden="true">2</span>
       <p class="eyebrow">2015 – 2021</p>
-      <h2 id="restart">Erblindung und Neuanfang</h2>
+      <h2 id="h-station-2">Erblindung und Neuanfang</h2>
       <p>
         2015 bin ich erblindet. Die folgenden Jahre standen im Zeichen der
         medizinischen Rehabilitation und der Frage, wie ich ohne Sehen
@@ -112,45 +131,339 @@
         Braille. In diesem Jahr wurde mir klar: Programmieren ist Text, und
         mit Text kann ich in vollem Tempo arbeiten.
       </p>
-    </section>
 
-    <section class="chapter" aria-labelledby="apprenticeship">
-      <p class="eyebrow">2021 – 2024</p>
-      <h2 id="apprenticeship">Ausbildung am Deutschen Krebsforschungszentrum</h2>
-      <p>
-        Am Deutschen Krebsforschungszentrum (DKFZ) in Heidelberg habe ich
-        eine inklusive Ausbildung zum Fachinformatiker für
-        Anwendungsentwicklung abgeschlossen. Die Berufsschule war die
-        Hubert-Sternberg-Schule in Wiesloch.
-      </p>
-      <ul>
-        <li>
-          <strong>Federated Information Systems, erstes Jahr:</strong>
-          verteilte Systeme, medizinische Informatik, Java, APIs, Docker,
-          Linux, Git, Datenbanken und Scrum.
+      <h3>Praxis-Tipps für den Einstieg</h3>
+      <ul class="tips" role="list">
+        <li data-platform="both">
+          <details class="tip" id="tip-screenreader-basics">
+            <summary><span class="tip-title">Einen Screenreader richtig lernen, nicht drei halb</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Unter Windows ist <strong>NVDA</strong> kostenlos und ein guter
+                Start, unter Linux mit Desktop <strong>Orca</strong> (in GNOME an
+                und aus mit <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd>). Die
+                Kürzel, die man zuerst wirklich können sollte, sind in Web und
+                Anwendungen fast überall gleich:
+              </p>
+              <ul>
+                <li><kbd>H</kbd> nächste Überschrift, <kbd>D</kbd> nächster Bereich (Landmark), <kbd>F</kbd> nächstes Formularfeld, <kbd>K</kbd> nächster Link</li>
+                <li><kbd>NVDA</kbd>+<kbd>F7</kbd> Elementliste: alle Überschriften, Links und Landmarks auf einen Blick</li>
+                <li><kbd>NVDA</kbd>+<kbd>Leertaste</kbd> wechselt zwischen Lese- und Fokusmodus &ndash; das ist der häufigste Grund, warum „die Tasten plötzlich nicht mehr gehen“</li>
+              </ul>
+              <p class="why"><strong>Warum:</strong> Wer die Navigation über Struktur beherrscht, ist schneller als jeder, der sich Zeile für Zeile durch eine Seite hört.</p>
+            </div>
+          </details>
         </li>
-        <li>
-          <strong>Krebsinformationsdienst:</strong> Webentwicklung mit PHP
-          und JavaScript an einer Online-Beratungsplattform.
+        <li data-platform="windows">
+          <details class="tip" id="tip-speech-rate">
+            <summary><span class="tip-title">Sprechtempo schrittweise erhöhen</span> <span class="tag tag-windows"><span class="sr-only">Plattform: </span>Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                In NVDA öffnet <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil links/rechts</kbd>
+                den Einstellungsring der Sprachausgabe (Geschwindigkeit, Tonhöhe,
+                Lautstärke …), <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil hoch/runter</kbd>
+                ändert den gewählten Wert.
+              </p>
+              <p>
+                Erhöhe die Geschwindigkeit in kleinen Schritten, etwa alle ein bis
+                zwei Wochen, sobald sich das aktuelle Tempo normal anfühlt. Ein
+                hohes Tempo spart beim Lesen von Code und Logs jeden Tag viel Zeit.
+              </p>
+              <p class="why"><strong>Warum:</strong> Zu schnell zu früh führt dazu, dass man mehr zurückspult als liest.</p>
+            </div>
+          </details>
         </li>
-        <li>
-          <strong>Federated Information Systems, letztes Jahr:</strong> Rust
-          und die Abteilungskomponente Samply.beam für die Kommunikation in
-          streng regulierten klinischen Netzwerken. Mein Abschlussprojekt war
-          eine Raumbelegungssoftware mit REST API, ORM-Mapper, Docker und
-          dynamischem Frontend.
+        <li data-platform="both">
+          <details class="tip" id="tip-braille">
+            <summary><span class="tip-title">Braillezeile für Code: Zeichen, die Sprache verschluckt</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Sprachausgabe ist schnell, aber bei Code ungenau: Klammern,
+                Semikolons und Einrückung gehen leicht unter. Eine Braillezeile
+                mit 8-Punkt-Computerbraille zeigt jedes Zeichen genau so, wie es
+                in der Datei steht.
+              </p>
+              <ul>
+                <li>Für Überblick und Fließtext: Sprache</li>
+                <li>Für die eine Zeile mit dem Syntaxfehler: Braille</li>
+                <li>Stelle die Satzzeichen-Ansage für Code-Arbeit auf „alle“, damit auch Sprache Klammern vorliest</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-first-c">
+            <summary><span class="tip-title">Erste C-Programme: immer nur den ersten Fehler lesen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Ein einziger fehlender Strichpunkt erzeugt oft zwanzig
+                Folgefehler. Mit Screenreader ist das besonders mühsam. Lass dir
+                deshalb nur die ersten Zeilen ausgeben, korrigiere, kompiliere neu.
+              </p>
+              <div class="cmd"><pre><code>gcc -Wall -Wextra -o hallo hallo.c 2&gt;&amp;1 | head -n 5</code></pre></div>
+              <p>
+                Die Meldung beginnt mit <code>datei:zeile:spalte</code>. Mit
+                Zeilennummer springst du im Editor direkt hin, statt zu suchen.
+              </p>
+            </div>
+          </details>
         </li>
       </ul>
     </section>
 
-    <section class="chapter" aria-labelledby="developer">
+    <!-- ===================== Station 3 ===================== -->
+    <section class="station" id="station-3" aria-labelledby="h-station-3">
+      <span class="station-no" aria-hidden="true">3</span>
+      <p class="eyebrow">2021 – 2022 · Ausbildung am DKFZ</p>
+      <h2 id="h-station-3">1. Lehrjahr: Terminal, SQL und die Grundlagen</h2>
+      <p>
+        Am Deutschen Krebsforschungszentrum (DKFZ) in Heidelberg habe ich
+        eine inklusive Ausbildung zum Fachinformatiker für
+        Anwendungsentwicklung begonnen, die Berufsschule war die
+        Hubert-Sternberg-Schule in Wiesloch. Das erste Jahr in der Abteilung
+        Federated Information Systems drehte sich um die Grundlagen: verteilte
+        Systeme, medizinische Informatik, Java, APIs, Docker,
+        Linux-Konfiguration, Git, Datenbanken und Scrum.
+      </p>
+      <p>
+        Hier habe ich gelernt, dass das Terminal für blinde Entwickler kein
+        Notbehelf ist, sondern das zugänglichste Werkzeug überhaupt &ndash;
+        wenn man die Ausgabe in eine lesbare Form bringt.
+      </p>
+
+      <h3>Praxis-Tipps: Terminal und Datenbanken</h3>
+      <ul class="tips" role="list">
+        <li data-platform="linux">
+          <details class="tip" id="tip-linux-terminal">
+            <summary><span class="tip-title">Linux-Terminal: Ausgabe in Häppchen statt als Wand</span> <span class="tag tag-linux"><span class="sr-only">Plattform: </span>Linux</span></summary>
+            <div class="tip-body">
+              <p>Lange Ausgaben rauschen am Screenreader vorbei. Diese Muster halten sie lesbar:</p>
+              <div class="cmd"><pre><code>ls -1                      # eine Datei pro Zeile
+ls -1 | wc -l              # erst zählen, dann entscheiden
+befehl | head -n 20        # nur der Anfang
+befehl | less              # seitenweise, mit /suche
+befehl &gt; ausgabe.txt 2&gt;&amp;1  # in Datei, dann im Editor lesen
+cd -                       # zurück ins vorige Verzeichnis</code></pre></div>
+              <p class="why"><strong>Warum:</strong> Eine Datei im Editor kann ich zeilenweise, mit Suche und in Ruhe lesen &ndash; eine scrollende Ausgabe nicht.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="windows">
+          <details class="tip" id="tip-windows-terminal">
+            <summary><span class="tip-title">Windows Terminal und PowerShell lesbar machen</span> <span class="tag tag-windows"><span class="sr-only">Plattform: </span>Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Windows Terminal funktioniert gut mit NVDA. Mit
+                <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>F</kbd> durchsuchst du die
+                Ausgabe, mit der NVDA-Leseansicht (Ziffernblock <kbd>7</kbd>
+                <kbd>8</kbd> <kbd>9</kbd>) gehst du Zeile für Zeile zurück.
+                PowerShell gibt standardmäßig breite Tabellen aus &ndash;
+                untereinander ist für Sprache viel angenehmer:
+              </p>
+              <div class="cmd"><pre><code>Get-ChildItem | Select-Object -ExpandProperty Name
+Get-Process code | Format-List Name, Id, CPU
+Get-Content .\app.log -Tail 20
+Get-ChildItem | Out-File liste.txt   # in Datei lesen
+Get-Location | Set-Clipboard         # in die Zwischenablage</code></pre></div>
+              <p>In der klassischen Eingabeaufforderung liefert <code>dir /b</code> nur die Namen.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-sql-terminal">
+            <summary><span class="tip-title">SQL im Terminal: Datensätze untereinander statt Tabelle</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Eine breite Ergebnistabelle wird vorgelesen als „Strich Strich Plus
+                Strich …“. Alle gängigen Kommandozeilen-Clients können Datensätze
+                stattdessen als <em>Spalte = Wert</em> untereinander ausgeben:
+              </p>
+              <div class="cmd"><pre><code>-- SQLite (sqlite3)
+.headers on
+.mode line
+SELECT * FROM bewerbung LIMIT 3;
+
+-- PostgreSQL (psql)
+\x auto
+\pset pager off
+SELECT * FROM bewerbung LIMIT 3;
+
+-- MySQL / MariaDB: Abfrage mit \G statt ; beenden
+SELECT * FROM bewerbung LIMIT 3\G</code></pre></div>
+              <p>Für Skripte und schnelle Zählungen ohne Rahmen und Kopfzeile:</p>
+              <div class="cmd"><pre><code>psql -d app -A -t -F ';' -c "SELECT status, count(*) FROM bewerbung GROUP BY status"</code></pre></div>
+              <p class="why"><strong>Warum:</strong> Immer zuerst <code>count(*)</code> oder <code>LIMIT</code> &ndash; tausend Zeilen anzuhören ist keine Datenanalyse.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-git">
+            <summary><span class="tip-title">Git ohne Pager und mit kurzer Ausgabe</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Git öffnet Logs und Diffs in einem Pager, der für Screenreader
+                oft schwer zu verlassen ist. Kurze Formate helfen sofort:
+              </p>
+              <div class="cmd"><pre><code>git status -s
+git --no-pager log --oneline -n 10
+git diff --stat
+git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Zeile</code></pre></div>
+              <p>Wer den Pager gar nicht will: <code>git config --global core.pager cat</code>.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-docker-format">
+            <summary><span class="tip-title">Docker-Ausgaben auf das Wesentliche kürzen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p><code>docker ps</code> liefert eine sehr breite Tabelle. Mit <code>--format</code> bekommst du genau die Felder, die du brauchst:</p>
+              <div class="cmd"><pre><code>docker ps --format '{{.Names}}: {{.Status}}'</code></pre></div>
+              <p>Ergebnis zum Beispiel: <code>db: Up 2 hours</code> &ndash; eine Zeile pro Container, sofort verständlich.</p>
+            </div>
+          </details>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== Station 4 ===================== -->
+    <section class="station" id="station-4" aria-labelledby="h-station-4">
+      <span class="station-no" aria-hidden="true">4</span>
+      <p class="eyebrow">2022 – 2023 · Krebsinformationsdienst</p>
+      <h2 id="h-station-4">2. Lehrjahr: Webentwicklung</h2>
+      <p>
+        Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP
+        und JavaScript an einer Online-Beratungsplattform mitgearbeitet. Das
+        war meine erste Arbeit an Oberflächen, die andere Menschen benutzen
+        &ndash; und die beste Schule dafür, Barrierefreiheit von der anderen
+        Seite zu sehen.
+      </p>
+
+      <h3>Praxis-Tipps: Web und APIs</h3>
+      <ul class="tips" role="list">
+        <li data-platform="both">
+          <details class="tip" id="tip-test-own-pages">
+            <summary><span class="tip-title">Eigene Seiten mit dem Screenreader in drei Schritten testen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <ol>
+                <li><strong>Überschriften:</strong> Mit <kbd>H</kbd> durchspringen. Ergibt die Liste allein ein sinnvolles Inhaltsverzeichnis?</li>
+                <li><strong>Bereiche:</strong> Mit <kbd>D</kbd> durch die Landmarks. Gibt es <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>?</li>
+                <li><strong>Formulare:</strong> Mit <kbd>Tab</kbd> durch alle Felder. Wird zu jedem Feld eine Beschriftung vorgelesen, nicht nur „Eingabefeld“?</li>
+              </ol>
+              <p class="why"><strong>Warum:</strong> Diese drei Prüfungen finden in wenigen Minuten die meisten Probleme, lange bevor ein Audit-Tool läuft.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-curl-jq">
+            <summary><span class="tip-title">APIs mit curl und jq statt im Browser lesen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                JSON im Browser ist mit Screenreader oft ein einziger langer
+                Absatz. Im Terminal formatiert <code>jq</code> die Antwort und
+                filtert genau das heraus, was du brauchst:
+              </p>
+              <div class="cmd"><pre><code>curl -s https://api.example.org/jobs | jq '.'
+curl -s https://api.example.org/jobs | jq -r '.items[].title'
+curl -s https://api.example.org/jobs | jq '.items | length'</code></pre></div>
+              <p>Unter Windows gibt es <code>curl.exe</code> und <code>jq</code> ebenfalls, zum Beispiel über <code>winget install jqlang.jq</code>.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-devtools-console">
+            <summary><span class="tip-title">Browser-Konsole statt visueller Entwicklertools</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Die visuellen Teile der Entwicklertools sind schwer zugänglich,
+                die Konsole dagegen ist Text. Öffnen: Chrome
+                <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>J</kbd>, Firefox
+                <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>K</kbd>.
+              </p>
+              <div class="cmd"><pre><code>document.activeElement          // wo ist der Fokus gerade?
+document.querySelectorAll('img:not([alt])').length   // Bilder ohne Alternativtext
+[...document.querySelectorAll('h1,h2,h3')].map(h =&gt; h.tagName + ' ' + h.textContent.trim())</code></pre></div>
+            </div>
+          </details>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== Station 5 ===================== -->
+    <section class="station" id="station-5" aria-labelledby="h-station-5">
+      <span class="station-no" aria-hidden="true">5</span>
+      <p class="eyebrow">2023 – 2024 · Federated Information Systems</p>
+      <h2 id="h-station-5">3. Lehrjahr: Rust und Abschlussprojekt</h2>
+      <p>
+        Im letzten Jahr habe ich mich eigenständig in Rust vertieft und mich in
+        die Abteilungskomponente Samply.beam eingearbeitet, die Kommunikation in
+        streng regulierten klinischen Netzwerken übernimmt. Mein
+        Abschlussprojekt war eine Raumbelegungssoftware mit REST API,
+        ORM-Mapper, Docker und dynamischem Frontend. 2024 habe ich die Ausbildung
+        abgeschlossen.
+      </p>
+
+      <h3>Praxis-Tipps: Compiler, Container, Dokumentation</h3>
+      <ul class="tips" role="list">
+        <li data-platform="both">
+          <details class="tip" id="tip-cargo-short">
+            <summary><span class="tip-title">Rust-Compilermeldungen kurz halten</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Rusts Fehlermeldungen sind hervorragend, aber lang und voller
+                ASCII-Pfeile. Für den schnellen Durchlauf gibt es ein Kurzformat
+                mit einer Zeile pro Fehler:
+              </p>
+              <div class="cmd"><pre><code>cargo check --message-format short
+cargo clippy --message-format short</code></pre></div>
+              <p>Erst wenn ein Fehler unklar ist, die ausführliche Meldung lesen &ndash; dann gezielt in eine Datei: <code>cargo check 2&gt; fehler.txt</code>.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-compose-logs">
+            <summary><span class="tip-title">Logs eines einzelnen Containers verfolgen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>Die gemischten Logs aller Dienste sind nicht anhörbar. Immer einen Dienst und eine begrenzte Anzahl Zeilen wählen:</p>
+              <div class="cmd"><pre><code>docker compose logs --tail 20 -f api</code></pre></div>
+              <p><code>--tail 20</code> zeigt nur die letzten 20 Zeilen, <code>-f</code> liest neue Zeilen live mit.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-plantuml">
+            <summary><span class="tip-title">Diagramme für die Projektdoku als Text schreiben</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Für die Projektdokumentation braucht man Diagramme. PlantUML
+                beschreibt sie als Text &ndash; ich kann sie schreiben, im Git-Diff
+                prüfen und sehende Prüfer bekommen trotzdem ein Bild.
+              </p>
+              <div class="cmd"><pre><code>@startuml
+actor Nutzer
+Nutzer -&gt; Frontend : Raum buchen
+Frontend -&gt; API : POST /buchungen
+API -&gt; Datenbank : INSERT
+API --&gt; Frontend : 201 Created
+@enduml</code></pre></div>
+              <p>Zur Kontrolle ohne Bild: Syntax prüfen, oder das Diagramm als Text rendern und lesen.</p>
+              <div class="cmd"><pre><code>plantuml -checkonly ablauf.puml
+plantuml -tutxt ablauf.puml   # erzeugt ablauf.utxt</code></pre></div>
+            </div>
+          </details>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== Station 6 ===================== -->
+    <section class="station" id="station-6" aria-labelledby="h-station-6">
+      <span class="station-no" aria-hidden="true">6</span>
       <p class="eyebrow">2024 – 2025</p>
-      <h2 id="developer">Entwickler und Administrator</h2>
+      <h2 id="h-station-6">Entwickler und Administrator</h2>
       <p>
         Nach der Ausbildung bin ich als Entwickler in der Abteilung
-        geblieben. Ich habe
+        geblieben. Ich habe an
         <a href="https://github.com/samply/secret-sync">secret-sync</a>
-        entwickelt, eine Rust-Komponente, die das Anwendungs- und
+        gearbeitet, einer Rust-Komponente, die das Anwendungs- und
         Nutzermanagement über Authentik und Keycloak automatisiert, und den
         Pseudonymisierungsdienst Mainzelliste über OAuth abgesichert.
       </p>
@@ -162,11 +475,68 @@
         eine plattformübergreifende Version der Raumbelegungssoftware mit
         Tauri.
       </p>
+
+      <h3>Praxis-Tipps: Server und Betrieb</h3>
+      <ul class="tips" role="list">
+        <li data-platform="linux">
+          <details class="tip" id="tip-fenrir">
+            <summary><span class="tip-title">Fenrir: Screenreader für die Linux-Konsole</span> <span class="tag tag-linux"><span class="sr-only">Plattform: </span>Linux</span></summary>
+            <div class="tip-body">
+              <p>
+                <strong>Fenrir</strong> ist ein Screenreader für die
+                Textkonsole (TTY), ganz ohne grafische Oberfläche. Das ist mein
+                tägliches Werkzeug: schlank, schnell und unabhängig vom Desktop.
+              </p>
+              <ul>
+                <li>Mit dem Review-Modus liest du bereits ausgegebene Zeilen nach, ohne die Eingabe zu verlassen.</li>
+                <li>Es funktioniert auch, wenn der Desktop nicht startet &ndash; gerade bei Systemproblemen ein großer Vorteil.</li>
+                <li>Unter Windows übernimmt diese Rolle <abbr title="Windows-Subsystem für Linux">WSL</abbr> im Windows Terminal mit NVDA.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li data-platform="linux">
+          <details class="tip" id="tip-journalctl">
+            <summary><span class="tip-title">Systemlogs gezielt statt komplett lesen</span> <span class="tag tag-linux"><span class="sr-only">Plattform: </span>Linux</span></summary>
+            <div class="tip-body">
+              <div class="cmd"><pre><code>journalctl -u nginx -n 20 --no-pager   # letzte 20 Zeilen eines Dienstes
+journalctl -p err -b --no-pager        # nur Fehler seit dem letzten Start
+grep -i -c error app.log               # wie viele Fehler gibt es überhaupt?</code></pre></div>
+              <p class="why"><strong>Warum:</strong> <code>--no-pager</code> verhindert, dass ich in einem Pager festhänge; die Begrenzung auf Dienst, Priorität und Zeilenzahl macht aus tausend Zeilen zwanzig relevante.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-ssh-config">
+            <summary><span class="tip-title">SSH-Kurznamen statt langer Adressen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>Weniger tippen heißt weniger Tippfehler, die man sich erst wieder anhören muss. In <code>~/.ssh/config</code> (unter Windows <code>%USERPROFILE%\.ssh\config</code>):</p>
+              <div class="cmd"><pre><code>Host gitlab-server
+    HostName gitlab.intern.example.org
+    User admin
+    IdentityFile ~/.ssh/id_ed25519</code></pre></div>
+              <p>Danach reicht <code>ssh gitlab-server</code>.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-openapi">
+            <summary><span class="tip-title">API-Dokumentation als Liste statt als Swagger-Oberfläche</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>Swagger UI ist für Sehende gemacht. Die OpenAPI-Datei dahinter ist JSON und lässt sich in Sekunden durchsuchen:</p>
+              <div class="cmd"><pre><code>curl -s http://localhost:8080/v3/api-docs | jq -r '.paths | keys[]'</code></pre></div>
+              <p>Das liefert alle Endpunkte als Liste &ndash; eine Zeile pro Pfad.</p>
+            </div>
+          </details>
+        </li>
+      </ul>
     </section>
 
-    <section class="chapter" aria-labelledby="lead">
+    <!-- ===================== Station 7 ===================== -->
+    <section class="station" id="station-7" aria-labelledby="h-station-7">
+      <span class="station-no" aria-hidden="true">7</span>
       <p class="eyebrow">2025 – 2026</p>
-      <h2 id="lead">Technische Leitung</h2>
+      <h2 id="h-station-7">Technische Leitung</h2>
       <p>
         Ich habe die technische Leitung für zwei Datenplattformen in der
         Krebsforschung übernommen:
@@ -187,17 +557,74 @@
       </ul>
       <p>
         Ich war verantwortlich für Architektur, Backend-Services,
-        Datenverarbeitung und Deployment. Außerdem habe ich wiederverwendbare
-        Architekturmodelle für Data-Warehouse-Projekte über Abteilungen
-        hinweg entworfen und den Java-basierten Samply-Exporter mit mehreren
-        Spring-Security-Filter-Chains und gruppenbasierter Autorisierung über
-        OIDC abgesichert.
+        Datenverarbeitung und Deployment und habe den Java-basierten
+        Samply-Exporter mit mehreren Spring-Security-Filter-Chains und
+        gruppenbasierter Autorisierung über OIDC abgesichert.
       </p>
+
+      <h3>Praxis-Tipps: Kubernetes, Editor, Architektur</h3>
+      <ul class="tips" role="list">
+        <li data-platform="both">
+          <details class="tip" id="tip-kubectl">
+            <summary><span class="tip-title">kubectl: nur die Spalten, die du wirklich brauchst</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>Die Standardtabellen von kubectl sind breit und voller Spalten, die man selten braucht. Besser:</p>
+              <div class="cmd"><pre><code>kubectl get pods -o name
+kubectl get pods --no-headers -o custom-columns=NAME:.metadata.name,STATUS:.status.phase
+kubectl logs deploy/api --tail=20
+kubectl get events --sort-by=.lastTimestamp | tail -n 10</code></pre></div>
+              <p>Für <code>kubectl describe</code> gilt dasselbe wie bei Logs: in eine Datei oder durch <code>less</code>, dann mit Suche nach <code>Events</code> oder <code>Error</code> springen.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-neovim-quiet">
+            <summary><span class="tip-title">NeoVim für den Screenreader ruhig stellen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Zeilennummern, Icons und eingeblendete Diagnosen sehen gut aus,
+                werden aber bei jeder Zeile mitgelesen. In meiner Konfiguration
+                (<code>init.lua</code>) schalte ich sie ab und hole mir
+                Informationen gezielt, wenn ich sie brauche:
+              </p>
+              <div class="cmd"><pre><code>vim.opt.number = false
+vim.opt.relativenumber = false
+vim.opt.signcolumn = "no"
+vim.diagnostic.config({ virtual_text = false, signs = false })</code></pre></div>
+              <ul>
+                <li><kbd>]d</kbd> / <kbd>[d</kbd> springt zur nächsten / vorigen Diagnose, <kbd>Strg</kbd>+<kbd>W</kbd> <kbd>d</kbd> zeigt die Meldung an (NeoVim 0.10+)</li>
+                <li><code>:lua vim.diagnostic.setqflist()</code> und <code>:copen</code> listen alle Fehler untereinander</li>
+                <li>In Distributionen wie AstroNvim lassen sich Icons über <code>icons_enabled</code> abschalten</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-architecture-text">
+            <summary><span class="tip-title">Architektur so dokumentieren, dass das ganze Team sie lesen kann</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Als technische Leitung muss ich Architektur erklären, nicht nur
+                bauen. Ich halte jedes Diagramm als PlantUML im Repository, direkt
+                neben dem Code, und schreibe zu jedem Diagramm zwei, drei Sätze
+                Fließtext.
+              </p>
+              <ul>
+                <li>Diagramme liegen versioniert im Git und werden im Merge Request mit geprüft.</li>
+                <li>Der Begleittext ist die Alternative für alle, die das Bild nicht sehen &ndash; und hilft auch Sehenden beim Einstieg.</li>
+                <li>Eine Datei pro Sicht: Komponenten, Datenfluss, Deployment.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+      </ul>
     </section>
 
-    <section class="chapter" aria-labelledby="today">
+    <!-- ===================== Station 8 ===================== -->
+    <section class="station" id="station-8" aria-labelledby="h-station-8">
+      <span class="station-no" aria-hidden="true">8</span>
       <p class="eyebrow">Seit 2026</p>
-      <h2 id="today">DevOps und eigene Plattform</h2>
+      <h2 id="h-station-8">DevOps und eigene Plattform</h2>
       <p>
         Heute liegt mein Schwerpunkt auf dem ganzen Weg vom Code zum
         laufenden System: Container, CI/CD mit GitHub und GitLab,
@@ -207,33 +634,76 @@
         All das habe ich in meinem eigenen Projekt zusammengeführt, dem
         <a href="https://github.com/Martin1088/accessible-job-manager" lang="en">Accessible Job Manager</a>:
         eine Bewerbungsplattform für blinde und sehbehinderte Menschen, gebaut
-        mit Spring Boot und Angular, mit Docker auf Azure Container Apps
-        betrieben und von Anfang an barrierefrei gedacht, nicht nachträglich.
+        mit Spring Boot und Angular, betrieben auf Azure Container Apps und von
+        Anfang an barrierefrei gedacht, nicht nachträglich. Eine
+        <a href="https://ajm-demo.de/#/login">Demo-Instanz</a> ist online
+        (Testzugang auf Anfrage).
       </p>
-    </section>
 
-    <section aria-labelledby="how">
-      <h2 id="how">Wie ich arbeite</h2>
-      <p>
-        Ich arbeite im Terminal mit dem Linux-Screenreader Fenrir, in NeoVim
-        (AstroNvim) und mit Claude Code. Architekturdiagramme sind in den
-        meisten Projekten der am wenigsten barrierefreie Teil, deshalb
-        schreibe ich meine als Text in PlantUML: ERDs, Klassendiagramme,
-        Prozessabläufe und Netzwerkdarstellungen.
-      </p>
-      <p>
-        Diese Arbeitsweise macht mich genau bei Dingen, die man leicht
-        überspringt: klare Dokumentation, reproduzierbare Builds und
-        Oberflächen, die ohne Maus funktionieren. Davon profitiert jedes
-        Team, nicht nur blinde Kolleginnen und Kollegen.
-      </p>
+      <h3>Praxis-Tipps: barrierefrei bauen</h3>
+      <ul class="tips" role="list">
+        <li data-platform="both">
+          <details class="tip" id="tip-accessible-forms">
+            <summary><span class="tip-title">Formulare, die Fehler wirklich ansagen</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Ein rot umrandetes Feld sagt dem Screenreader nichts. Im
+                Accessible Job Manager ist jede Fehlermeldung mit ihrem Feld
+                verbunden:
+              </p>
+              <div class="cmd"><pre><code>&lt;label for="email"&gt;E-Mail&lt;/label&gt;
+&lt;input id="email" type="email" autocomplete="email"
+       aria-invalid="true" aria-describedby="email-fehler"&gt;
+&lt;p id="email-fehler"&gt;Bitte eine gültige E-Mail-Adresse eingeben.&lt;/p&gt;</code></pre></div>
+              <ul>
+                <li>Nach dem Absenden den Fokus auf das erste fehlerhafte Feld setzen.</li>
+                <li>Erfolg oder Fehler zusätzlich über eine <code>aria-live</code>-Region ansagen.</li>
+                <li>Pflichtfelder im Label kennzeichnen, nicht nur mit einem Sternchen-Symbol.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-keyboard-check">
+            <summary><span class="tip-title">Der Zwei-Minuten-Tastaturtest</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>Maus weglegen und die eigene Anwendung nur mit der Tastatur bedienen:</p>
+              <ul>
+                <li>Erreicht <kbd>Tab</kbd> jedes Bedienelement in sinnvoller Reihenfolge?</li>
+                <li>Ist immer sichtbar und hörbar, wo der Fokus steht?</li>
+                <li>Lassen sich Dialoge mit <kbd>Esc</kbd> schließen, und landet der Fokus danach wieder am Auslöser?</li>
+                <li>Gibt es irgendetwas, das nur bei Mauszeiger-Hover erscheint?</li>
+              </ul>
+              <p>Diese Seite ist übrigens selbst so gebaut: Filter, Karten und Kopier-Buttons funktionieren komplett mit der Tastatur.</p>
+            </div>
+          </details>
+        </li>
+        <li data-platform="both">
+          <details class="tip" id="tip-ai-terminal">
+            <summary><span class="tip-title">KI-Assistent im Terminal: Text rein, Text raus</span> <span class="tag tag-both"><span class="sr-only">Plattform: </span>Linux und Windows</span></summary>
+            <div class="tip-body">
+              <p>
+                Ich arbeite mit Claude Code im Terminal. Für mich ist das ideal,
+                weil alles Text ist: keine Seitenleisten, keine Pop-ups. Was mir
+                am meisten hilft:
+              </p>
+              <ul>
+                <li>Zusammenfassungen anfordern: „Fasse diesen Diff in drei Sätzen zusammen“ statt hundert Zeilen anzuhören.</li>
+                <li>Ausgaben umformen lassen, etwa eine breite Tabelle in eine Liste.</li>
+                <li>Erzeugten Code trotzdem selbst lesen und testen &ndash; die Verantwortung bleibt bei mir.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+      </ul>
     </section>
 
     <section class="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Kontakt</h2>
       <p>
         Ich bin offen für Stellen im Backend und DevOps &ndash; remote oder
-        im Pendelbereich von Karlsruhe.
+        im Pendelbereich von Karlsruhe. Fragen zu den Tipps oder zu deinem
+        eigenen Setup beantworte ich auch gern.
       </p>
       <p class="btn-row">
         <a class="btn" href="mailto:access.job.manager@gmail.com">E-Mail schreiben</a>
