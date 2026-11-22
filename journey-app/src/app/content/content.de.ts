@@ -18,7 +18,7 @@ export const CONTENT_DE: SiteContent = {
           title: 'Eine Arbeitsweise ohne Sehen aufbauen',
           story: [
             'Der erste Teil der Reha drehte sich nicht um Informatik, sondern um das Werkzeug davor: Screenreader, Tastenkürzel, Audioausgabe und Brailleschrift. Ohne diese Grundlage ist jede Programmiersprache nur ein weiteres Hindernis.',
-            'Mit Coaching habe ich gelernt, mich über die Struktur von Dokumenten und Anwendungen zu bewegen, statt sie Zeile für Zeile anzuhören. Meine Werkzeuge waren von Anfang an Windows mit den Screenreadern NVDA und JAWS – das sind sie bis heute.',
+            'Mit Coaching habe ich gelernt, mich über die Struktur von Dokumenten und Anwendungen zu bewegen, statt sie Zeile für Zeile anzuhören. Meine Werkzeuge waren Windows mit den Screenreadern NVDA und JAWS – bis zu meinem Umstieg auf den Mac im dritten Lehrjahr.',
           ],
           tipsHeading: 'Praxis-Tipps für den Einstieg',
           tips: [
@@ -113,7 +113,7 @@ export const CONTENT_DE: SiteContent = {
               platform: 'linux',
               title: 'Linux-Terminal: Ausgabe in Häppchen statt als Wand',
               body: [
-                p('Lange Ausgaben rauschen am Screenreader vorbei. Diese Muster halten sie lesbar – bei mir meistens in WSL im Windows Terminal:'),
+                p('Lange Ausgaben rauschen am Screenreader vorbei. Diese Muster halten sie lesbar – in WSL unter Windows genauso wie später im Terminal auf dem Mac:'),
                 code(`
 ls -1                      # eine Datei pro Zeile
 ls -1 | wc -l              # erst zählen, dann entscheiden
@@ -129,7 +129,7 @@ cd -                       # zurück ins vorige Verzeichnis`),
               platform: 'windows',
               title: 'Windows Terminal und PowerShell lesbar machen',
               body: [
-                p('Windows Terminal ist mein Hauptwerkzeug, mit NVDA und JAWS. Mit <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>F</kbd> durchsuchst du die Ausgabe, mit dem NVDA-Lesecursor (Ziffernblock <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) gehst du Zeile für Zeile zurück. PowerShell gibt standardmäßig breite Tabellen aus – untereinander ist für Sprache viel angenehmer:'),
+                p('Windows Terminal war in der Ausbildung mein Hauptwerkzeug, mit NVDA und JAWS. Mit <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>F</kbd> durchsuchst du die Ausgabe, mit dem NVDA-Lesecursor (Ziffernblock <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) gehst du Zeile für Zeile zurück. PowerShell gibt standardmäßig breite Tabellen aus – untereinander ist für Sprache viel angenehmer:'),
                 code(String.raw`
 Get-ChildItem | Select-Object -ExpandProperty Name
 Get-Process code | Format-List Name, Id, CPU
@@ -220,10 +220,42 @@ git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Z
           title: '2. Lehrjahr: Webentwicklung',
           story: [
             'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP und JavaScript an einer Online-Beratungsplattform mitgearbeitet. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen.',
+            'Von Mitte bis Ende des Jahres habe ich außerdem eine Ubuntu-VM in VirtualBox mit dem Konsolen-Screenreader Fenrir eingerichtet und getestet – mein erster Versuch, Linux ganz ohne Windows-Screenreader zu bedienen.',
           ],
-          tipsHeading: 'Praxis-Tipps: Web und APIs',
+          tipsHeading: 'Praxis-Tipps: Linux-VM, Web und APIs',
           demo: 'form-errors',
           tips: [
+            {
+              id: 'tip-fenrir',
+              platform: 'linux',
+              title: 'Fenrir: Screenreader für die Linux-Konsole',
+              body: [
+                p('<strong>Fenrir</strong> ist ein Screenreader für die Textkonsole (TTY), ganz ohne grafische Oberfläche: schlank, schnell und unabhängig vom Desktop. Unter Debian und Ubuntu gibt es ihn als Paket <code>fenrir</code>.'),
+                list(
+                  'Mit dem Review-Modus liest du bereits ausgegebene Zeilen nach, ohne die Eingabe zu verlassen.',
+                  'Er funktioniert auch, wenn der Desktop nicht startet – gerade bei Systemproblemen ein großer Vorteil.',
+                  'Für den Alltag unter Windows ist <abbr title="Windows-Subsystem für Linux">WSL</abbr> mit NVDA oder JAWS bequemer; Fenrir lohnt sich, wenn du ein echtes Linux ohne Desktop bedienen willst.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-virtualbox',
+              platform: 'linux',
+              title: 'Linux in VirtualBox ausprobieren, ohne den Windows-Screenreader zu verlieren',
+              body: [
+                p('Eine VM ist der sichere Weg, Linux und Fenrir kennenzulernen: Windows mit NVDA oder JAWS bleibt als Rückfallebene, und kaputtkonfigurieren ist kein Risiko.'),
+                list(
+                  'Klickt oder tippt man in das VM-Fenster, fängt die VM die Tastatur ab – dann erreichen auch die Kürzel deines Windows-Screenreaders nur noch die VM. Die Host-Taste (standardmäßig die rechte <kbd>Strg</kbd>) gibt die Tastatur wieder frei.',
+                  'Damit Fenrir in der VM spricht, muss in den VM-Einstellungen Audio aktiviert sein.',
+                  'Vor jedem Experiment einen Snapshot anlegen – zurück geht es dann in Sekunden.',
+                ),
+                code(`
+VBoxManage list vms
+VBoxManage snapshot "Ubuntu" take vor-fenrir-test
+VBoxManage snapshot "Ubuntu" restore vor-fenrir-test   # bei ausgeschalteter VM`),
+                why('<strong>Warum:</strong> Wer zwischen zwei Screenreadern wechselt, braucht immer einen Weg zurück, der garantiert spricht.'),
+              ],
+            },
             {
               id: 'tip-test-own-pages',
               platform: 'both',
@@ -303,7 +335,7 @@ document.querySelectorAll('img:not([alt])').length   // Bilder ohne Alternativte
           title: '3. Lehrjahr: Rust und Abschlussprojekt',
           story: [
             'Im letzten Jahr habe ich mich eigenständig in Rust vertieft und mich in die Abteilungskomponente Samply.beam eingearbeitet, die Kommunikation in streng regulierten klinischen Netzwerken übernimmt.',
-            'Ab Mitte des dritten Lehrjahres kam ein Mac mit VoiceOver dazu. Das hieß noch einmal umlernen: andere Tastenlogik, ein anderes Terminal – und die Erfahrung, dass die Grundprinzipien von Windows übertragbar sind.',
+            'Mitte des dritten Lehrjahres bin ich auf einen Mac mit VoiceOver umgestiegen, seitdem ist er mein Hauptrechner. Das hieß noch einmal umlernen: andere Tastenlogik, ein anderes Terminal – und die Erfahrung, dass die Grundprinzipien von Windows übertragbar sind.',
             'Mein Abschlussprojekt war eine Raumbelegungssoftware mit REST API, ORM-Mapper, Docker und dynamischem Frontend, mit Kommunikation über Samply.beam. 2024 habe ich die Ausbildung abgeschlossen.',
           ],
           tipsHeading: 'Praxis-Tipps: Mac, Compiler, Container, Dokumentation',
@@ -415,19 +447,6 @@ plantuml -tutxt ablauf.puml   # erzeugt ablauf.utxt`),
           ],
           tipsHeading: 'Praxis-Tipps: Server und Betrieb',
           tips: [
-            {
-              id: 'tip-fenrir',
-              platform: 'linux',
-              title: 'Fenrir: Screenreader für die Linux-Konsole',
-              body: [
-                p('<strong>Fenrir</strong> ist ein Screenreader für die Textkonsole (TTY), ganz ohne grafische Oberfläche: schlank, schnell und unabhängig vom Desktop. Ich nutze ihn auf Linux-Rechnern ohne Desktop; im Alltag arbeite ich mit WSL unter Windows.'),
-                list(
-                  'Mit dem Review-Modus liest du bereits ausgegebene Zeilen nach, ohne die Eingabe zu verlassen.',
-                  'Er funktioniert auch, wenn der Desktop nicht startet – gerade bei Systemproblemen ein großer Vorteil.',
-                  'Unter Windows übernimmt diese Rolle <abbr title="Windows-Subsystem für Linux">WSL</abbr> im Windows Terminal mit NVDA oder JAWS.',
-                ),
-              ],
-            },
             {
               id: 'tip-journalctl',
               platform: 'linux',

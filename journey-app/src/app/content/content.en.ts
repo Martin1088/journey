@@ -18,7 +18,7 @@ export const CONTENT_EN: SiteContent = {
           title: 'Building a way of working without sight',
           story: [
             'The first part of rehabilitation was not about computer science but about the tools that come before it: screen reader, keyboard shortcuts, audio output and braille. Without that foundation every programming language is just one more obstacle.',
-            'With coaching I learned to move through documents and applications by their structure instead of listening to them line by line. My tools from the start were Windows with the NVDA and JAWS screen readers – and they still are.',
+            'With coaching I learned to move through documents and applications by their structure instead of listening to them line by line. My tools were Windows with the NVDA and JAWS screen readers – until I switched to the Mac in my third year.',
           ],
           tipsHeading: 'Practical tips for getting started',
           tips: [
@@ -113,7 +113,7 @@ export const CONTENT_EN: SiteContent = {
               platform: 'linux',
               title: 'Linux terminal: output in bites, not as a wall',
               body: [
-                p('Long output rushes past a screen reader. These patterns keep it readable – for me mostly in WSL inside Windows Terminal:'),
+                p('Long output rushes past a screen reader. These patterns keep it readable – in WSL on Windows just as later in the Mac terminal:'),
                 code(`
 ls -1                      # one file per line
 ls -1 | wc -l              # count first, then decide
@@ -129,7 +129,7 @@ cd -                       # back to the previous directory`),
               platform: 'windows',
               title: 'Make Windows Terminal and PowerShell readable',
               body: [
-                p('Windows Terminal is my main tool, with NVDA and JAWS. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> searches the output, and the NVDA review cursor (numpad <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) moves back line by line. PowerShell prints wide tables by default – a vertical list is much nicer for speech:'),
+                p('Windows Terminal was my main tool during the apprenticeship, with NVDA and JAWS. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> searches the output, and the NVDA review cursor (numpad <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) moves back line by line. PowerShell prints wide tables by default – a vertical list is much nicer for speech:'),
                 code(String.raw`
 Get-ChildItem | Select-Object -ExpandProperty Name
 Get-Process code | Format-List Name, Id, CPU
@@ -220,10 +220,42 @@ git diff --word-diff   # shows which word changed, not just the line`),
           title: 'Year 2: web development',
           story: [
             'In my second year I was at the Cancer Information Service (Krebsinformationsdienst), working with PHP and JavaScript on an online counselling platform. It was my first work on interfaces that other people use – and the best school for seeing accessibility from the other side.',
+            'From the middle to the end of that year I also set up and tested an Ubuntu VM in VirtualBox with the console screen reader Fenrir – my first attempt at using Linux entirely without a Windows screen reader.',
           ],
-          tipsHeading: 'Practical tips: web and APIs',
+          tipsHeading: 'Practical tips: Linux VM, web and APIs',
           demo: 'form-errors',
           tips: [
+            {
+              id: 'tip-fenrir',
+              platform: 'linux',
+              title: 'Fenrir: a screen reader for the Linux console',
+              body: [
+                p('<strong>Fenrir</strong> is a screen reader for the text console (TTY), with no graphical desktop at all: lean, fast and independent of the desktop. On Debian and Ubuntu it is available as the package <code>fenrir</code>.'),
+                list(
+                  'Review mode lets you read lines that were already printed without leaving the prompt.',
+                  'It works even when the desktop will not start – a big advantage exactly when something is broken.',
+                  'For everyday work on Windows, <abbr title="Windows Subsystem for Linux">WSL</abbr> with NVDA or JAWS is more convenient; Fenrir is worth it when you want to run a real Linux without a desktop.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-virtualbox',
+              platform: 'linux',
+              title: 'Try Linux in VirtualBox without losing your Windows screen reader',
+              body: [
+                p('A VM is the safe way to get to know Linux and Fenrir: Windows with NVDA or JAWS stays as a fallback, and breaking the configuration is no risk.'),
+                list(
+                  'Once you click or type into the VM window, the VM captures the keyboard – then even your Windows screen reader’s shortcuts only reach the VM. The host key (right <kbd>Ctrl</kbd> by default) releases the keyboard again.',
+                  'For Fenrir to speak inside the VM, audio has to be enabled in the VM settings.',
+                  'Take a snapshot before every experiment – going back then takes seconds.',
+                ),
+                code(`
+VBoxManage list vms
+VBoxManage snapshot "Ubuntu" take before-fenrir-test
+VBoxManage snapshot "Ubuntu" restore before-fenrir-test   # with the VM powered off`),
+                why('<strong>Why:</strong> when you switch between two screen readers, you always need a way back that is guaranteed to speak.'),
+              ],
+            },
             {
               id: 'tip-test-own-pages',
               platform: 'both',
@@ -303,7 +335,7 @@ document.querySelectorAll('img:not([alt])').length   // images without alt text
           title: 'Year 3: Rust and the final project',
           story: [
             'In my final year I taught myself Rust in depth and got into the department’s Samply.beam component, which handles communication in strictly regulated clinical networks.',
-            'From the middle of my third year a Mac with VoiceOver was added. That meant relearning once more: different key logic, a different terminal – and the experience that the principles from Windows carry over.',
+            'In the middle of my third year I switched to a Mac with VoiceOver, and it has been my main machine since. That meant relearning once more: different key logic, a different terminal – and the experience that the principles from Windows carry over.',
             'My final project was a room booking application with a REST API, ORM mapper, Docker and a dynamic frontend, communicating via Samply.beam. I qualified in 2024.',
           ],
           tipsHeading: 'Practical tips: Mac, compiler, containers, documentation',
@@ -415,19 +447,6 @@ plantuml -tutxt flow.puml   # creates flow.utxt`),
           ],
           tipsHeading: 'Practical tips: servers and operations',
           tips: [
-            {
-              id: 'tip-fenrir',
-              platform: 'linux',
-              title: 'Fenrir: a screen reader for the Linux console',
-              body: [
-                p('<strong>Fenrir</strong> is a screen reader for the text console (TTY), with no graphical desktop at all: lean, fast and independent of the desktop. I use it on Linux machines without a desktop; day to day I work in WSL on Windows.'),
-                list(
-                  'Review mode lets you read lines that were already printed without leaving the prompt.',
-                  'It works even when the desktop will not start – a big advantage exactly when something is broken.',
-                  'On Windows, <abbr title="Windows Subsystem for Linux">WSL</abbr> in Windows Terminal with NVDA or JAWS fills this role.',
-                ),
-              ],
-            },
             {
               id: 'tip-journalctl',
               platform: 'linux',

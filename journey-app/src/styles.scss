@@ -835,3 +835,4 @@ mark { background: #ffdbd1; color: #3f0a00; border-radius: 3px; padding: 0 0.1em
 }
 
 .js .nojs-only { display: none; }
+.cmd pre:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

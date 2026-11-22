@@ -41,7 +41,8 @@ import { LangService } from './lang.service';
                     {{ (copied() === $index ? 'tip.copied' : 'tip.copy') | translate }}
                   </button>
                 }
-                <pre><code>{{ b.code }}</code></pre>
+                <!-- tabindex: long lines scroll horizontally and must be reachable by keyboard -->
+                <pre tabindex="0"><code>{{ b.code }}</code></pre>
               </div>
             }
           }

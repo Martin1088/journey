@@ -1,12 +1,15 @@
 name: Pages
 
-# Builds the Angular journey app (prerendered, static) and publishes it
-# together with the static pages (index.html, coaching/) to GitHub Pages.
-# Repository settings → Pages → Source must be set to "GitHub Actions".
+# Builds the Angular journey app (prerendered, static), checks its
+# accessibility, and publishes it together with the static pages
+# (index.html, coaching/) to GitHub Pages. Pull requests run the build and
+# the checks only. Repository settings → Pages → Source must be set to
+# "GitHub Actions".
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -15,19 +18,23 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   build:
-    name: Build site
+    name: Build and check site
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: journey-app
     steps:
       - name: Checkout
         uses: actions/checkout@v7
 
       - name: Configure Pages
         id: pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
       - name: Set up Node.js
@@ -38,15 +45,24 @@ jobs:
           cache-dependency-path: journey-app/package-lock.json
 
       - name: Install dependencies
-        working-directory: journey-app
         run: npm ci
 
+      - name: Lint templates for accessibility
+        run: npm run lint:a11y
+
       - name: Build journey app (prerendered)
-        working-directory: journey-app
         # base_path is e.g. "/journey" for a project site, "" for a custom domain.
         run: npx ng build --base-href="${{ steps.pages.outputs.base_path }}/journey/"
 
+      - name: Install Chromium for the accessibility check
+        run: npx playwright install --with-deps chromium
+
+      - name: Check every page with axe (WCAG 2.2 A/AA, light and dark)
+        run: npm run check:a11y
+
       - name: Assemble site
+        if: github.event_name != 'pull_request'
+        working-directory: .
         run: |
           mkdir -p _site
           cp index.html styles.css .nojekyll _site/
@@ -54,12 +70,14 @@ jobs:
           cp -r journey-app/dist/journey-app/browser _site/journey
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
   deploy:
     name: Deploy to Pages
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

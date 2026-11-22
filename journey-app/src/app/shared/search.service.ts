@@ -148,7 +148,7 @@ export class SearchService {
     const first = Math.min(...terms.map((t) => doc.nText.indexOf(t)).filter((i) => i >= 0), Infinity);
     const center = first === Infinity ? 0 : first;
     let start = Math.max(0, center - 60);
-    let end = Math.min(text.length, start + 160);
+    const end = Math.min(text.length, start + 160);
     if (start > 0) start = text.lastIndexOf(' ', start) + 1;
     const nPart = doc.nText.slice(start, end);
     const part = text.slice(start, end);

@@ -36,7 +36,13 @@ cd journey-app
 npm ci
 npm start                 # dev server on http://localhost:4200/  (German: /de)
 npx ng build              # prerendered output in dist/journey-app/browser
+npm run lint:a11y         # angular-eslint incl. template accessibility rules
+npm run check:a11y        # axe (WCAG 2.2 A/AA) on every built page, light and dark,
+                          # plus interactive states; also fails on console errors
 ```
+
+Both checks run in the workflow on every push and pull request; a failing
+check stops the deployment.
 
 Adding a tip: add an entry with the same `id` to a section in both
 `content.de.ts` and `content.en.ts`. It shows up on the chapter page and in the
