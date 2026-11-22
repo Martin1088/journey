@@ -18,22 +18,22 @@ export const CONTENT_DE: SiteContent = {
           title: 'Eine Arbeitsweise ohne Sehen aufbauen',
           story: [
             'Der erste Teil der Reha drehte sich nicht um Informatik, sondern um das Werkzeug davor: Screenreader, Tastenkürzel, Audioausgabe und Brailleschrift. Ohne diese Grundlage ist jede Programmiersprache nur ein weiteres Hindernis.',
-            'Mit Coaching habe ich gelernt, mich über die Struktur von Dokumenten und Anwendungen zu bewegen, statt sie Zeile für Zeile anzuhören.',
+            'Mit Coaching habe ich gelernt, mich über die Struktur von Dokumenten und Anwendungen zu bewegen, statt sie Zeile für Zeile anzuhören. Meine Werkzeuge waren von Anfang an Windows mit den Screenreadern NVDA und JAWS – das sind sie bis heute.',
           ],
           tipsHeading: 'Praxis-Tipps für den Einstieg',
           tips: [
             {
               id: 'tip-screenreader-basics',
-              platform: 'both',
-              title: 'Einen Screenreader richtig lernen, nicht drei halb',
+              platform: 'windows',
+              title: 'NVDA und JAWS: die Struktur-Navigation zuerst lernen',
               body: [
-                p('Unter Windows ist <strong>NVDA</strong> kostenlos und ein guter Start, unter Linux mit Desktop <strong>Orca</strong> (in GNOME an und aus mit <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd>). Die Kürzel, die man zuerst wirklich können sollte, sind in Web und Anwendungen fast überall gleich:'),
+                p('Unter Windows arbeite ich mit <strong>NVDA</strong> (kostenlos) und <strong>JAWS</strong>. Die Schnellnavigation im Web ist in beiden fast gleich – wer sie in einem Screenreader beherrscht, kommt im anderen sofort zurecht:'),
                 list(
-                  '<kbd>H</kbd> nächste Überschrift, <kbd>D</kbd> nächster Bereich (Landmark), <kbd>F</kbd> nächstes Formularfeld, <kbd>K</kbd> nächster Link',
-                  '<kbd>NVDA</kbd>+<kbd>F7</kbd> Elementliste: alle Überschriften, Links und Landmarks auf einen Blick',
-                  '<kbd>NVDA</kbd>+<kbd>Leertaste</kbd> wechselt zwischen Lese- und Fokusmodus – der häufigste Grund, warum „die Tasten plötzlich nicht mehr gehen“',
+                  '<kbd>H</kbd> nächste Überschrift, <kbd>F</kbd> nächstes Formularfeld, <kbd>T</kbd> nächste Tabelle; Landmarks mit <kbd>D</kbd> in NVDA und <kbd>R</kbd> in JAWS',
+                  'Listen auf einen Blick: NVDA <kbd>NVDA</kbd>+<kbd>F7</kbd> (Elementliste); JAWS <kbd>Einfg</kbd>+<kbd>F6</kbd> Überschriften, <kbd>Einfg</kbd>+<kbd>F7</kbd> Links, <kbd>Einfg</kbd>+<kbd>F5</kbd> Formularfelder',
+                  'Lese- und Fokusmodus: NVDA wechselt mit <kbd>NVDA</kbd>+<kbd>Leertaste</kbd>, JAWS schaltet den virtuellen Cursor mit <kbd>Einfg</kbd>+<kbd>Z</kbd> – der häufigste Grund, warum „die Tasten plötzlich nicht mehr gehen“',
                 ),
-                why('<strong>Warum:</strong> Wer die Navigation über Struktur beherrscht, ist schneller als jeder, der sich Zeile für Zeile durch eine Seite hört.'),
+                why('<strong>Warum zwei Screenreader:</strong> Was in einem nicht vorgelesen wird, klappt im anderen oft – und beim Testen eigener Oberflächen zeigt der Vergleich echte Fehler statt Eigenheiten eines Programms.'),
               ],
             },
             {
@@ -41,7 +41,10 @@ export const CONTENT_DE: SiteContent = {
               platform: 'windows',
               title: 'Sprechtempo schrittweise erhöhen',
               body: [
-                p('In NVDA wählt <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil links/rechts</kbd> eine Einstellung der Sprachausgabe (Geschwindigkeit, Tonhöhe, Lautstärke …), <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil hoch/runter</kbd> ändert ihren Wert.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil links/rechts</kbd> wählt eine Einstellung der Sprachausgabe (Geschwindigkeit, Tonhöhe, Lautstärke …), <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>Pfeil hoch/runter</kbd> ändert ihren Wert.',
+                  '<strong>JAWS:</strong> <kbd>Alt</kbd>+<kbd>Strg</kbd>+<kbd>Bild auf/ab</kbd> ändert die Geschwindigkeit sofort; dauerhaft im Einstellungscenter.',
+                ),
                 p('Erhöhe die Geschwindigkeit in kleinen Schritten, etwa alle ein bis zwei Wochen, sobald sich das aktuelle Tempo normal anfühlt. Ein hohes Tempo spart beim Lesen von Code und Logs jeden Tag viel Zeit.'),
                 why('<strong>Warum:</strong> Zu schnell zu früh führt dazu, dass man mehr zurückspult als liest.'),
               ],
@@ -110,7 +113,7 @@ export const CONTENT_DE: SiteContent = {
               platform: 'linux',
               title: 'Linux-Terminal: Ausgabe in Häppchen statt als Wand',
               body: [
-                p('Lange Ausgaben rauschen am Screenreader vorbei. Diese Muster halten sie lesbar:'),
+                p('Lange Ausgaben rauschen am Screenreader vorbei. Diese Muster halten sie lesbar – bei mir meistens in WSL im Windows Terminal:'),
                 code(`
 ls -1                      # eine Datei pro Zeile
 ls -1 | wc -l              # erst zählen, dann entscheiden
@@ -126,7 +129,7 @@ cd -                       # zurück ins vorige Verzeichnis`),
               platform: 'windows',
               title: 'Windows Terminal und PowerShell lesbar machen',
               body: [
-                p('Windows Terminal funktioniert gut mit NVDA. Mit <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>F</kbd> durchsuchst du die Ausgabe, mit dem NVDA-Lesecursor (Ziffernblock <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) gehst du Zeile für Zeile zurück. PowerShell gibt standardmäßig breite Tabellen aus – untereinander ist für Sprache viel angenehmer:'),
+                p('Windows Terminal ist mein Hauptwerkzeug, mit NVDA und JAWS. Mit <kbd>Strg</kbd>+<kbd>Umschalt</kbd>+<kbd>F</kbd> durchsuchst du die Ausgabe, mit dem NVDA-Lesecursor (Ziffernblock <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) gehst du Zeile für Zeile zurück. PowerShell gibt standardmäßig breite Tabellen aus – untereinander ist für Sprache viel angenehmer:'),
                 code(String.raw`
 Get-ChildItem | Select-Object -ExpandProperty Name
 Get-Process code | Format-List Name, Id, CPU
@@ -134,6 +137,31 @@ Get-Content .\app.log -Tail 20
 Get-ChildItem | Out-File liste.txt   # in Datei lesen
 Get-Location | Set-Clipboard         # in die Zwischenablage`),
                 p('In der klassischen Eingabeaufforderung liefert <code>dir /b</code> nur die Namen.'),
+              ],
+            },
+            {
+              id: 'tip-psreadline',
+              platform: 'windows',
+              title: 'PowerShell: Vorschläge beim Tippen abschalten',
+              body: [
+                p('PSReadLine blendet beim Tippen graue Vorschläge aus dem Verlauf ein. Je nach Screenreader werden sie mitgelesen oder verwirren beim Korrigieren, weil nicht klar ist, was wirklich in der Zeile steht. Abschalten, und Vorschläge nur bei Bedarf mit <kbd>F8</kbd> (Verlauf passend zum Anfang der Zeile) holen:'),
+                code('Set-PSReadLineOption -PredictionSource None'),
+                p('Damit das dauerhaft gilt, die Zeile in dein Profil schreiben – <code>notepad $PROFILE</code> öffnet es.'),
+              ],
+            },
+            {
+              id: 'tip-wsl',
+              platform: 'windows',
+              title: 'WSL: Linux-Werkzeuge mit dem Windows-Screenreader',
+              body: [
+                p('Mit WSL laufen Bash, psql, Docker-CLI und alle Linux-Tools im Windows Terminal – und NVDA oder JAWS lesen sie wie jede andere Ausgabe. So muss ich für Linux-Arbeit den Screenreader nicht wechseln.'),
+                code(String.raw`
+wsl --install          # einmalig, in PowerShell als Administrator
+wsl -l -v              # installierte Distributionen
+wsl ls -1              # einzelnen Linux-Befehl aus PowerShell starten
+befehl | clip.exe      # Ausgabe aus WSL in die Windows-Zwischenablage
+explorer.exe .         # aktuellen WSL-Ordner im Explorer öffnen`),
+                p('Die Linux-Dateien erreichst du in Windows unter <code>\\\\wsl$</code>. Für die Arbeit an Projekten den Code im Linux-Dateisystem halten, nicht unter <code>/mnt/c</code> – das ist deutlich schneller.'),
               ],
             },
             {
@@ -203,7 +231,7 @@ git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Z
               body: [
                 steps(
                   '<strong>Überschriften:</strong> Mit <kbd>H</kbd> durchspringen. Ergibt die Liste allein ein sinnvolles Inhaltsverzeichnis?',
-                  '<strong>Bereiche:</strong> Mit <kbd>D</kbd> durch die Landmarks. Gibt es <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>?',
+                  '<strong>Bereiche:</strong> Mit <kbd>D</kbd> (NVDA) oder <kbd>R</kbd> (JAWS) durch die Landmarks. Gibt es <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>?',
                   '<strong>Formulare:</strong> Mit <kbd>Tab</kbd> durch alle Felder. Wird zu jedem Feld eine Beschriftung vorgelesen, nicht nur „Eingabefeld“?',
                 ),
                 why('<strong>Warum:</strong> Diese drei Prüfungen finden in wenigen Minuten die meisten Probleme, lange bevor ein Audit-Tool läuft.'),
@@ -275,10 +303,52 @@ document.querySelectorAll('img:not([alt])').length   // Bilder ohne Alternativte
           title: '3. Lehrjahr: Rust und Abschlussprojekt',
           story: [
             'Im letzten Jahr habe ich mich eigenständig in Rust vertieft und mich in die Abteilungskomponente Samply.beam eingearbeitet, die Kommunikation in streng regulierten klinischen Netzwerken übernimmt.',
+            'Ab Mitte des dritten Lehrjahres kam ein Mac mit VoiceOver dazu. Das hieß noch einmal umlernen: andere Tastenlogik, ein anderes Terminal – und die Erfahrung, dass die Grundprinzipien von Windows übertragbar sind.',
             'Mein Abschlussprojekt war eine Raumbelegungssoftware mit REST API, ORM-Mapper, Docker und dynamischem Frontend, mit Kommunikation über Samply.beam. 2024 habe ich die Ausbildung abgeschlossen.',
           ],
-          tipsHeading: 'Praxis-Tipps: Compiler, Container, Dokumentation',
+          tipsHeading: 'Praxis-Tipps: Mac, Compiler, Container, Dokumentation',
           tips: [
+            {
+              id: 'tip-voiceover',
+              platform: 'mac',
+              title: 'Von NVDA/JAWS zu VoiceOver: was sich ändert',
+              body: [
+                p('VoiceOver ist auf jedem Mac eingebaut, funktioniert aber anders als die Windows-Screenreader. Die wichtigsten Umstellungen:'),
+                list(
+                  '<kbd>Cmd</kbd>+<kbd>F5</kbd> schaltet VoiceOver ein und aus.',
+                  'Die VoiceOver-Taste (<abbr title="VoiceOver-Taste">VO</abbr>) ist <kbd>Ctrl</kbd>+<kbd>Option</kbd> – sie entspricht ungefähr der NVDA- oder Einfügen-Taste.',
+                  '<kbd>VO</kbd>+<kbd>U</kbd> öffnet den Rotor: Listen von Überschriften, Links, Formularfeldern und Landmarks, wie die Elementliste in NVDA.',
+                  'Im Web springt <kbd>VO</kbd>+<kbd>Cmd</kbd>+<kbd>H</kbd> zur nächsten Überschrift. Wer lieber wie in NVDA und JAWS nur <kbd>H</kbd> drückt, aktiviert im VoiceOver-Dienstprogramm die Schnellnavigation mit Einzeltasten.',
+                  'Gruppen betreten und verlassen: <kbd>VO</kbd>+<kbd>Umschalt</kbd>+<kbd>Pfeil runter/hoch</kbd> – das gibt es so unter Windows nicht und ist anfangs die größte Umstellung.',
+                  'Sprechtempo und Ausführlichkeit dauerhaft im VoiceOver-Dienstprogramm einstellen (<kbd>VO</kbd>+<kbd>F8</kbd>).',
+                ),
+              ],
+            },
+            {
+              id: 'tip-mac-terminal',
+              platform: 'mac',
+              title: 'Terminal auf dem Mac: Zwischenablage und Werkzeuge',
+              body: [
+                p('Die Muster aus dem Linux-Terminal gelten auf dem Mac genauso. Zwei Mac-Eigenheiten helfen zusätzlich:'),
+                code(`
+befehl | pbcopy        # Ausgabe in die Zwischenablage, dann in Ruhe lesen
+pbpaste | wc -l        # Zwischenablage zählen
+brew install jq postgresql   # Werkzeuge über Homebrew`),
+              ],
+            },
+            {
+              id: 'tip-done-sound',
+              platform: 'both',
+              title: 'Hörbares Signal, wenn ein langer Befehl fertig ist',
+              body: [
+                p('Bei Builds, die Minuten dauern, will ich nicht ständig nachhören, ob sie fertig sind. Stattdessen sagt mir der Rechner Bescheid:'),
+                code(String.raw`
+cargo build; say "Build fertig"                 # macOS
+cargo build; spd-say "Build fertig"             # Linux (speech-dispatcher)
+cargo build; [console]::beep(800, 300)          # PowerShell`),
+                p('Mit <code>&amp;&amp;</code> statt <code>;</code> kommt das Signal nur bei Erfolg (in PowerShell ab Version 7) – dann weiß ich am Ton, ob ich weiterarbeiten kann.'),
+              ],
+            },
             {
               id: 'tip-cargo-short',
               platform: 'both',
@@ -350,11 +420,11 @@ plantuml -tutxt ablauf.puml   # erzeugt ablauf.utxt`),
               platform: 'linux',
               title: 'Fenrir: Screenreader für die Linux-Konsole',
               body: [
-                p('<strong>Fenrir</strong> ist ein Screenreader für die Textkonsole (TTY), ganz ohne grafische Oberfläche. Das ist mein tägliches Werkzeug: schlank, schnell und unabhängig vom Desktop.'),
+                p('<strong>Fenrir</strong> ist ein Screenreader für die Textkonsole (TTY), ganz ohne grafische Oberfläche: schlank, schnell und unabhängig vom Desktop. Ich nutze ihn auf Linux-Rechnern ohne Desktop; im Alltag arbeite ich mit WSL unter Windows.'),
                 list(
                   'Mit dem Review-Modus liest du bereits ausgegebene Zeilen nach, ohne die Eingabe zu verlassen.',
                   'Er funktioniert auch, wenn der Desktop nicht startet – gerade bei Systemproblemen ein großer Vorteil.',
-                  'Unter Windows übernimmt diese Rolle <abbr title="Windows-Subsystem für Linux">WSL</abbr> im Windows Terminal mit NVDA.',
+                  'Unter Windows übernimmt diese Rolle <abbr title="Windows-Subsystem für Linux">WSL</abbr> im Windows Terminal mit NVDA oder JAWS.',
                 ),
               ],
             },

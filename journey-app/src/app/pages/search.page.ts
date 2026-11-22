@@ -55,9 +55,8 @@ import { SeoService } from '../shared/seo.service';
         }
       </form>
 
-      @if (!interactive()) {
-        <noscript><p class="why">{{ 'search.noJs' | translate }}</p></noscript>
-      }
+      <!-- Hidden by CSS once JavaScript runs (html.js, set in index.html). -->
+      <p class="why nojs-only">{{ 'search.noJs' | translate }}</p>
 
       <p id="search-status" class="tip-status">{{ statusText() }}</p>
 
@@ -97,7 +96,7 @@ export class SearchPage {
   private readonly announcer = inject(AnnouncerService);
   protected readonly prefs = inject(PrefsService);
 
-  protected readonly platforms: PlatformFilter[] = ['all', 'linux', 'windows'];
+  protected readonly platforms: PlatformFilter[] = ['all', 'windows', 'linux', 'mac'];
   protected readonly examples = ['psql', 'Fenrir', 'PowerShell', 'kubectl', 'NVDA', 'Git'];
   protected readonly interactive = signal(false);
   protected readonly query = signal('');

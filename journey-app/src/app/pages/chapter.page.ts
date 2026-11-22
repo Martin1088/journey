@@ -118,7 +118,7 @@ export class ChapterPage {
   private readonly injector = inject(Injector);
   protected readonly prefs = inject(PrefsService);
 
-  protected readonly platforms: PlatformFilter[] = ['all', 'linux', 'windows'];
+  protected readonly platforms: PlatformFilter[] = ['all', 'windows', 'linux', 'mac'];
   protected readonly interactive = signal(false);
   protected readonly openIds = signal(new Set<string>());
   private readonly cards = viewChildren(TipCard);

@@ -19,7 +19,7 @@
     "fact1": "rehabilitation at QuikStep",
     "fact2": "qualified as IT specialist (IHK)",
     "fact3": "data platforms as technical lead",
-    "fact4": "practical tips, searchable",
+    "fact4": "practical tips for Windows, Linux and macOS",
     "chaptersHeading": "Three chapters",
     "chaptersIntro": "Each chapter tells one part of the story and has expandable tip cards with copyable commands and interactive demos.",
     "tips": "{{count}} tips",
@@ -44,8 +44,9 @@
     "label": "Filter tips",
     "platform": "Platform",
     "all": "All",
-    "linux": "Linux",
     "windows": "Windows",
+    "linux": "Linux",
+    "mac": "macOS",
     "expandAll": "Expand all",
     "collapseAll": "Collapse all",
     "shown": "{{n}} of {{total}} tips shown."
@@ -54,12 +55,13 @@
     "platform": "Platform:",
     "linux": "Linux",
     "windows": "Windows",
-    "both": "Linux and Windows",
+    "both": "Cross-platform",
     "copy": "Copy",
     "copyLabel": "Copy command",
     "copied": "Copied",
     "copiedMsg": "Command copied to the clipboard.",
-    "copyFail": "Copying failed. Please select the text manually."
+    "copyFail": "Copying failed. Please select the text manually.",
+    "mac": "macOS"
   },
   "search": {
     "metaTitle": "Search | My journey | Martin Jurk",

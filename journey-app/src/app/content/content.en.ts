@@ -18,22 +18,22 @@ export const CONTENT_EN: SiteContent = {
           title: 'Building a way of working without sight',
           story: [
             'The first part of rehabilitation was not about computer science but about the tools that come before it: screen reader, keyboard shortcuts, audio output and braille. Without that foundation every programming language is just one more obstacle.',
-            'With coaching I learned to move through documents and applications by their structure instead of listening to them line by line.',
+            'With coaching I learned to move through documents and applications by their structure instead of listening to them line by line. My tools from the start were Windows with the NVDA and JAWS screen readers – and they still are.',
           ],
           tipsHeading: 'Practical tips for getting started',
           tips: [
             {
               id: 'tip-screenreader-basics',
-              platform: 'both',
-              title: 'Learn one screen reader properly, not three halfway',
+              platform: 'windows',
+              title: 'NVDA and JAWS: learn structural navigation first',
               body: [
-                p('On Windows, <strong>NVDA</strong> is free and a good start; on a Linux desktop, <strong>Orca</strong> (toggled in GNOME with <kbd>Super</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd>). The shortcuts worth learning first are almost the same everywhere on the web and in applications:'),
+                p('On Windows I work with <strong>NVDA</strong> (free) and <strong>JAWS</strong>. Quick navigation on the web is almost the same in both – master it in one and you are at home in the other right away:'),
                 list(
-                  '<kbd>H</kbd> next heading, <kbd>D</kbd> next region (landmark), <kbd>F</kbd> next form field, <kbd>K</kbd> next link',
-                  '<kbd>NVDA</kbd>+<kbd>F7</kbd> elements list: all headings, links and landmarks at a glance',
-                  '<kbd>NVDA</kbd>+<kbd>Space</kbd> switches between browse and focus mode – the most common reason “the keys suddenly stopped working”',
+                  '<kbd>H</kbd> next heading, <kbd>F</kbd> next form field, <kbd>T</kbd> next table; landmarks with <kbd>D</kbd> in NVDA and <kbd>R</kbd> in JAWS',
+                  'Lists at a glance: NVDA <kbd>NVDA</kbd>+<kbd>F7</kbd> (elements list); JAWS <kbd>Insert</kbd>+<kbd>F6</kbd> headings, <kbd>Insert</kbd>+<kbd>F7</kbd> links, <kbd>Insert</kbd>+<kbd>F5</kbd> form fields',
+                  'Browse and focus mode: NVDA switches with <kbd>NVDA</kbd>+<kbd>Space</kbd>, JAWS toggles the virtual cursor with <kbd>Insert</kbd>+<kbd>Z</kbd> – the most common reason “the keys suddenly stopped working”',
                 ),
-                why('<strong>Why:</strong> once you can navigate by structure, you are faster than anyone listening to a page line by line.'),
+                why('<strong>Why two screen readers:</strong> what one does not read, the other often does – and when testing your own interfaces, comparing both reveals real bugs instead of one program’s quirks.'),
               ],
             },
             {
@@ -41,7 +41,10 @@ export const CONTENT_EN: SiteContent = {
               platform: 'windows',
               title: 'Raise the speech rate step by step',
               body: [
-                p('In NVDA, <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>Left/Right arrow</kbd> selects a synth setting (rate, pitch, volume …), and <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>Up/Down arrow</kbd> changes its value.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>Left/Right arrow</kbd> selects a synth setting (rate, pitch, volume …), and <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>Up/Down arrow</kbd> changes its value.',
+                  '<strong>JAWS:</strong> <kbd>Alt</kbd>+<kbd>Ctrl</kbd>+<kbd>Page Up/Down</kbd> changes the rate immediately; make it permanent in the Settings Center.',
+                ),
                 p('Increase the rate in small steps, every week or two, once the current speed feels normal. A high rate saves a lot of time every day when reading code and logs.'),
                 why('<strong>Why:</strong> too fast too early means you rewind more than you read.'),
               ],
@@ -110,7 +113,7 @@ export const CONTENT_EN: SiteContent = {
               platform: 'linux',
               title: 'Linux terminal: output in bites, not as a wall',
               body: [
-                p('Long output rushes past a screen reader. These patterns keep it readable:'),
+                p('Long output rushes past a screen reader. These patterns keep it readable – for me mostly in WSL inside Windows Terminal:'),
                 code(`
 ls -1                      # one file per line
 ls -1 | wc -l              # count first, then decide
@@ -126,7 +129,7 @@ cd -                       # back to the previous directory`),
               platform: 'windows',
               title: 'Make Windows Terminal and PowerShell readable',
               body: [
-                p('Windows Terminal works well with NVDA. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> searches the output, and the NVDA review cursor (numpad <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) moves back line by line. PowerShell prints wide tables by default – a vertical list is much nicer for speech:'),
+                p('Windows Terminal is my main tool, with NVDA and JAWS. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> searches the output, and the NVDA review cursor (numpad <kbd>7</kbd> <kbd>8</kbd> <kbd>9</kbd>) moves back line by line. PowerShell prints wide tables by default – a vertical list is much nicer for speech:'),
                 code(String.raw`
 Get-ChildItem | Select-Object -ExpandProperty Name
 Get-Process code | Format-List Name, Id, CPU
@@ -134,6 +137,31 @@ Get-Content .\app.log -Tail 20
 Get-ChildItem | Out-File list.txt    # read it as a file
 Get-Location | Set-Clipboard         # to the clipboard`),
                 p('In the classic command prompt, <code>dir /b</code> prints names only.'),
+              ],
+            },
+            {
+              id: 'tip-psreadline',
+              platform: 'windows',
+              title: 'PowerShell: turn off suggestions while typing',
+              body: [
+                p('PSReadLine shows grey suggestions from your history as you type. Depending on the screen reader they get read out, or they confuse you when correcting, because it is unclear what is really on the line. Turn them off and fetch history on demand with <kbd>F8</kbd> (history matching the start of the line):'),
+                code('Set-PSReadLineOption -PredictionSource None'),
+                p('To make it permanent, put the line in your profile – <code>notepad $PROFILE</code> opens it.'),
+              ],
+            },
+            {
+              id: 'tip-wsl',
+              platform: 'windows',
+              title: 'WSL: Linux tools with your Windows screen reader',
+              body: [
+                p('With WSL, Bash, psql, the Docker CLI and every other Linux tool run inside Windows Terminal – and NVDA or JAWS read them like any other output. So I never have to switch screen readers for Linux work.'),
+                code(String.raw`
+wsl --install          # once, in PowerShell as administrator
+wsl -l -v              # installed distributions
+wsl ls -1              # run a single Linux command from PowerShell
+command | clip.exe     # WSL output to the Windows clipboard
+explorer.exe .         # open the current WSL folder in Explorer`),
+                p('From Windows you reach the Linux files at <code>\\\\wsl$</code>. Keep project code in the Linux file system, not under <code>/mnt/c</code> – it is much faster.'),
               ],
             },
             {
@@ -203,7 +231,7 @@ git diff --word-diff   # shows which word changed, not just the line`),
               body: [
                 steps(
                   '<strong>Headings:</strong> jump through them with <kbd>H</kbd>. Does the list alone make a sensible table of contents?',
-                  '<strong>Regions:</strong> move through landmarks with <kbd>D</kbd>. Are there <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>?',
+                  '<strong>Regions:</strong> move through landmarks with <kbd>D</kbd> (NVDA) or <kbd>R</kbd> (JAWS). Are there <code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>?',
                   '<strong>Forms:</strong> <kbd>Tab</kbd> through every field. Is a label read for each one, not just “edit text”?',
                 ),
                 why('<strong>Why:</strong> these three checks find most problems within minutes, long before an audit tool runs.'),
@@ -275,10 +303,52 @@ document.querySelectorAll('img:not([alt])').length   // images without alt text
           title: 'Year 3: Rust and the final project',
           story: [
             'In my final year I taught myself Rust in depth and got into the department’s Samply.beam component, which handles communication in strictly regulated clinical networks.',
+            'From the middle of my third year a Mac with VoiceOver was added. That meant relearning once more: different key logic, a different terminal – and the experience that the principles from Windows carry over.',
             'My final project was a room booking application with a REST API, ORM mapper, Docker and a dynamic frontend, communicating via Samply.beam. I qualified in 2024.',
           ],
-          tipsHeading: 'Practical tips: compiler, containers, documentation',
+          tipsHeading: 'Practical tips: Mac, compiler, containers, documentation',
           tips: [
+            {
+              id: 'tip-voiceover',
+              platform: 'mac',
+              title: 'From NVDA/JAWS to VoiceOver: what changes',
+              body: [
+                p('VoiceOver is built into every Mac, but it works differently from the Windows screen readers. The main adjustments:'),
+                list(
+                  '<kbd>Cmd</kbd>+<kbd>F5</kbd> turns VoiceOver on and off.',
+                  'The VoiceOver key (<abbr title="VoiceOver key">VO</abbr>) is <kbd>Ctrl</kbd>+<kbd>Option</kbd> – roughly the counterpart of the NVDA or Insert key.',
+                  '<kbd>VO</kbd>+<kbd>U</kbd> opens the rotor: lists of headings, links, form fields and landmarks, like the NVDA elements list.',
+                  'On the web, <kbd>VO</kbd>+<kbd>Cmd</kbd>+<kbd>H</kbd> jumps to the next heading. If you prefer pressing just <kbd>H</kbd> as in NVDA and JAWS, enable single-key Quick Nav in VoiceOver Utility.',
+                  'Entering and leaving groups: <kbd>VO</kbd>+<kbd>Shift</kbd>+<kbd>Down/Up arrow</kbd> – there is nothing quite like it on Windows, and it is the biggest adjustment at first.',
+                  'Set speech rate and verbosity permanently in VoiceOver Utility (<kbd>VO</kbd>+<kbd>F8</kbd>).',
+                ),
+              ],
+            },
+            {
+              id: 'tip-mac-terminal',
+              platform: 'mac',
+              title: 'Terminal on the Mac: clipboard and tools',
+              body: [
+                p('The patterns from the Linux terminal apply on the Mac just the same. Two Mac specifics help on top:'),
+                code(`
+command | pbcopy       # output to the clipboard, then read it at leisure
+pbpaste | wc -l        # count what is on the clipboard
+brew install jq postgresql   # tools via Homebrew`),
+              ],
+            },
+            {
+              id: 'tip-done-sound',
+              platform: 'both',
+              title: 'An audible signal when a long command finishes',
+              body: [
+                p('With builds that take minutes, I do not want to keep checking whether they are done. Instead the computer tells me:'),
+                code(String.raw`
+cargo build; say "Build done"                   # macOS
+cargo build; spd-say "Build done"               # Linux (speech-dispatcher)
+cargo build; [console]::beep(800, 300)          # PowerShell`),
+                p('With <code>&amp;&amp;</code> instead of <code>;</code> the signal only comes on success (in PowerShell from version 7) – the sound tells me whether I can carry on.'),
+              ],
+            },
             {
               id: 'tip-cargo-short',
               platform: 'both',
@@ -350,11 +420,11 @@ plantuml -tutxt flow.puml   # creates flow.utxt`),
               platform: 'linux',
               title: 'Fenrir: a screen reader for the Linux console',
               body: [
-                p('<strong>Fenrir</strong> is a screen reader for the text console (TTY), with no graphical desktop at all. It is my everyday tool: lean, fast and independent of the desktop.'),
+                p('<strong>Fenrir</strong> is a screen reader for the text console (TTY), with no graphical desktop at all: lean, fast and independent of the desktop. I use it on Linux machines without a desktop; day to day I work in WSL on Windows.'),
                 list(
                   'Review mode lets you read lines that were already printed without leaving the prompt.',
                   'It works even when the desktop will not start – a big advantage exactly when something is broken.',
-                  'On Windows, <abbr title="Windows Subsystem for Linux">WSL</abbr> in Windows Terminal with NVDA fills this role.',
+                  'On Windows, <abbr title="Windows Subsystem for Linux">WSL</abbr> in Windows Terminal with NVDA or JAWS fills this role.',
                 ),
               ],
             },

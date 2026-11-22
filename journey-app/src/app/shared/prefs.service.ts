@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export type PlatformFilter = 'all' | 'linux' | 'windows';
+export type PlatformFilter = 'all' | 'windows' | 'linux' | 'mac';
 
 /** Per-viewer conveniences. Storage may be unavailable; the page works without it. */
 @Injectable({ providedIn: 'root' })
@@ -30,7 +30,7 @@ export class PrefsService {
     if (!this.browser) return;
     try {
       const v = localStorage.getItem('journey-platform');
-      if (v === 'linux' || v === 'windows' || v === 'all') this.platform.set(v);
+      if (v === 'linux' || v === 'windows' || v === 'mac' || v === 'all') this.platform.set(v);
     } catch {
       /* ignore */
     }

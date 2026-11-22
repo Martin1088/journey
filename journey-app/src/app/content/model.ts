@@ -7,7 +7,8 @@
  */
 
 export type Lang = 'de' | 'en';
-export type Platform = 'linux' | 'windows' | 'both';
+/** 'both' = cross-platform (works on Windows, Linux and macOS). */
+export type Platform = 'windows' | 'linux' | 'mac' | 'both';
 export type ChapterId = 'quikstep' | 'training' | 'dkfz';
 export type DemoId = 'sql-output' | 'form-errors';
 

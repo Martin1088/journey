@@ -625,6 +625,7 @@ input:focus-visible + label {
 }
 .tag-linux { background: var(--green-soft); color: var(--ink); }
 .tag-windows { background: var(--teal-soft); color: var(--ink); }
+.tag-mac { background: #ffdbd1; color: #3f0a00; }
 .tag-both { background: var(--line); color: var(--ink); }
 
 kbd {
@@ -832,3 +833,5 @@ mark { background: #ffdbd1; color: #3f0a00; border-radius: 3px; padding: 0 0.1em
   .demo-form input.invalid { border-color: #ffb4ab; }
   .field-error { color: #ffb4ab; }
 }
+
+.js .nojs-only { display: none; }

@@ -19,7 +19,7 @@
     "fact1": "Reha bei QuikStep",
     "fact2": "Abschluss Fachinformatiker (IHK)",
     "fact3": "Datenplattformen in technischer Leitung",
-    "fact4": "Praxis-Tipps, durchsuchbar",
+    "fact4": "Praxis-Tipps für Windows, Linux und macOS",
     "chaptersHeading": "Drei Kapitel",
     "chaptersIntro": "Jedes Kapitel erzählt einen Abschnitt und hat aufklappbare Tipp-Karten mit Befehlen zum Kopieren und interaktive Demos.",
     "tips": "{{count}} Tipps",
@@ -44,8 +44,9 @@
     "label": "Tipps filtern",
     "platform": "Plattform",
     "all": "Alle",
-    "linux": "Linux",
     "windows": "Windows",
+    "linux": "Linux",
+    "mac": "macOS",
     "expandAll": "Alle aufklappen",
     "collapseAll": "Alle zuklappen",
     "shown": "{{n}} von {{total}} Tipps angezeigt."
@@ -54,12 +55,13 @@
     "platform": "Plattform:",
     "linux": "Linux",
     "windows": "Windows",
-    "both": "Linux und Windows",
+    "both": "Plattformübergreifend",
     "copy": "Kopieren",
     "copyLabel": "Befehl kopieren",
     "copied": "Kopiert",
     "copiedMsg": "Befehl in die Zwischenablage kopiert.",
-    "copyFail": "Kopieren nicht möglich. Bitte den Text manuell markieren."
+    "copyFail": "Kopieren nicht möglich. Bitte den Text manuell markieren.",
+    "mac": "macOS"
   },
   "search": {
     "metaTitle": "Suche | Mein Weg | Martin Jurk",
