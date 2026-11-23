@@ -11,9 +11,9 @@ export const CONTENT_DE: SiteContent = {
       id: 'quikstep',
       when: '2020 – 2021',
       title: 'Berufliche Rehabilitation bei QuikStep',
-      short: 'Arbeiten ohne Sehen lernen und mit C ins Programmieren einsteigen.',
+      short: 'Arbeiten ohne Sehen lernen und mit C, Java, Python und HTML ins Programmieren einsteigen.',
       lead:
-        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und mit C programmieren gelernt. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten.',
+        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und die Grundlagen der Programmierung gelernt – vor allem in C, dazu Java, Python und HTML. Und dort ist ein Wissensdurst entstanden, der seitdem nicht nachgelassen hat: Ich wollte verstehen, wie Software funktioniert, nicht nur, wie man sie bedient. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten.',
       sections: [
         {
           id: 'arbeitsweise',
@@ -70,9 +70,10 @@ export const CONTENT_DE: SiteContent = {
         {
           id: 'c-lernen',
           when: '2020 – 2021',
-          title: 'Programmieren lernen mit C',
+          title: 'Programmieren lernen: C, Java, Python und HTML',
           story: [
-            'Im zweiten Teil kamen C und die Grundlagen der Informatik dazu. C verzeiht wenig, und der Compiler antwortet mit Meldungen im Terminal – also mit Text. Genau das hat mir gezeigt, dass Softwareentwicklung ein Beruf ist, den ich ohne Sehen ausüben kann.',
+            'Im zweiten Teil kamen die Grundlagen der Informatik dazu, mit C als Hauptsprache. C verzeiht wenig, und der Compiler antwortet mit Meldungen im Terminal – also mit Text. Genau das hat mir gezeigt, dass Softwareentwicklung ein Beruf ist, den ich ohne Sehen ausüben kann.',
+            'Daneben habe ich in Java und Python hineingeschaut und meine ersten Seiten in HTML geschrieben – bewusst nur die Grundbausteine: Variablen, Schleifen und Funktionen, noch ohne Bibliotheken. Dieselben Konzepte in mehreren Sprachen wiederzuerkennen, hat meine Neugier auf Informatik erst richtig geweckt.',
           ],
           tipsHeading: 'Praxis-Tipps: erste Programme',
           tips: [
@@ -84,6 +85,20 @@ export const CONTENT_DE: SiteContent = {
                 p('Ein einziger fehlender Strichpunkt erzeugt oft zwanzig Folgefehler. Mit Screenreader ist das besonders mühsam. Lass dir deshalb nur die ersten Zeilen ausgeben, korrigiere, kompiliere neu.'),
                 code('gcc -Wall -Wextra -o hallo hallo.c 2>&1 | head -n 5'),
                 p('Die Meldung beginnt mit <code>datei:zeile:spalte</code>. Mit der Zeilennummer springst du im Editor direkt hin, statt zu suchen.'),
+              ],
+            },
+            {
+              id: 'tip-indentation',
+              platform: 'windows',
+              title: 'Einrückung hörbar machen – Pflicht für Python',
+              body: [
+                p('In Python ist die Einrückung Teil der Syntax: Eine Zeile zu weit links beendet eine Schleife, ohne dass ein Zeichen fehlt. Lass dir die Einrückung deshalb ansagen, statt Leerzeichen zu zählen.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>D</kbd> öffnet die Dokumentformatierung; unter „Zeileneinrückung“ „Töne“ oder „Sprache und Töne“ wählen. Die Tonhöhe steigt mit der Tiefe – ein Wechsel fällt sofort auf.',
+                  '<strong>JAWS:</strong> kann Einrückungen ebenfalls ansagen; im Einstellungscenter nach „Einrückung“ suchen.',
+                  'Einheitlich mit 4 Leerzeichen einrücken, nie mit Tabs gemischt – sonst klingen zwei gleich tiefe Zeilen verschieden.',
+                ),
+                why('<strong>Hilft auch bei C, Java und HTML:</strong> Dort ist Einrückung zwar keine Syntax, aber die schnellste Art, zu hören, wo ein Block endet.'),
               ],
             },
           ],

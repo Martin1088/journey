@@ -11,9 +11,9 @@ export const CONTENT_EN: SiteContent = {
       id: 'quikstep',
       when: '2020 – 2021',
       title: 'Vocational rehabilitation at QuikStep',
-      short: 'Learning to work without sight and starting to program in C.',
+      short: 'Learning to work without sight and starting to program in C, Java, Python and HTML.',
       lead:
-        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned to program in C. That year it became clear to me: programming is text, and with text I can work at full speed.',
+        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned the fundamentals of programming – mainly in C, plus Java, Python and HTML. And it is where a thirst for knowledge began that has not let up since: I wanted to understand how software works, not just how to use it. That year it became clear to me: programming is text, and with text I can work at full speed.',
       sections: [
         {
           id: 'arbeitsweise',
@@ -70,9 +70,10 @@ export const CONTENT_EN: SiteContent = {
         {
           id: 'c-lernen',
           when: '2020 – 2021',
-          title: 'Learning to program in C',
+          title: 'Learning to program: C, Java, Python and HTML',
           story: [
-            'The second part added C and the fundamentals of computer science. C forgives little, and the compiler answers with messages in the terminal – in other words, with text. That is exactly what showed me that software development is a profession I can practise without sight.',
+            'The second part added the fundamentals of computer science, with C as the main language. C forgives little, and the compiler answers with messages in the terminal – in other words, with text. That is exactly what showed me that software development is a profession I can practise without sight.',
+            'Alongside it I tried Java and Python and wrote my first pages in HTML – deliberately only the building blocks: variables, loops and functions, no libraries yet. Recognising the same concepts across several languages is what really sparked my curiosity about computer science.',
           ],
           tipsHeading: 'Practical tips: first programs',
           tips: [
@@ -84,6 +85,20 @@ export const CONTENT_EN: SiteContent = {
                 p('A single missing semicolon often causes twenty follow-up errors. With a screen reader that is especially tiring. Print only the first lines, fix, compile again.'),
                 code('gcc -Wall -Wextra -o hello hello.c 2>&1 | head -n 5'),
                 p('The message starts with <code>file:line:column</code>. With the line number you jump straight there in the editor instead of searching.'),
+              ],
+            },
+            {
+              id: 'tip-indentation',
+              platform: 'windows',
+              title: 'Make indentation audible – essential for Python',
+              body: [
+                p('In Python, indentation is part of the syntax: a line one level too far left ends a loop without a single character missing. So have the indentation announced instead of counting spaces.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>D</kbd> opens document formatting; under “Line indentation reporting” choose “Tones” or “Both speech and tones”. The pitch rises with the depth, so a change stands out immediately.',
+                  '<strong>JAWS:</strong> can announce indentation too; search the Settings Center for “indentation”.',
+                  'Indent consistently with 4 spaces, never mixed with tabs – otherwise two lines at the same depth sound different.',
+                ),
+                why('<strong>Helps with C, Java and HTML too:</strong> there indentation is not syntax, but it is the quickest way to hear where a block ends.'),
               ],
             },
           ],
