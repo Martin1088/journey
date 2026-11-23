@@ -1,10 +1,9 @@
 name: Pages
 
-# Builds the Angular journey app (prerendered, static), checks its
-# accessibility, and publishes it together with the static pages
-# (index.html, coaching/) to GitHub Pages. Pull requests run the build and
-# the checks only. Repository settings → Pages → Source must be set to
-# "GitHub Actions".
+# Builds the site (one Angular app, prerendered to static HTML), checks its
+# accessibility, and publishes it to GitHub Pages. Pull requests run the
+# build and the checks only. Repository settings → Pages → Source must be
+# set to "GitHub Actions".
 
 on:
   push:
@@ -50,9 +49,13 @@ jobs:
       - name: Lint templates for accessibility
         run: npm run lint:a11y
 
-      - name: Build journey app (prerendered)
-        # base_path is e.g. "/journey" for a project site, "" for a custom domain.
-        run: npx ng build --base-href="${{ steps.pages.outputs.base_path }}/journey/"
+      - name: Build site (prerendered)
+        # base_path is e.g. "/journey" for a project site, "" for a custom domain;
+        # base_url is the full public URL, used for canonical and hreflang links.
+        run: >-
+          npx ng build
+          --base-href="${{ steps.pages.outputs.base_path }}/"
+          --define "SITE_URL='${{ steps.pages.outputs.base_url }}/'"
 
       - name: Install Chromium for the accessibility check
         run: npx playwright install --with-deps chromium
@@ -60,20 +63,14 @@ jobs:
       - name: Check every page with axe (WCAG 2.2 A/AA, light and dark)
         run: npm run check:a11y
 
-      - name: Assemble site
-        if: github.event_name != 'pull_request'
-        working-directory: .
-        run: |
-          mkdir -p _site
-          cp index.html styles.css .nojekyll _site/
-          cp -r coaching _site/
-          cp -r journey-app/dist/journey-app/browser _site/journey
+      - name: Add redirects for old addresses
+        run: npm run redirects
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
-          path: _site
+          path: journey-app/dist/journey-app/browser
 
   deploy:
     name: Deploy to Pages

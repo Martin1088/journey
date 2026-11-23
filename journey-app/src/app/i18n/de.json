@@ -64,21 +64,23 @@
     "mac": "macOS"
   },
   "search": {
-    "metaTitle": "Suche | Mein Weg | Martin Jurk",
-    "metaDescription": "Alle Praxis-Tipps und Abschnitte durchsuchen: Screenreader, Terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
-    "title": "Tipps und Abschnitte durchsuchen",
-    "intro": "Die Suche findet Text, Tipp-Titel und Befehle. Ergebnisse erscheinen beim Tippen.",
+    "metaTitle": "Suche | Martin Jurk",
+    "metaDescription": "Projekte, Coaching-Angebote und alle Praxis-Tipps durchsuchen: Screenreader, Terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
+    "title": "Die Seite durchsuchen",
+    "intro": "Die Suche findet Projekte, Coaching-Angebote, Abschnitte, Tipp-Titel und Befehle. Ergebnisse erscheinen beim Tippen.",
     "label": "Suchbegriff",
     "submit": "Suchen",
-    "chapter": "Kapitel",
-    "allChapters": "Alle Kapitel",
     "resultsOne": "1 Treffer für „{{q}}“.",
     "resultsMany": "{{count}} Treffer für „{{q}}“.",
     "none": "Keine Treffer für „{{q}}“. Versuche ein anderes Wort oder entferne einen Filter.",
     "examples": "Beispiele",
     "tip": "Tipp",
     "section": "Abschnitt",
-    "noJs": "Die Suche braucht JavaScript. Alle Inhalte findest du auch über die drei Kapitel."
+    "noJs": "Die Suche braucht JavaScript. Alle Inhalte erreichst du auch über die Navigation oben.",
+    "area": "Bereich",
+    "allAreas": "Alles",
+    "project": "Projekt",
+    "offer": "Coaching-Angebot"
   },
   "demo": {
     "badge": "Interaktive Demo",
@@ -118,5 +120,18 @@
     "coaching": "Ich coache außerdem Menschen, die mit Screenreader arbeiten und programmieren möchten –",
     "coachingLink": "mehr dazu hier",
     "copyright": "© 2026 Martin Jurk. Diese Seite ist bewusst barrierefrei gebaut."
+  },
+  "work": {
+    "seeWork": "Meine Projekte ansehen",
+    "readJourney": "Mein Weg als blinder Entwickler"
+  },
+  "coaching": {
+    "getInTouch": "Kontakt aufnehmen",
+    "readJourney": "Mein Weg als blinder Entwickler",
+    "tipsHint": "Viele praktische Tipps aus meinem Alltag – Screenreader, Terminal, SQL, Kubernetes – findest du auf der Seite",
+    "tipsLink": "Mein Weg"
+  },
+  "contact": {
+    "email": "E-Mail schreiben"
   }
 }

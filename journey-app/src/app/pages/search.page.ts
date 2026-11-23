@@ -4,12 +4,11 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ChapterId } from '../content/model';
-import { CHAPTER_ORDER, link } from '../content/paths';
+import { CHAPTER_ORDER, PageKey, link } from '../content/paths';
 import { AnnouncerService } from '../shared/announcer.service';
 import { LangService } from '../shared/lang.service';
 import { PlatformFilter, PrefsService } from '../shared/prefs.service';
-import { SearchService } from '../shared/search.service';
+import { Area, SearchService } from '../shared/search.service';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
@@ -32,11 +31,11 @@ import { SeoService } from '../shared/seo.service';
         @if (interactive()) {
           <div class="filters">
             <fieldset>
-              <legend>{{ 'search.chapter' | translate }}</legend>
-              @for (c of chapterOptions(); track c.id) {
+              <legend>{{ 'search.area' | translate }}</legend>
+              @for (c of areaOptions(); track c.id) {
                 <span class="chip">
-                  <input type="radio" name="chapter" [id]="'c-' + c.id" [checked]="chapter() === c.id"
-                         (change)="setChapter(c.id)">
+                  <input type="radio" name="area" [id]="'c-' + c.id" [checked]="area() === c.id"
+                         (change)="setArea(c.id)">
                   <label [for]="'c-' + c.id">{{ c.label }}</label>
                 </span>
               }
@@ -73,12 +72,12 @@ import { SeoService } from '../shared/seo.service';
           <li>
             <p class="result-meta">
               <span [class]="'tag ' + (h.doc.kind === 'tip' ? 'tag-' + h.doc.platform : 'tag-section')">
-                {{ (h.doc.kind === 'tip' ? 'search.tip' : 'search.section') | translate }}
+                {{ 'search.' + h.doc.kind | translate }}
               </span>
-              {{ h.doc.chapterTitle }} › {{ h.doc.sectionTitle }}
+              {{ h.doc.areaTitle }} › {{ h.doc.context }}
             </p>
             <h2 class="result-title">
-              <a [routerLink]="chapterLink(h.doc.chapterId)" [fragment]="h.doc.fragment">{{ h.doc.title }}</a>
+              <a [routerLink]="pageLink(h.doc.page)" [fragment]="h.doc.fragment">{{ h.doc.title }}</a>
             </h2>
             <p class="snippet">@for (s of h.snippet; track $index) {@if (s.hit) {<mark>{{ s.text }}</mark>} @else {<span>{{ s.text }}</span>}}</p>
           </li>
@@ -97,18 +96,21 @@ export class SearchPage {
   protected readonly prefs = inject(PrefsService);
 
   protected readonly platforms: PlatformFilter[] = ['all', 'windows', 'linux', 'mac'];
-  protected readonly examples = ['psql', 'Fenrir', 'PowerShell', 'kubectl', 'NVDA', 'Git'];
+  protected readonly examples = ['Rust', 'Keycloak', 'psql', 'Fenrir', 'PowerShell', 'NVDA'];
   protected readonly interactive = signal(false);
   protected readonly query = signal('');
-  protected readonly chapter = signal<ChapterId | 'all'>('all');
+  protected readonly area = signal<Area | 'all'>('all');
 
-  protected readonly chapterOptions = computed(() => [
-    { id: 'all' as const, label: this.langs.t('search.allChapters') },
+  protected readonly areaOptions = computed(() => [
+    { id: 'all' as const, label: this.langs.t('search.allAreas') },
+    { id: 'work' as const, label: this.langs.t('nav.work') },
+    { id: 'coaching' as const, label: this.langs.t('nav.coaching') },
     ...CHAPTER_ORDER.map((id) => ({ id, label: this.langs.chapter(id).title })),
   ]);
+  private readonly areaIds: string[] = ['work', 'coaching', ...CHAPTER_ORDER];
 
   protected readonly hits = computed(() =>
-    this.search.search(this.langs.lang(), this.query(), this.chapter(), this.prefs.platform()),
+    this.search.search(this.langs.lang(), this.query(), this.area(), this.prefs.platform()),
   );
 
   protected readonly statusText = computed(() => {
@@ -132,16 +134,16 @@ export class SearchPage {
         this.prefs.restore();
         const params = this.route.snapshot.queryParamMap;
         this.query.set(params.get('q') ?? '');
-        const c = params.get('chapter') as ChapterId | null;
-        if (c && CHAPTER_ORDER.includes(c)) this.chapter.set(c);
+        const a = params.get('area');
+        if (a && this.areaIds.includes(a)) this.area.set(a as Area);
         this.interactive.set(true);
         if (this.query()) this.scheduleAnnounce();
       });
     }
   }
 
-  protected chapterLink(id: ChapterId): string {
-    return link(this.langs.lang(), id);
+  protected pageLink(page: PageKey): string {
+    return link(this.langs.lang(), page);
   }
 
   protected onQuery(e: Event): void {
@@ -155,8 +157,8 @@ export class SearchPage {
     this.scheduleAnnounce();
   }
 
-  protected setChapter(c: ChapterId | 'all'): void {
-    this.chapter.set(c);
+  protected setArea(a: Area | 'all'): void {
+    this.area.set(a);
     this.syncUrl();
     this.scheduleAnnounce(0);
   }
@@ -179,10 +181,10 @@ export class SearchPage {
     clearTimeout(this.urlTimer);
     this.urlTimer = setTimeout(() => {
       const q = this.query().trim();
-      const chapter = this.chapter() === 'all' ? null : this.chapter();
+      const area = this.area() === 'all' ? null : this.area();
       this.router.navigate([], {
         relativeTo: this.route,
-        queryParams: { q: q || null, chapter },
+        queryParams: { q: q || null, area },
         replaceUrl: true,
       });
     }, 300);

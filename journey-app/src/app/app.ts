@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter } from 'rxjs';
 import { Lang } from './content/model';
-import { PATHS, PageKey, link, otherLang } from './content/paths';
+import { PATHS, PageKey, link, otherLang, sectionOf } from './content/paths';
 import { AnnouncerService } from './shared/announcer.service';
 import { LangService } from './shared/lang.service';
 
@@ -16,15 +16,14 @@ import { LangService } from './shared/lang.service';
 
     <div class="topbar">
       <div class="wrap">
-        <a class="brand" [routerLink]="homeLink()">Martin Jurk</a>
+        <a class="brand" [routerLink]="links().work">Martin Jurk</a>
         <nav [attr.aria-label]="'nav.main' | translate">
           <ul>
-            <li><a href="../">{{ 'nav.work' | translate }}</a></li>
-            <li><a [routerLink]="homeLink()" [attr.aria-current]="page() === 'home' ? 'page' : null"
-                   [class.active]="page() !== 'search'">{{ 'nav.journey' | translate }}</a></li>
-            <li><a href="../coaching/">{{ 'nav.coaching' | translate }}</a></li>
-            <li><a [routerLink]="searchLink()" [attr.aria-current]="page() === 'search' ? 'page' : null">
-              {{ 'nav.search' | translate }}</a></li>
+            @for (item of navItems; track item) {
+              <li><a [routerLink]="links()[item]"
+                     [attr.aria-current]="page() === item ? 'page' : null"
+                     [class.active]="section() === item">{{ 'nav.' + item | translate }}</a></li>
+            }
             <li><a [routerLink]="switchLink()" [attr.lang]="other()" [attr.hreflang]="other()">
               {{ 'nav.switch' | translate }}</a></li>
           </ul>
@@ -38,7 +37,7 @@ import { LangService } from './shared/lang.service';
 
     <footer>
       <div class="wrap">
-        <p>{{ 'footer.coaching' | translate }} <a href="../coaching/">{{ 'footer.coachingLink' | translate }}</a>.</p>
+        <p>{{ 'footer.coaching' | translate }} <a [routerLink]="links().coaching">{{ 'footer.coachingLink' | translate }}</a>.</p>
         <p>{{ 'footer.copyright' | translate }}</p>
       </div>
     </footer>
@@ -54,8 +53,12 @@ export class App {
   protected readonly lang = this.langs.lang;
   protected readonly other = computed(() => otherLang(this.lang()));
   protected readonly page = computed<PageKey>(() => this.pageFor(this.lang(), this.currentPath()));
-  protected readonly homeLink = computed(() => link(this.lang(), 'home'));
-  protected readonly searchLink = computed(() => link(this.lang(), 'search'));
+  protected readonly section = computed(() => sectionOf(this.page()));
+  protected readonly navItems = ['work', 'journey', 'coaching', 'search'] as const;
+  protected readonly links = computed(() => {
+    const lang = this.lang();
+    return Object.fromEntries(Object.keys(PATHS[lang]).map((k) => [k, link(lang, k as PageKey)])) as Record<PageKey, string>;
+  });
   protected readonly switchLink = computed(() => link(this.other(), this.page()));
 
   private readonly currentPath = signal('');
@@ -79,8 +82,9 @@ export class App {
 
   /**
    * After an in-app navigation, move focus to the new page heading so screen
-   * readers announce the page – unless the URL has a fragment (the page
-   * handles that) or only query parameters changed (live search).
+   * readers announce the page – or, with a fragment, to that target (a tip
+   * card handles its own focus) – unless only query parameters changed
+   * (live search).
    */
   private manageFocus(): void {
     let lastPath = this.currentPath();
@@ -94,7 +98,14 @@ export class App {
       const samePath = path === lastPath;
       lastPath = path;
       const fragment = this.router.parseUrl(e.urlAfterRedirects).fragment;
-      if (samePath || fragment) return;
+      if (fragment) {
+        setTimeout(() => {
+          const target = document.getElementById(fragment);
+          if (target && target.tagName !== 'DETAILS' && target.hasAttribute('tabindex')) target.focus();
+        }, 0);
+        return;
+      }
+      if (samePath) return;
       setTimeout(() => document.getElementById('main-heading')?.focus(), 0);
     });
   }
@@ -105,6 +116,6 @@ export class App {
 
   private pageFor(lang: Lang, path: string): PageKey {
     const entry = Object.entries(PATHS[lang]).find(([, p]) => p === path);
-    return (entry?.[0] as PageKey) ?? 'home';
+    return (entry?.[0] as PageKey) ?? 'work';
   }
 }

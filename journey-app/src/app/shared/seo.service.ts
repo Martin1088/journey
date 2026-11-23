@@ -4,10 +4,13 @@ import { Lang } from '../content/model';
 import { PATHS, PageKey } from '../content/paths';
 
 /**
- * Public URL of the app (the folder the journey pages are served from).
- * Used for canonical and hreflang links. Adjust if the Pages URL changes.
+ * Public URL of the site, used for canonical and hreflang links.
+ * The Pages workflow injects the real one at build time
+ * (`ng build --define SITE_URL='"https://…/"'`), so it follows the
+ * repository name or a custom domain; the fallback is for local builds.
  */
-export const SITE_URL = 'https://martin1088.github.io/journey-/journey/';
+declare const SITE_URL: string | undefined;
+const SITE = (typeof SITE_URL === 'string' && SITE_URL ? SITE_URL : 'https://martin1088.github.io/journey/').replace(/\/?$/, '/');
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -30,7 +33,7 @@ export class SeoService {
 
   private url(lang: Lang, page: PageKey): string {
     const path = PATHS[lang][page];
-    return SITE_URL + (path ? path + '/' : '');
+    return SITE + (path ? path + '/' : '');
   }
 
   private setLink(rel: string, href: string, hreflang?: string): void {

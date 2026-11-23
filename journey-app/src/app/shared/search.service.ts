@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Block, ChapterId, Lang, Platform } from '../content/model';
+import { PageKey } from '../content/paths';
 import { LangService } from './lang.service';
 import { PlatformFilter } from './prefs.service';
 
+/** Top-level area a result belongs to; also the value of the area filter. */
+export type Area = 'work' | 'coaching' | ChapterId;
+
 export interface SearchDoc {
-  kind: 'tip' | 'section';
-  chapterId: ChapterId;
-  chapterTitle: string;
-  sectionTitle: string;
+  kind: 'tip' | 'section' | 'project' | 'offer';
+  area: Area;
+  /** The page the result links to. */
+  page: PageKey;
+  areaTitle: string;
+  /** Second breadcrumb level (section title, or the page section heading). */
+  context: string;
   title: string;
   /** Plain text for display (snippets). */
   text: string;
@@ -68,13 +75,23 @@ export class SearchService {
     let docs = this.cache.get(lang);
     if (docs) return docs;
     docs = [];
-    for (const ch of LangService.contentFor(lang).chapters) {
+    const content = LangService.contentFor(lang);
+    const work = content.work;
+    for (const pr of work.projects) {
+      const text = [...pr.text.map(stripHtml), pr.stackLead, pr.stack].join(' ');
+      docs.push(this.doc('project', 'work', 'work', work.title, work.projectsHeading, pr.title, text, null, pr.id));
+    }
+    const coaching = content.coaching;
+    for (const o of coaching.offers) {
+      docs.push(this.doc('offer', 'coaching', 'coaching', coaching.title, coaching.offersHeading, o.title, o.text, null, o.id));
+    }
+    for (const ch of content.chapters) {
       for (const s of ch.sections) {
         const text = s.story.map(stripHtml).join(' ');
-        docs.push(this.doc('section', ch.id, ch.title, s.title, s.title, text, null, s.id));
+        docs.push(this.doc('section', ch.id, ch.id, ch.title, s.title, s.title, text, null, s.id));
         for (const tip of s.tips) {
           const tipText = tip.body.map(blockText).join(' ');
-          docs.push(this.doc('tip', ch.id, ch.title, s.title, tip.title, tipText, tip.platform, tip.id));
+          docs.push(this.doc('tip', ch.id, ch.id, ch.title, s.title, tip.title, tipText, tip.platform, tip.id));
         }
       }
     }
@@ -82,15 +99,15 @@ export class SearchService {
     return docs;
   }
 
-  search(lang: Lang, query: string, chapter: ChapterId | 'all', platform: PlatformFilter): SearchHit[] {
+  search(lang: Lang, query: string, area: Area | 'all', platform: PlatformFilter): SearchHit[] {
     const terms = normalise(query).split(/\s+/).filter((t) => t.length > 0);
     if (!terms.length) return [];
 
     const hits: SearchHit[] = [];
     for (const doc of this.index(lang)) {
-      if (chapter !== 'all' && doc.chapterId !== chapter) continue;
+      if (area !== 'all' && doc.area !== area) continue;
       if (platform !== 'all') {
-        // Platform filter applies to tips; sections stay visible.
+        // The platform filter applies to tips; everything else stays visible.
         if (doc.platform && doc.platform !== 'both' && doc.platform !== platform) continue;
       }
       let score = 0;
@@ -106,7 +123,7 @@ export class SearchService {
         score += inText ? 1 + Math.min(4, this.count(doc.nText, t)) : 0;
       }
       if (!all) continue;
-      if (doc.kind === 'tip') score += 1;
+      if (doc.kind !== 'section') score += 1;
       hits.push({ doc, score, snippet: this.snippet(doc, terms) });
     }
     return hits.sort((a, b) => b.score - a.score);
@@ -114,9 +131,10 @@ export class SearchService {
 
   private doc(
     kind: SearchDoc['kind'],
-    chapterId: ChapterId,
-    chapterTitle: string,
-    sectionTitle: string,
+    area: Area,
+    page: PageKey,
+    areaTitle: string,
+    context: string,
     title: string,
     text: string,
     platform: Platform | null,
@@ -124,7 +142,7 @@ export class SearchService {
   ): SearchDoc {
     const clean = text.replace(/\s+/g, ' ').trim();
     return {
-      kind, chapterId, chapterTitle, sectionTitle, title, text: clean, platform, fragment,
+      kind, area, page, areaTitle, context, title, text: clean, platform, fragment,
       nTitle: normalise(title),
       nText: normalise(clean),
     };

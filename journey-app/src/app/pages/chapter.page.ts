@@ -137,7 +137,7 @@ export class ChapterPage {
     const v = this.allTips().filter((t) => this.visible(t));
     return v.length > 0 && v.every((t) => this.openIds().has(t.id));
   });
-  protected readonly homeLink = computed(() => link(this.langs.lang(), 'home'));
+  protected readonly homeLink = computed(() => link(this.langs.lang(), 'journey'));
   protected readonly prev = computed(() => this.neighbour(-1));
   protected readonly next = computed(() => this.neighbour(1));
 
