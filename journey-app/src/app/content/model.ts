@@ -49,6 +49,62 @@ export interface Chapter {
   sections: Section[];
 }
 
+export interface Project {
+  /** Stable id, identical in both languages, used for deep links. */
+  id: string;
+  title: string;
+  /** Paragraphs, inline HTML allowed. */
+  text: string[];
+  /** Main technology, shown in bold before the rest of the stack. */
+  stackLead: string;
+  stack: string;
+  link: { href: string; label: string };
+}
+
+export interface Skill {
+  title: string;
+  detail: string;
+}
+
+export interface WorkPageContent {
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  aboutHeading: string;
+  about: string[];
+  projectsHeading: string;
+  projects: Project[];
+  skillsHeading: string;
+  skills: Skill[];
+  training: string;
+  contactHeading: string;
+  contact: string;
+}
+
+export interface Offer {
+  id: string;
+  title: string;
+  text: string;
+}
+
+export interface CoachingPageContent {
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  whyHeading: string;
+  why: string[];
+  offersHeading: string;
+  offers: Offer[];
+  contactHeading: string;
+  contact: string;
+}
+
 export interface SiteContent {
+  work: WorkPageContent;
+  coaching: CoachingPageContent;
   chapters: Chapter[];
 }

@@ -6,7 +6,7 @@ import { LangService } from '../shared/lang.service';
 import { SeoService } from '../shared/seo.service';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-journey-page',
   imports: [RouterLink, TranslatePipe],
   template: `
     <div class="hero">
@@ -66,13 +66,13 @@ import { SeoService } from '../shared/seo.service';
         <p>{{ 'home.contactText' | translate }}</p>
         <p class="btn-row">
           <a class="btn" href="mailto:access.job.manager@gmail.com">{{ 'home.email' | translate }}</a>
-          <a href="../#work">{{ 'home.projects' | translate }}</a>
+          <a [routerLink]="workLink()" fragment="work">{{ 'home.projects' | translate }}</a>
         </p>
       </section>
     </div>
   `,
 })
-export class HomePage {
+export class JourneyPage {
   private readonly langs = inject(LangService);
   private readonly seo = inject(SeoService);
   private readonly router = inject(Router);
@@ -86,10 +86,11 @@ export class HomePage {
   );
   protected readonly tipCount = computed(() => this.chapters().reduce((n, c) => n + c.tips, 0));
   protected readonly searchLink = computed(() => link(this.langs.lang(), 'search'));
+  protected readonly workLink = computed(() => link(this.langs.lang(), 'work'));
 
   constructor() {
     effect(() => {
-      this.seo.set(this.langs.lang(), 'home', this.langs.t('home.metaTitle'), this.langs.t('home.metaDescription'));
+      this.seo.set(this.langs.lang(), 'journey', this.langs.t('home.metaTitle'), this.langs.t('home.metaDescription'));
     });
   }
 

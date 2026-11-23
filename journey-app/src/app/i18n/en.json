@@ -64,21 +64,23 @@
     "mac": "macOS"
   },
   "search": {
-    "metaTitle": "Search | My journey | Martin Jurk",
-    "metaDescription": "Search all practical tips and sections: screen readers, terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
-    "title": "Search tips and sections",
-    "intro": "The search covers text, tip titles and commands. Results appear as you type.",
+    "metaTitle": "Search | Martin Jurk",
+    "metaDescription": "Search projects, coaching offers and all practical tips: screen readers, terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
+    "title": "Search the site",
+    "intro": "The search covers projects, coaching offers, sections, tip titles and commands. Results appear as you type.",
     "label": "Search term",
     "submit": "Search",
-    "chapter": "Chapter",
-    "allChapters": "All chapters",
     "resultsOne": "1 result for “{{q}}”.",
     "resultsMany": "{{count}} results for “{{q}}”.",
     "none": "No results for “{{q}}”. Try another word or remove a filter.",
     "examples": "Examples",
     "tip": "Tip",
     "section": "Section",
-    "noJs": "Search needs JavaScript. You can also reach all content through the three chapters."
+    "noJs": "Search needs JavaScript. You can also reach all content through the navigation at the top.",
+    "area": "Area",
+    "allAreas": "Everything",
+    "project": "Project",
+    "offer": "Coaching offer"
   },
   "demo": {
     "badge": "Interactive demo",
@@ -118,5 +120,18 @@
     "coaching": "I also coach people who want to work and program with a screen reader –",
     "coachingLink": "more about that here",
     "copyright": "© 2026 Martin Jurk. This site is built to be accessible, on purpose."
+  },
+  "work": {
+    "seeWork": "See my work",
+    "readJourney": "Read my journey as a blind developer"
+  },
+  "coaching": {
+    "getInTouch": "Get in touch",
+    "readJourney": "Read my journey as a blind developer",
+    "tipsHint": "You will find many practical tips from my daily work – screen readers, terminal, SQL, Kubernetes – on the page",
+    "tipsLink": "My journey"
+  },
+  "contact": {
+    "email": "Send me an email"
   }
 }

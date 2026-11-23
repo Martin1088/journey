@@ -1,7 +1,10 @@
 import { code, list, p, steps, why } from './blocks';
 import { SiteContent } from './model';
+import { COACHING_DE, WORK_DE } from './pages.de';
 
 export const CONTENT_DE: SiteContent = {
+  work: WORK_DE,
+  coaching: COACHING_DE,
   chapters: [
     // ================================================================
     {

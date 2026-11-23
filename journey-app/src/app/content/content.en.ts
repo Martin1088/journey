@@ -1,7 +1,10 @@
 import { code, list, p, steps, why } from './blocks';
 import { SiteContent } from './model';
+import { COACHING_EN, WORK_EN } from './pages.en';
 
 export const CONTENT_EN: SiteContent = {
+  work: WORK_EN,
+  coaching: COACHING_EN,
   chapters: [
     // ================================================================
     {

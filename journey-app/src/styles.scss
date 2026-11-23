@@ -836,3 +836,25 @@ mark { background: #ffdbd1; color: #3f0a00; border-radius: 3px; padding: 0 0.1em
 
 .js .nojs-only { display: none; }
 .cmd pre:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* Project and offer cards (work and coaching pages) */
+.cards > li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+}
+/* Focus arrives here from search results and in-page links: always show where. */
+.cards > li:focus { outline: 3px solid var(--focus); outline-offset: 3px; }
+.cards h3 { color: var(--primary); }
+.cards p { color: var(--ink); }
+.cards .stack { color: var(--muted); }
+.skills > li { padding-left: 0.9rem; border-left: 3px solid var(--line); }
+.skills strong { color: var(--primary); }
+
+/* Buttons in the hero keep their own text colour (the hero link colour would override it). */
+.hero a.btn, .hero a.btn:hover { color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .hero a.btn, .hero a.btn:hover { color: #3f0a00; }
+}

@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:a11y": "eslint \"src/**/*.ts\" --max-warnings 0",
-    "check:a11y": "node tools/a11y-check.mjs"
+    "check:a11y": "node tools/a11y-check.mjs",
+    "redirects": "node tools/legacy-redirects.mjs"
   },
   "private": true,
   "packageManager": "npm@10.9.9",
