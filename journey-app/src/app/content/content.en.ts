@@ -13,7 +13,7 @@ export const CONTENT_EN: SiteContent = {
       title: 'Vocational rehabilitation at QuikStep',
       short: 'Learning to work without sight and starting to program in C, Java, Python and HTML.',
       lead:
-        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned the fundamentals of programming – mainly in C, plus Java, Python and HTML. And it is where a thirst for knowledge began that has not let up since: I wanted to understand how software works, not just how to use it. That year it became clear to me: programming is text, and with text I can work at full speed.',
+        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned the fundamentals of programming – mainly in C, plus Java, Python and HTML. And it is where a thirst for knowledge began that has not let up since: I wanted to understand how software works, not just how to use it. That year it became clear to me: programming is text, and with text I can work at full speed. My recommendation for anyone with the same curiosity: the video series <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo">Crash Course Computer Science</a> – it helped me a lot.',
       sections: [
         {
           id: 'arbeitsweise',

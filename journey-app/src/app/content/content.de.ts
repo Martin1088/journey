@@ -13,7 +13,7 @@ export const CONTENT_DE: SiteContent = {
       title: 'Berufliche Rehabilitation bei QuikStep',
       short: 'Arbeiten ohne Sehen lernen und mit C, Java, Python und HTML ins Programmieren einsteigen.',
       lead:
-        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und die Grundlagen der Programmierung gelernt – vor allem in C, dazu Java, Python und HTML. Und dort ist ein Wissensdurst entstanden, der seitdem nicht nachgelassen hat: Ich wollte verstehen, wie Software funktioniert, nicht nur, wie man sie bedient. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten.',
+        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und die Grundlagen der Programmierung gelernt – vor allem in C, dazu Java, Python und HTML. Und dort ist ein Wissensdurst entstanden, der seitdem nicht nachgelassen hat: Ich wollte verstehen, wie Software funktioniert, nicht nur, wie man sie bedient. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten. Meine Empfehlung für alle, die dieselbe Neugier haben: die englischsprachige Videoreihe <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" lang="en">Crash Course Computer Science</a> – sie hat mir sehr geholfen.',
       sections: [
         {
           id: 'arbeitsweise',
