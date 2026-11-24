@@ -12,6 +12,7 @@ import { AnnouncerService } from '../shared/announcer.service';
 import { LangService } from '../shared/lang.service';
 import { PlatformFilter, PrefsService } from '../shared/prefs.service';
 import { SeoService } from '../shared/seo.service';
+import { stripHtml } from '../shared/search.service';
 import { TipCard } from '../shared/tip-card';
 import { SqlOutputDemo } from '../demos/sql-output.demo';
 import { FormErrorDemo } from '../demos/form-error.demo';
@@ -25,7 +26,7 @@ import { FormErrorDemo } from '../demos/form-error.demo';
         <header>
           <p class="eyebrow">{{ 'chapter.chapterOf' | translate: { n: index() + 1 } }} · {{ chapter().when }}</p>
           <h1 id="main-heading" tabindex="-1">{{ chapter().title }}</h1>
-          <p class="lead">{{ chapter().lead }}</p>
+          <p class="lead" [innerHTML]="chapter().lead"></p>
           <nav [attr.aria-label]="'chapter.inChapter' | translate">
             <ol class="section-nav">
               @for (s of chapter().sections; track s.id) {
@@ -145,7 +146,7 @@ export class ChapterPage {
     effect(() => {
       const lang = this.langs.lang();
       const ch = this.chapter();
-      this.seo.set(lang, ch.id, `${ch.title} | ${this.langs.t('nav.journey')} | Martin Jurk`, ch.short + ' ' + ch.lead.slice(0, 120) + '…');
+      this.seo.set(lang, ch.id, `${ch.title} | ${this.langs.t('nav.journey')} | Martin Jurk`, ch.short + ' ' + stripHtml(ch.lead).slice(0, 120) + '…');
     });
 
     if (isPlatformBrowser(inject(PLATFORM_ID))) {

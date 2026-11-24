@@ -44,7 +44,7 @@ export interface Chapter {
   title: string;
   /** One line for tiles and search results. */
   short: string;
-  /** Lead paragraph at the top of the chapter page. */
+  /** Lead paragraph at the top of the chapter page, inline HTML allowed. */
   lead: string;
   sections: Section[];
 }

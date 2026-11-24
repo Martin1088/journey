@@ -11,9 +11,9 @@ export const CONTENT_EN: SiteContent = {
       id: 'quikstep',
       when: '2020 – 2021',
       title: 'Vocational rehabilitation at QuikStep',
-      short: 'Learning to work without sight and starting to program in C.',
+      short: 'Learning to work without sight and starting to program in C, Java, Python and HTML.',
       lead:
-        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned to program in C. That year it became clear to me: programming is text, and with text I can work at full speed.',
+        'After losing my sight in 2015, I did vocational rehabilitation at QuikStep in Durmersheim from 2020 to 2021. There I built a way of working entirely without visuals and learned the fundamentals of programming – mainly in C, plus Java, Python and HTML. And it is where a thirst for knowledge began that has not let up since: I wanted to understand how software works, not just how to use it. That year it became clear to me: programming is text, and with text I can work at full speed. My recommendation for anyone with the same curiosity: the video series <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo">Crash Course Computer Science</a>: 40 episodes with Carrie Anne Philbin, from the history of computers through hardware to the basics of programming and software. It helped me a lot.',
       sections: [
         {
           id: 'arbeitsweise',
@@ -70,9 +70,10 @@ export const CONTENT_EN: SiteContent = {
         {
           id: 'c-lernen',
           when: '2020 – 2021',
-          title: 'Learning to program in C',
+          title: 'Learning to program: C, Java, Python and HTML',
           story: [
-            'The second part added C and the fundamentals of computer science. C forgives little, and the compiler answers with messages in the terminal – in other words, with text. That is exactly what showed me that software development is a profession I can practise without sight.',
+            'The second part added the fundamentals of computer science, with C as the main language. C forgives little, and the compiler answers with messages in the terminal – in other words, with text. That is exactly what showed me that software development is a profession I can practise without sight.',
+            'Alongside it I tried Java and Python and wrote my first pages in HTML – deliberately only the building blocks: variables, loops and functions, no libraries yet. Recognising the same concepts across several languages is what really sparked my curiosity about computer science.',
           ],
           tipsHeading: 'Practical tips: first programs',
           tips: [
@@ -84,6 +85,20 @@ export const CONTENT_EN: SiteContent = {
                 p('A single missing semicolon often causes twenty follow-up errors. With a screen reader that is especially tiring. Print only the first lines, fix, compile again.'),
                 code('gcc -Wall -Wextra -o hello hello.c 2>&1 | head -n 5'),
                 p('The message starts with <code>file:line:column</code>. With the line number you jump straight there in the editor instead of searching.'),
+              ],
+            },
+            {
+              id: 'tip-indentation',
+              platform: 'windows',
+              title: 'Make indentation audible – essential for Python',
+              body: [
+                p('In Python, indentation is part of the syntax: a line one level too far left ends a loop without a single character missing. So have the indentation announced instead of counting spaces.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Ctrl</kbd>+<kbd>D</kbd> opens document formatting; under “Line indentation reporting” choose “Tones” or “Both speech and tones”. The pitch rises with the depth, so a change stands out immediately.',
+                  '<strong>JAWS:</strong> can announce indentation too; search the Settings Center for “indentation”.',
+                  'Indent consistently with 4 spaces, never mixed with tabs – otherwise two lines at the same depth sound different.',
+                ),
+                why('<strong>Helps with C, Java and HTML too:</strong> there indentation is not syntax, but it is the quickest way to hear where a block ends.'),
               ],
             },
           ],
@@ -222,7 +237,7 @@ git diff --word-diff   # shows which word changed, not just the line`),
           when: '2022 – 2023 · Cancer Information Service',
           title: 'Year 2: web development',
           story: [
-            'In my second year I was at the Cancer Information Service (Krebsinformationsdienst), working with PHP and JavaScript on an online counselling platform. It was my first work on interfaces that other people use – and the best school for seeing accessibility from the other side.',
+            'In my second year I was at the Cancer Information Service (Krebsinformationsdienst), working with PHP, JavaScript and jQuery on an online counselling platform. It was my first work on interfaces that other people use – and the best school for seeing accessibility from the other side. A course on Udemy gave me a solid grounding in JavaScript.',
             'From the middle to the end of that year I also set up and tested an Ubuntu VM in VirtualBox with the console screen reader Fenrir – my first attempt at using Linux entirely without a Windows screen reader.',
           ],
           tipsHeading: 'Practical tips: Linux VM, web and APIs',
@@ -328,6 +343,94 @@ curl -s https://api.example.org/jobs | jq '.items | length'`),
 document.activeElement          // where is the focus right now?
 document.querySelectorAll('img:not([alt])').length   // images without alt text
 [...document.querySelectorAll('h1,h2,h3')].map(h => h.tagName + ' ' + h.textContent.trim())`),
+              ],
+            },
+            {
+              id: 'tip-jquery-ajax',
+              platform: 'both',
+              title: "Example: submitting a form with jQuery and Ajax",
+              body: [
+                p('From my exercises at the time (project <code>liqui-planner</code>), slightly shortened.'),
+                code(String.raw`$(document).ready(function () {
+    load();
+    balanceAll();
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: 'planner.php',
+            data: {
+                target: "write_entry",
+                title: $('#titel').val(),
+                typ: $('input[name=typ]:checked').val(),
+                amount: $('#betrag').val(),
+                date: $('#datum').val(),
+                submit: $('#submit').val(),
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            },
+            error: function (jqXHR, textStatus) {
+                console.log(textStatus);
+                console.log(jqXHR.responseJSON);
+            }
+        });
+    });
+});`),
+                list(
+                  '<code>e.preventDefault()</code> stops the page from reloading; the data goes to <code>planner.php</code> via Ajax as JSON.',
+                  '<code>console.log</code> was my most important tool: the console is text and therefore fully accessible (see the browser console tip).',
+                  'Today you can do this without a library using <code>fetch()</code> and <code>new FormData(form)</code> – the principle is the same.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-php-pdo',
+              platform: 'both',
+              title: "Example: database access in PHP with PDO and prepared statements",
+              body: [
+                p('From my exercises at the time (project <code>liqui-planner</code>), slightly shortened.'),
+                code(String.raw`class Database {
+    public function __construct(private string $host,
+                                private string $ports,
+                                private string $name,
+                                private string $user,
+                                private string $password) {}
+
+    public function getConnection(): PDO {
+        $dsn = "mysql:host={$this->host};port={$this->ports};dbname={$this->name};charset=utf8";
+        return new PDO($dsn, $this->user, $this->password, [
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_STRINGIFY_FETCHES => false
+        ]);
+    }
+}
+
+// Model::write_entry()
+$sql = 'INSERT INTO entry(title, titletyp, amount, titledate)
+        VALUES(:title, :titletyp, :amount, :titledate)';
+$stmt = $this->conn->prepare($sql);
+$stmt->execute($data);`),
+                why('<strong>Why prepared statements:</strong> the placeholders <code>:title</code> etc. keep SQL and data apart. Whatever someone types into the form cannot change the query (SQL injection).'),
+                p('What I do differently today: credentials do not belong in the code but in environment variables – otherwise they end up in the Git repository.'),
+                code(String.raw`$database = new Database("localhost", "3306", "book",
+                         getenv("DB_USER"), getenv("DB_PASSWORD"));`),
+              ],
+            },
+            {
+              id: 'tip-jquery-text',
+              platform: 'both',
+              title: "Insert data with .text(), not .append()",
+              body: [
+                p('Something I noticed going through my old code: two almost identical branches, one important difference.'),
+                code(String.raw`// One branch of my code did this – HTML in the title gets executed:
+$('<span>').addClass("titel").append(data.title)
+
+// The other branch did this – the title always stays text:
+$('<span>').addClass("titel").text(data.title)`),
+                why('<strong>Why:</strong> <code>.append()</code> treats a string as HTML. An entry titled <code>&lt;img src=x onerror=alert(1)&gt;</code> would run code (cross-site scripting). <code>.text()</code> always inserts plain text – and the screen reader reads out exactly what was stored.'),
               ],
             },
           ],

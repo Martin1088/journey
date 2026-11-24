@@ -11,9 +11,9 @@ export const CONTENT_DE: SiteContent = {
       id: 'quikstep',
       when: '2020 – 2021',
       title: 'Berufliche Rehabilitation bei QuikStep',
-      short: 'Arbeiten ohne Sehen lernen und mit C ins Programmieren einsteigen.',
+      short: 'Arbeiten ohne Sehen lernen und mit C, Java, Python und HTML ins Programmieren einsteigen.',
       lead:
-        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und mit C programmieren gelernt. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten.',
+        'Nach meiner Erblindung 2015 habe ich 2020 bis 2021 eine berufliche Rehabilitation bei QuikStep in Durmersheim gemacht. Dort habe ich mir eine Arbeitsweise ganz ohne Visualität erarbeitet und die Grundlagen der Programmierung gelernt – vor allem in C, dazu Java, Python und HTML. Und dort ist ein Wissensdurst entstanden, der seitdem nicht nachgelassen hat: Ich wollte verstehen, wie Software funktioniert, nicht nur, wie man sie bedient. In diesem Jahr wurde mir klar: Programmieren ist Text, und mit Text kann ich in vollem Tempo arbeiten. Meine Empfehlung für alle, die dieselbe Neugier haben: die englischsprachige Videoreihe <a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo" lang="en">Crash Course Computer Science</a>: 40 Folgen mit Carrie Anne Philbin, von der Geschichte des Computers über die Hardware bis zu den Grundlagen von Programmierung und Software. Sie hat mir sehr geholfen.',
       sections: [
         {
           id: 'arbeitsweise',
@@ -70,9 +70,10 @@ export const CONTENT_DE: SiteContent = {
         {
           id: 'c-lernen',
           when: '2020 – 2021',
-          title: 'Programmieren lernen mit C',
+          title: 'Programmieren lernen: C, Java, Python und HTML',
           story: [
-            'Im zweiten Teil kamen C und die Grundlagen der Informatik dazu. C verzeiht wenig, und der Compiler antwortet mit Meldungen im Terminal – also mit Text. Genau das hat mir gezeigt, dass Softwareentwicklung ein Beruf ist, den ich ohne Sehen ausüben kann.',
+            'Im zweiten Teil kamen die Grundlagen der Informatik dazu, mit C als Hauptsprache. C verzeiht wenig, und der Compiler antwortet mit Meldungen im Terminal – also mit Text. Genau das hat mir gezeigt, dass Softwareentwicklung ein Beruf ist, den ich ohne Sehen ausüben kann.',
+            'Daneben habe ich in Java und Python hineingeschaut und meine ersten Seiten in HTML geschrieben – bewusst nur die Grundbausteine: Variablen, Schleifen und Funktionen, noch ohne Bibliotheken. Dieselben Konzepte in mehreren Sprachen wiederzuerkennen, hat meine Neugier auf Informatik erst richtig geweckt.',
           ],
           tipsHeading: 'Praxis-Tipps: erste Programme',
           tips: [
@@ -84,6 +85,20 @@ export const CONTENT_DE: SiteContent = {
                 p('Ein einziger fehlender Strichpunkt erzeugt oft zwanzig Folgefehler. Mit Screenreader ist das besonders mühsam. Lass dir deshalb nur die ersten Zeilen ausgeben, korrigiere, kompiliere neu.'),
                 code('gcc -Wall -Wextra -o hallo hallo.c 2>&1 | head -n 5'),
                 p('Die Meldung beginnt mit <code>datei:zeile:spalte</code>. Mit der Zeilennummer springst du im Editor direkt hin, statt zu suchen.'),
+              ],
+            },
+            {
+              id: 'tip-indentation',
+              platform: 'windows',
+              title: 'Einrückung hörbar machen – Pflicht für Python',
+              body: [
+                p('In Python ist die Einrückung Teil der Syntax: Eine Zeile zu weit links beendet eine Schleife, ohne dass ein Zeichen fehlt. Lass dir die Einrückung deshalb ansagen, statt Leerzeichen zu zählen.'),
+                list(
+                  '<strong>NVDA:</strong> <kbd>NVDA</kbd>+<kbd>Strg</kbd>+<kbd>D</kbd> öffnet die Dokumentformatierung; unter „Zeileneinrückung“ „Töne“ oder „Sprache und Töne“ wählen. Die Tonhöhe steigt mit der Tiefe – ein Wechsel fällt sofort auf.',
+                  '<strong>JAWS:</strong> kann Einrückungen ebenfalls ansagen; im Einstellungscenter nach „Einrückung“ suchen.',
+                  'Einheitlich mit 4 Leerzeichen einrücken, nie mit Tabs gemischt – sonst klingen zwei gleich tiefe Zeilen verschieden.',
+                ),
+                why('<strong>Hilft auch bei C, Java und HTML:</strong> Dort ist Einrückung zwar keine Syntax, aber die schnellste Art, zu hören, wo ein Block endet.'),
               ],
             },
           ],
@@ -222,7 +237,7 @@ git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Z
           when: '2022 – 2023 · Krebsinformationsdienst',
           title: '2. Lehrjahr: Webentwicklung',
           story: [
-            'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP und JavaScript an einer Online-Beratungsplattform mitgearbeitet. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen.',
+            'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP, JavaScript und jQuery an einer Online-Beratungsplattform mitgearbeitet. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen. Gute Grundlagen in JavaScript hat mir ein Kurs auf Udemy gegeben.',
             'Von Mitte bis Ende des Jahres habe ich außerdem eine Ubuntu-VM in VirtualBox mit dem Konsolen-Screenreader Fenrir eingerichtet und getestet – mein erster Versuch, Linux ganz ohne Windows-Screenreader zu bedienen.',
           ],
           tipsHeading: 'Praxis-Tipps: Linux-VM, Web und APIs',
@@ -328,6 +343,94 @@ curl -s https://api.example.org/jobs | jq '.items | length'`),
 document.activeElement          // wo ist der Fokus gerade?
 document.querySelectorAll('img:not([alt])').length   // Bilder ohne Alternativtext
 [...document.querySelectorAll('h1,h2,h3')].map(h => h.tagName + ' ' + h.textContent.trim())`),
+              ],
+            },
+            {
+              id: 'tip-jquery-ajax',
+              platform: 'both',
+              title: "Beispiel: Formular mit jQuery und Ajax absenden",
+              body: [
+                p('Aus meinen Übungen von damals (Projekt <code>liqui-planner</code>), leicht gekürzt.'),
+                code(String.raw`$(document).ready(function () {
+    load();
+    balanceAll();
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: 'planner.php',
+            data: {
+                target: "write_entry",
+                title: $('#titel').val(),
+                typ: $('input[name=typ]:checked').val(),
+                amount: $('#betrag').val(),
+                date: $('#datum').val(),
+                submit: $('#submit').val(),
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            },
+            error: function (jqXHR, textStatus) {
+                console.log(textStatus);
+                console.log(jqXHR.responseJSON);
+            }
+        });
+    });
+});`),
+                list(
+                  '<code>e.preventDefault()</code> verhindert das Neuladen der Seite, die Daten gehen per Ajax als JSON an <code>planner.php</code>.',
+                  '<code>console.log</code> war mein wichtigstes Werkzeug: Die Konsole ist Text und damit voll zugänglich (siehe Tipp zur Browser-Konsole).',
+                  'Heute geht das ohne Bibliothek mit <code>fetch()</code> und <code>new FormData(form)</code> – das Prinzip ist dasselbe.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-php-pdo',
+              platform: 'both',
+              title: "Beispiel: Datenbankzugriff in PHP mit PDO und Prepared Statements",
+              body: [
+                p('Aus meinen Übungen von damals (Projekt <code>liqui-planner</code>), leicht gekürzt.'),
+                code(String.raw`class Database {
+    public function __construct(private string $host,
+                                private string $ports,
+                                private string $name,
+                                private string $user,
+                                private string $password) {}
+
+    public function getConnection(): PDO {
+        $dsn = "mysql:host={$this->host};port={$this->ports};dbname={$this->name};charset=utf8";
+        return new PDO($dsn, $this->user, $this->password, [
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_STRINGIFY_FETCHES => false
+        ]);
+    }
+}
+
+// Model::write_entry()
+$sql = 'INSERT INTO entry(title, titletyp, amount, titledate)
+        VALUES(:title, :titletyp, :amount, :titledate)';
+$stmt = $this->conn->prepare($sql);
+$stmt->execute($data);`),
+                why('<strong>Warum Prepared Statements:</strong> Die Platzhalter <code>:title</code> usw. trennen SQL und Daten. Was jemand ins Formular tippt, kann die Abfrage nicht verändern (SQL-Injection).'),
+                p('Was ich heute anders mache: Zugangsdaten gehören nicht in den Code, sondern in Umgebungsvariablen – sonst landen sie mit im Git-Repository.'),
+                code(String.raw`$database = new Database("localhost", "3306", "book",
+                         getenv("DB_USER"), getenv("DB_PASSWORD"));`),
+              ],
+            },
+            {
+              id: 'tip-jquery-text',
+              platform: 'both',
+              title: "Daten mit .text() einfügen, nicht mit .append()",
+              body: [
+                p('Beim Durchsehen meines alten Codes aufgefallen: Zwei fast gleiche Zweige, ein wichtiger Unterschied.'),
+                code(String.raw`// So stand es in einem Zweig meines Codes – HTML im Titel wird ausgeführt:
+$('<span>').addClass("titel").append(data.title)
+
+// So im anderen – der Titel bleibt immer Text:
+$('<span>').addClass("titel").text(data.title)`),
+                why('<strong>Warum:</strong> <code>.append()</code> behandelt einen String als HTML. Ein Eintrag mit dem Titel <code>&lt;img src=x onerror=alert(1)&gt;</code> würde Code ausführen (Cross-Site-Scripting). <code>.text()</code> fügt immer reinen Text ein – und der Screenreader liest genau das vor, was gespeichert ist.'),
               ],
             },
           ],
