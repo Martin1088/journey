@@ -345,6 +345,94 @@ document.querySelectorAll('img:not([alt])').length   // images without alt text
 [...document.querySelectorAll('h1,h2,h3')].map(h => h.tagName + ' ' + h.textContent.trim())`),
               ],
             },
+            {
+              id: 'tip-jquery-ajax',
+              platform: 'both',
+              title: "Example: submitting a form with jQuery and Ajax",
+              body: [
+                p('From my exercises at the time (project <code>liqui-planner</code>), slightly shortened.'),
+                code(String.raw`$(document).ready(function () {
+    load();
+    balanceAll();
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: 'planner.php',
+            data: {
+                target: "write_entry",
+                title: $('#titel').val(),
+                typ: $('input[name=typ]:checked').val(),
+                amount: $('#betrag').val(),
+                date: $('#datum').val(),
+                submit: $('#submit').val(),
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                location.reload();
+            },
+            error: function (jqXHR, textStatus) {
+                console.log(textStatus);
+                console.log(jqXHR.responseJSON);
+            }
+        });
+    });
+});`),
+                list(
+                  '<code>e.preventDefault()</code> stops the page from reloading; the data goes to <code>planner.php</code> via Ajax as JSON.',
+                  '<code>console.log</code> was my most important tool: the console is text and therefore fully accessible (see the browser console tip).',
+                  'Today you can do this without a library using <code>fetch()</code> and <code>new FormData(form)</code> – the principle is the same.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-php-pdo',
+              platform: 'both',
+              title: "Example: database access in PHP with PDO and prepared statements",
+              body: [
+                p('From my exercises at the time (project <code>liqui-planner</code>), slightly shortened.'),
+                code(String.raw`class Database {
+    public function __construct(private string $host,
+                                private string $ports,
+                                private string $name,
+                                private string $user,
+                                private string $password) {}
+
+    public function getConnection(): PDO {
+        $dsn = "mysql:host={$this->host};port={$this->ports};dbname={$this->name};charset=utf8";
+        return new PDO($dsn, $this->user, $this->password, [
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_STRINGIFY_FETCHES => false
+        ]);
+    }
+}
+
+// Model::write_entry()
+$sql = 'INSERT INTO entry(title, titletyp, amount, titledate)
+        VALUES(:title, :titletyp, :amount, :titledate)';
+$stmt = $this->conn->prepare($sql);
+$stmt->execute($data);`),
+                why('<strong>Why prepared statements:</strong> the placeholders <code>:title</code> etc. keep SQL and data apart. Whatever someone types into the form cannot change the query (SQL injection).'),
+                p('What I do differently today: credentials do not belong in the code but in environment variables – otherwise they end up in the Git repository.'),
+                code(String.raw`$database = new Database("localhost", "3306", "book",
+                         getenv("DB_USER"), getenv("DB_PASSWORD"));`),
+              ],
+            },
+            {
+              id: 'tip-jquery-text',
+              platform: 'both',
+              title: "Insert data with .text(), not .append()",
+              body: [
+                p('Something I noticed going through my old code: two almost identical branches, one important difference.'),
+                code(String.raw`// One branch of my code did this – HTML in the title gets executed:
+$('<span>').addClass("titel").append(data.title)
+
+// The other branch did this – the title always stays text:
+$('<span>').addClass("titel").text(data.title)`),
+                why('<strong>Why:</strong> <code>.append()</code> treats a string as HTML. An entry titled <code>&lt;img src=x onerror=alert(1)&gt;</code> would run code (cross-site scripting). <code>.text()</code> always inserts plain text – and the screen reader reads out exactly what was stored.'),
+              ],
+            },
           ],
         },
         {
