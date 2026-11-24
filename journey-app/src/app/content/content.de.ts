@@ -237,7 +237,7 @@ git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Z
           when: '2022 – 2023 · Krebsinformationsdienst',
           title: '2. Lehrjahr: Webentwicklung',
           story: [
-            'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP und JavaScript an einer Online-Beratungsplattform mitgearbeitet. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen.',
+            'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP, JavaScript und jQuery an einer Online-Beratungsplattform mitgearbeitet. Gute Grundlagen in JavaScript hat mir ein Kurs auf Udemy gegeben. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen.',
             'Von Mitte bis Ende des Jahres habe ich außerdem eine Ubuntu-VM in VirtualBox mit dem Konsolen-Screenreader Fenrir eingerichtet und getestet – mein erster Versuch, Linux ganz ohne Windows-Screenreader zu bedienen.',
           ],
           tipsHeading: 'Praxis-Tipps: Linux-VM, Web und APIs',

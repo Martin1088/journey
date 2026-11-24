@@ -237,7 +237,7 @@ git diff --word-diff   # shows which word changed, not just the line`),
           when: '2022 – 2023 · Cancer Information Service',
           title: 'Year 2: web development',
           story: [
-            'In my second year I was at the Cancer Information Service (Krebsinformationsdienst), working with PHP and JavaScript on an online counselling platform. It was my first work on interfaces that other people use – and the best school for seeing accessibility from the other side.',
+            'In my second year I was at the Cancer Information Service (Krebsinformationsdienst), working with PHP, JavaScript and jQuery on an online counselling platform. A course on Udemy gave me a solid grounding in JavaScript. It was my first work on interfaces that other people use – and the best school for seeing accessibility from the other side.',
             'From the middle to the end of that year I also set up and tested an Ubuntu VM in VirtualBox with the console screen reader Fenrir – my first attempt at using Linux entirely without a Windows screen reader.',
           ],
           tipsHeading: 'Practical tips: Linux VM, web and APIs',
