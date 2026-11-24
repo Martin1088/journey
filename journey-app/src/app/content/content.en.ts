@@ -122,6 +122,7 @@ export const CONTENT_EN: SiteContent = {
           story: [
             'The first year in the Federated Information Systems department was about the fundamentals: distributed systems, medical informatics, Java, APIs, Docker, Linux configuration, Git, databases and Scrum.',
             'This is where I learned that the terminal is not a workaround for blind developers but the most accessible tool there is – once you bring its output into a readable shape.',
+            'Already in the first year I started writing diagrams as text with PlantUML: ERDs for the databases, plus class, activity and sequence diagrams. My examples and a <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">tutorial for getting started</a> are in the public repository <a href="https://github.com/Martin1088/Plantuml-With-Screenreader">Plantuml-With-Screenreader</a>.',
           ],
           tipsHeading: 'Practical tips: terminal and databases',
           demo: 'sql-output',
@@ -228,6 +229,36 @@ git diff --word-diff   # shows which word changed, not just the line`),
                 p('<code>docker ps</code> prints a very wide table. With <code>--format</code> you get exactly the fields you need:'),
                 code(`docker ps --format '{{.Names}}: {{.Status}}'`),
                 p('Result, for example: <code>db: Up 2 hours</code> – one line per container, understood instantly.'),
+              ],
+            },
+            {
+              id: 'tip-plantuml-erd',
+              platform: 'both',
+              title: 'A first ERD as text: planning databases with PlantUML',
+              body: [
+                p('An entity-relationship diagram shows tables, keys and relationships. In PlantUML it is a text file I can read line by line and review in a Git diff:'),
+                code(String.raw`@startuml
+entity Customer {
+  * id : int <<PK>>
+  --
+  name : varchar(100)
+}
+
+entity Account {
+  * iban : varchar(34) <<PK>>
+  --
+  * customer_id : int <<FK>>
+  balance : decimal(19,2)
+}
+
+Customer ||--o{ Account : owns
+@enduml`),
+                list(
+                  '<code>*</code> marks required fields, <code>--</code> separates the key from the other columns.',
+                  '<code>||--o{</code> means: exactly one customer, zero to many accounts. One side on the left, the other on the right – easy to remember when it is read aloud, too.',
+                  'More examples – ERD, class, activity and sequence diagrams – in the <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">tutorial in my repository</a>.',
+                ),
+                p('Checking without an image: <code>plantuml -tutxt erd.puml</code> renders the diagram as text, <code>plantuml -checkonly erd.puml</code> only checks the syntax.'),
               ],
             },
           ],
@@ -514,7 +545,7 @@ cargo clippy --message-format short`),
               platform: 'both',
               title: 'Write the project’s diagrams as text',
               body: [
-                p('Project documentation needs diagrams. PlantUML describes them as text – I can write them, review them in a Git diff, and sighted examiners still get a picture.'),
+                p('Project documentation needs diagrams. PlantUML describes them as text – I can write them, review them in a Git diff, and sighted examiners still get a picture. More in my repository <a href="https://github.com/Martin1088/Plantuml-With-Screenreader">Plantuml-With-Screenreader</a>.'),
                 code(`
 @startuml
 actor User

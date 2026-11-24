@@ -122,6 +122,7 @@ export const CONTENT_DE: SiteContent = {
           story: [
             'Das erste Jahr in der Abteilung Federated Information Systems drehte sich um die Grundlagen: verteilte Systeme, medizinische Informatik, Java, APIs, Docker, Linux-Konfiguration, Git, Datenbanken und Scrum.',
             'Hier habe ich gelernt, dass das Terminal für blinde Entwickler kein Notbehelf ist, sondern das zugänglichste Werkzeug überhaupt – wenn man die Ausgabe in eine lesbare Form bringt.',
+            'Schon im ersten Lehrjahr habe ich angefangen, Diagramme als Text mit PlantUML zu schreiben: ERDs für die Datenbanken, dazu Klassen-, Aktivitäts- und Sequenzdiagramme. Meine Beispiele und ein <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">Tutorial für den Einstieg</a> liegen im öffentlichen Repository <a href="https://github.com/Martin1088/Plantuml-With-Screenreader">Plantuml-With-Screenreader</a>.',
           ],
           tipsHeading: 'Praxis-Tipps: Terminal und Datenbanken',
           demo: 'sql-output',
@@ -228,6 +229,36 @@ git diff --word-diff   # zeigt, welches Wort sich geändert hat, nicht nur die Z
                 p('<code>docker ps</code> liefert eine sehr breite Tabelle. Mit <code>--format</code> bekommst du genau die Felder, die du brauchst:'),
                 code(`docker ps --format '{{.Names}}: {{.Status}}'`),
                 p('Ergebnis zum Beispiel: <code>db: Up 2 hours</code> – eine Zeile pro Container, sofort verständlich.'),
+              ],
+            },
+            {
+              id: 'tip-plantuml-erd',
+              platform: 'both',
+              title: 'Erstes ERD als Text: Datenbanken mit PlantUML planen',
+              body: [
+                p('Ein Entity-Relationship-Diagramm zeigt Tabellen, Schlüssel und Beziehungen. In PlantUML ist es eine Textdatei, die ich Zeile für Zeile lesen und im Git-Diff prüfen kann:'),
+                code(String.raw`@startuml
+entity Kunde {
+  * id : int <<PK>>
+  --
+  name : varchar(100)
+}
+
+entity Konto {
+  * iban : varchar(34) <<PK>>
+  --
+  * kunde_id : int <<FK>>
+  saldo : decimal(19,2)
+}
+
+Kunde ||--o{ Konto : besitzt
+@enduml`),
+                list(
+                  '<code>*</code> markiert Pflichtfelder, <code>--</code> trennt den Schlüssel von den übrigen Spalten.',
+                  '<code>||--o{</code> heißt: genau ein Kunde, null bis viele Konten. Links steht die eine Seite, rechts die andere – das lässt sich auch vorgelesen gut merken.',
+                  'Mehr Beispiele – ERD, Klassen-, Aktivitäts- und Sequenzdiagramme – im <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">Tutorial in meinem Repository</a>.',
+                ),
+                p('Ohne Bild prüfen: <code>plantuml -tutxt erd.puml</code> rendert das Diagramm als Text, <code>plantuml -checkonly erd.puml</code> prüft nur die Syntax.'),
               ],
             },
           ],
@@ -514,7 +545,7 @@ cargo clippy --message-format short`),
               platform: 'both',
               title: 'Diagramme für die Projektdoku als Text schreiben',
               body: [
-                p('Für die Projektdokumentation braucht man Diagramme. PlantUML beschreibt sie als Text – ich kann sie schreiben, im Git-Diff prüfen, und sehende Prüfer bekommen trotzdem ein Bild.'),
+                p('Für die Projektdokumentation braucht man Diagramme. PlantUML beschreibt sie als Text – ich kann sie schreiben, im Git-Diff prüfen, und sehende Prüfer bekommen trotzdem ein Bild. Mehr dazu in meinem Repository <a href="https://github.com/Martin1088/Plantuml-With-Screenreader">Plantuml-With-Screenreader</a>.'),
                 code(`
 @startuml
 actor Nutzer
