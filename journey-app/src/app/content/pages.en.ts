@@ -75,7 +75,6 @@ export const WORK_EN: WorkPageContent = {
       ],
       stackLead: 'PlantUML',
       stack: 'NeoVim, terminal workflow',
-      // TODO: check the exact spelling of this repository name
       link: { href: 'https://github.com/Martin1088/Plantuml-With-Screenreader', label: 'Source on GitHub' },
     },
   ],
