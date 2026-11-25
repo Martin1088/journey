@@ -111,7 +111,7 @@ export const CONTENT_DE: SiteContent = {
       id: 'training',
       when: '2021 – 2024',
       title: 'Ausbildung zum Fachinformatiker',
-      short: 'Inklusive Ausbildung am DKFZ: Terminal, SQL, Webentwicklung, Rust.',
+      short: 'Inklusive Ausbildung am DKFZ: Terminal, SQL, Python, Java, Webentwicklung, Rust.',
       lead:
         'Am Deutschen Krebsforschungszentrum (DKFZ) in Heidelberg habe ich eine inklusive Ausbildung zum Fachinformatiker für Anwendungsentwicklung gemacht, mit der Hubert-Sternberg-Schule in Wiesloch als Berufsschule. Drei Jahre, drei Schwerpunkte – und 2024 der Abschluss vor der IHK.',
       sections: [
@@ -123,8 +123,9 @@ export const CONTENT_DE: SiteContent = {
             'Das erste Jahr in der Abteilung Federated Information Systems drehte sich um die Grundlagen: verteilte Systeme, medizinische Informatik, Java, APIs, Docker, Linux-Konfiguration, Git, Datenbanken und Scrum.',
             'Hier habe ich gelernt, dass das Terminal für blinde Entwickler kein Notbehelf ist, sondern das zugänglichste Werkzeug überhaupt – wenn man die Ausgabe in eine lesbare Form bringt.',
             'Schon im ersten Lehrjahr habe ich angefangen, Diagramme als Text mit PlantUML zu schreiben: ERDs für die Datenbanken, dazu Klassen-, Aktivitäts- und Sequenzdiagramme. Meine Beispiele und ein <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">Tutorial für den Einstieg</a> liegen im öffentlichen Repository <a href="https://github.com/Martin1088/Plantuml-With-Screenreader">Plantuml-With-Screenreader</a>.',
+            'Parallel dazu kam in der Berufsschule Python: <code>print</code> und <code>input</code>, Verzweigungen, Schleifen, Listen und das Abfangen falscher Eingaben. Meine Übungen aus Schule und Selbststudium liegen im Repository <a href="https://github.com/Martin1088/Python-With-Screenreader">Python-With-Screenreader</a>, in den Ordnern <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/school">school</a> und <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/begin">begin</a>.',
           ],
-          tipsHeading: 'Praxis-Tipps: Terminal und Datenbanken',
+          tipsHeading: 'Praxis-Tipps: Terminal, Datenbanken und Python',
           demo: 'sql-output',
           tips: [
             {
@@ -261,6 +262,52 @@ Kunde ||--o{ Konto : besitzt
                 p('Ohne Bild prüfen: <code>plantuml -tutxt erd.puml</code> rendert das Diagramm als Text, <code>plantuml -checkonly erd.puml</code> prüft nur die Syntax.'),
               ],
             },
+            {
+              id: 'tip-python-input-loop',
+              platform: 'both',
+              title: 'Python: Eingaben in einer Schleife prüfen',
+              body: [
+                p('Die erste Hürde in Python sind Eingaben: <code>input()</code> liefert immer Text, und <code>int()</code> bricht bei „abc“ mit einem Fehler ab. Diese Schleife aus meinen Übungen fragt so lange nach, bis wirklich eine Zahl kommt:'),
+                code(`
+while True:
+    try:
+        zahl = int(input("Gib eine ganze Zahl ein: "))
+        break
+    except ValueError:
+        print("Das ist keine gültige Ganzzahl.")
+print(f"Deine Zahl: {zahl}")`),
+                list(
+                  'Die Fehlermeldung als eigene Zeile ausgeben – der Screenreader liest sie sofort, ohne dass ich suchen muss.',
+                  'Den Text für <code>input()</code> mit Doppelpunkt und Leerzeichen enden lassen. Sonst klebt die eigene Eingabe in der Sprachausgabe direkt am Prompt.',
+                  'Mehr Übungen – Listen, verschachtelte Listen, Fakultät, Kreisberechnung, Ratespiel – im Ordner <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/begin/Exercise">begin/Exercise</a>.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-python-traceback',
+              platform: 'both',
+              title: 'Python-Fehlermeldungen von unten lesen',
+              body: [
+                p('Ein Traceback beginnt beim äußersten Aufruf und endet mit dem eigentlichen Fehler. Vorgelesen heißt das: Die wichtigste Zeile kommt zuletzt. Deshalb lese ich zuerst nur das Ende:'),
+                code(`
+python3 skript.py 2>&1 | tail -n 3                    # Linux und macOS
+python skript.py 2>&1 | Select-Object -Last 3         # PowerShell`),
+                p('Die letzte Zeile nennt Fehlertyp und Ursache, etwa <code>ValueError: invalid literal for int()</code>. Die Zeile davor enthält Datei und Zeilennummer (<code>File "skript.py", line 4</code>) – damit springe ich im Editor direkt hin.'),
+                code('python3 -m py_compile skript.py   # nur die Syntax prüfen, ohne das Programm zu starten'),
+              ],
+            },
+            {
+              id: 'tip-python-repl',
+              platform: 'both',
+              title: 'Die interaktive Python-Shell zum Nachschlagen',
+              body: [
+                p('Statt in der Dokumentation zu blättern, frage ich Python selbst. In der interaktiven Shell (<code>python3</code> ohne Datei) liefern diese Zeilen reinen Text:'),
+                code(`
+>>> [m for m in dir(str) if not m.startswith("_")]   # Methoden von Strings, ohne Unterstrich-Namen
+>>> print(str.split.__doc__)                          # Beschreibung einer Methode, ohne Pager`),
+                p('<code>help()</code> öffnet dagegen einen Pager wie <code>less</code>; mit <kbd>q</kbd> kommst du wieder heraus. <code>python3 -i skript.py</code> führt ein Skript aus und bleibt danach in der Shell – praktisch, um Variablen nach dem Lauf abzufragen.'),
+              ],
+            },
           ],
         },
         {
@@ -270,8 +317,9 @@ Kunde ||--o{ Konto : besitzt
           story: [
             'Im zweiten Jahr war ich beim Krebsinformationsdienst und habe mit PHP, JavaScript und jQuery an einer Online-Beratungsplattform mitgearbeitet. Das war meine erste Arbeit an Oberflächen, die andere Menschen benutzen – und die beste Schule dafür, Barrierefreiheit von der anderen Seite zu sehen. Gute Grundlagen in JavaScript hat mir ein Kurs auf Udemy gegeben.',
             'Von Mitte bis Ende des Jahres habe ich außerdem eine Ubuntu-VM in VirtualBox mit dem Konsolen-Screenreader Fenrir eingerichtet und getestet – mein erster Versuch, Linux ganz ohne Windows-Screenreader zu bedienen.',
+            'In der Berufsschule ging es mit Java in die Tiefe: Klassen, Vererbung, Interfaces und abstrakte Klassen, dazu Collections wie <code>ArrayList</code> und <code>HashMap</code>. Für alle, die mit Java anfangen wollen, habe ich daraus eigene Übungsaufgaben geschrieben – das <a href="https://github.com/Martin1088/Java-With-Screenreader/tree/main/selfWrittenTutorial">selfWrittenTutorial</a> im Repository <a href="https://github.com/Martin1088/Java-With-Screenreader">Java-With-Screenreader</a>.',
           ],
-          tipsHeading: 'Praxis-Tipps: Linux-VM, Web und APIs',
+          tipsHeading: 'Praxis-Tipps: Linux-VM, Web, APIs und Java',
           demo: 'form-errors',
           tips: [
             {
@@ -464,6 +512,66 @@ $('<span>').addClass("titel").text(data.title)`),
                 why('<strong>Warum:</strong> <code>.append()</code> behandelt einen String als HTML. Ein Eintrag mit dem Titel <code>&lt;img src=x onerror=alert(1)&gt;</code> würde Code ausführen (Cross-Site-Scripting). <code>.text()</code> fügt immer reinen Text ein – und der Screenreader liest genau das vor, was gespeichert ist.'),
               ],
             },
+            {
+              id: 'tip-java-single-file',
+              platform: 'both',
+              title: 'Java ohne IDE: kompilieren und starten im Terminal',
+              body: [
+                p('Für kleine Übungen brauche ich kein Projekt und keine IDE. Seit Java 11 startet <code>java</code> eine einzelne Quelldatei direkt; für mehrere Dateien zeigt <code>javac</code> mit <code>-Xlint</code> zusätzliche Warnungen:'),
+                code(`
+java Einkaufsliste.java                              # eine Datei: kompilieren und starten in einem Schritt
+javac -Xlint:all -d out *.java 2>&1 | head -n 5      # mehrere Dateien, nur die ersten Meldungen
+java -cp out Main`),
+                p('Wie bei C gilt: erst den ersten Fehler beheben, dann neu kompilieren. Jede Meldung beginnt mit <code>Datei.java:zeile: error:</code>.'),
+              ],
+            },
+            {
+              id: 'tip-java-interface',
+              platform: 'both',
+              title: 'Interfaces und Vererbung: @Override als Sicherheitsnetz',
+              body: [
+                p('Aus meiner Übung zur Vererbung: Ein Interface legt fest, was jedes Fahrzeug können muss, und jede Klasse setzt es auf ihre Weise um.'),
+                code(`
+public interface Fahrzeug {
+    void setKennzeichen(String kennzeichen);
+    String getKennzeichen();
+}
+
+public class Flugzeug implements Fahrzeug {
+    protected String kennzeichen;
+
+    @Override
+    public void setKennzeichen(String kennzeichen) {
+        this.kennzeichen = kennzeichen;
+    }
+
+    @Override
+    public String getKennzeichen() {
+        return kennzeichen;
+    }
+}`),
+                list(
+                  '<code>@Override</code> lässt den Compiler prüfen, ob die Methode wirklich aus dem Interface stammt. Ein Tippfehler im Namen wird so zum Fehler statt zu einer stillen neuen Methode – vorgelesen klingen <code>setKennzeichen</code> und <code>setKenzeichen</code> fast gleich.',
+                  'Groß- und Kleinschreibung bei Parametern prüfen: Heißt der Parameter <code>AnzahlSitze</code>, weist <code>this.anzahlSitze = anzahlSitze</code> das Feld sich selbst zu – ohne jede Fehlermeldung. Hier hilft die Braillezeile oder zeichenweises Vorlesen.',
+                  'Die ganze Übung mit Interface, abstrakter Klasse und Unterklassen liegt im Ordner <a href="https://github.com/Martin1088/Java-With-Screenreader/tree/main/school/Vererbung">school/Vererbung</a>.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-java-tutorial-levels',
+              platform: 'both',
+              title: 'Java-Übungen in Stufen: vom Array zur eigenen Klasse',
+              body: [
+                p('Mein Tutorial baut jede Aufgabe in Stufen auf. Jede Stufe ist ein kleines Konsolenprogramm mit kurzer, gut hörbarer Ausgabe:'),
+                steps(
+                  '<a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task01.md">Einkaufsliste</a>: String-Array, <code>ArrayList</code>, <code>HashMap</code> und am Ende eine eigene Klasse <code>ShoppingItem</code>.',
+                  '<a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task02.md">Rechnungsverwaltung</a>: ein Menü mit <code>Scanner</code> und <code>while</code>, jede Menüauswahl als eigene Methode.',
+                  '<a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task03.md">Kontaktverwaltung</a>: eine CSV-Datei einlesen, fehlerhafte Zeilen erkennen, Hilfsmethoden in eine eigene Klasse auslagern.',
+                  '<a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task04.md">Passwort-Generator</a>: die Anfangsbuchstaben eines Satzes abwechselnd groß und klein – mit eigenen Tests.',
+                ),
+                why('<strong>Warum zuerst die Konsole:</strong> Ein Menü im Terminal ist mit jedem Screenreader sofort bedienbar. Eine Oberfläche kommt erst, wenn die Logik steht.'),
+              ],
+            },
           ],
         },
         {
@@ -472,10 +580,13 @@ $('<span>').addClass("titel").text(data.title)`),
           title: '3. Lehrjahr: Rust und Abschlussprojekt',
           story: [
             'Im letzten Jahr habe ich mich eigenständig in Rust vertieft und mich in die Abteilungskomponente Samply.beam eingearbeitet, die Kommunikation in streng regulierten klinischen Netzwerken übernimmt.',
+            'Den Einstieg in Rust habe ich mit den Übungen eines Udemy-Kurses gemacht: rund 30 kleine Aufgaben von Funktionen und Ownership über <code>match</code>, <code>Option</code> und <code>Result</code> bis zu Traits, eigenen Fehlertypen und Tests. Meine Lösungen liegen im Ordner <a href="https://github.com/Martin1088/Rust-With-Screenreader/tree/main/Exercise">Exercise</a> des Repositorys <a href="https://github.com/Martin1088/Rust-With-Screenreader">Rust-With-Screenreader</a>.',
+            'In der Berufsschule stand die Prüfungsvorbereitung in Java an: alte Prüfungsaufgaben wie Konto, Photovoltaik oder Packmaschine und Entwurfsmuster wie Singleton und Factory. Mit meinem Tutorial ging es weiter zu Spring Boot: die Kontaktverwaltung als REST API und danach im Docker-Container mit MySQL.',
+            'Python habe ich im Selbststudium vertieft: Webanwendungen mit Flask und SQLAlchemy und erste Schritte in der Datenanalyse mit pandas. Beides liegt im Repository Python-With-Screenreader, in den Ordnern <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/FlaskTutorial">FlaskTutorial</a> und <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/data_science">data_science</a>.',
             'Mitte des dritten Lehrjahres bin ich auf einen Mac mit VoiceOver umgestiegen, seitdem ist er mein Hauptrechner. Das hieß noch einmal umlernen: andere Tastenlogik, ein anderes Terminal – und die Erfahrung, dass die Grundprinzipien von Windows übertragbar sind.',
             'Mein Abschlussprojekt war eine Raumbelegungssoftware mit REST API, ORM-Mapper, Docker und dynamischem Frontend, mit Kommunikation über Samply.beam. 2024 habe ich die Ausbildung abgeschlossen.',
           ],
-          tipsHeading: 'Praxis-Tipps: Mac, Compiler, Container, Dokumentation',
+          tipsHeading: 'Praxis-Tipps: Rust, Java, Python, Mac, Container, Dokumentation',
           tips: [
             {
               id: 'tip-voiceover',
@@ -558,6 +669,125 @@ API --> Frontend : 201 Created
                 code(`
 plantuml -checkonly ablauf.puml
 plantuml -tutxt ablauf.puml   # erzeugt ablauf.utxt`),
+              ],
+            },
+            {
+              id: 'tip-rust-exercise-bins',
+              platform: 'both',
+              title: 'Viele kleine Rust-Übungen in einem Projekt',
+              body: [
+                p('Statt für jede Übung ein eigenes Projekt anzulegen, liegt im Kursprojekt jede Aufgabe als eigene Datei in <code>src/bin</code>. Cargo macht daraus einzelne Programme:'),
+                code(`
+cargo run --bin a15         # nur Übung a15 bauen und starten
+cargo run -q --bin a15      # -q: ohne Compiler-Meldungen, nur die Ausgabe des Programms
+cargo test --bin a22        # nur die Tests aus a22`),
+                list(
+                  'Jede Datei beginnt mit einem Kommentarblock: Thema, Anforderungen, Hinweise. Den lese ich zuerst mit <code>head -n 25 src/bin/a15.rs</code>, bevor ich den Editor öffne.',
+                  'Alle Aufgaben und meine Lösungen: <a href="https://github.com/Martin1088/Rust-With-Screenreader/tree/main/Exercise">Exercise</a>.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-rust-enum-match',
+              platform: 'both',
+              title: 'Rust: Enums mit Daten und match',
+              body: [
+                p('Eine meiner Lieblingsübungen: Eintrittskarten mit unterschiedlichen Daten je nach Art. Ein Enum hält die Varianten, <code>match</code> behandelt jede einzeln:'),
+                code(`
+enum Ticket {
+    Backstage(f64, String),
+    Vip(f64, String),
+    Standard(f64),
+}
+
+fn main() {
+    let tickets = vec![
+        Ticket::Backstage(100.0, "Sam".to_owned()),
+        Ticket::Vip(88.8, "Helli".to_owned()),
+        Ticket::Standard(20.0),
+    ];
+    for ticket in tickets {
+        match ticket {
+            Ticket::Backstage(preis, name) => println!("Backstage: {}, {:.2} Euro", name, preis),
+            Ticket::Vip(preis, name) => println!("VIP: {}, {:.2} Euro", name, preis),
+            Ticket::Standard(preis) => println!("Standard: {:.2} Euro", preis),
+        }
+    }
+}`),
+                p('Der Compiler prüft, dass jeder Fall behandelt ist. Fehlt einer, nennt die Meldung ihn beim Namen: <code>non-exhaustive patterns: `Ticket::Standard(_)` not covered</code>. Das ist mit Screenreader schneller gefunden als ein vergessener <code>else</code>-Zweig.'),
+              ],
+            },
+            {
+              id: 'tip-java-singleton',
+              platform: 'both',
+              title: 'Entwurfsmuster für die Prüfung: Singleton in Java',
+              body: [
+                p('Ein Muster, das in Prüfungsaufgaben immer wieder vorkommt: Von einer Klasse soll es genau ein Objekt geben, zum Beispiel für die Datenbankverbindung.'),
+                code(`
+public class Singleton {
+    private static Singleton instanz = null;
+
+    private Singleton() { }
+
+    public static Singleton getInstance() {
+        if (instanz == null) {
+            instanz = new Singleton();
+        }
+        return instanz;
+    }
+}`),
+                list(
+                  'Der private Konstruktor verhindert <code>new Singleton()</code> von außen; das einzige Objekt kommt über <code>getInstance()</code>.',
+                  'Für die Prüfung reicht diese einfache Form. In Programmen mit mehreren Threads ist sie nicht threadsicher.',
+                  'Weitere Muster wie Factory und Singleton für die Datenbank im Ordner <a href="https://github.com/Martin1088/Java-With-Screenreader/tree/main/school/Rule">school/Rule</a>, alte Prüfungsaufgaben in <a href="https://github.com/Martin1088/Java-With-Screenreader/tree/main/school/Examen">school/Examen</a>.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-spring-curl',
+              platform: 'both',
+              title: 'Eigene Spring-Boot-API im Terminal testen',
+              body: [
+                p('Im Tutorial wird aus der Kontaktverwaltung für die Konsole eine REST API: Jede Menüauswahl wird ein Endpoint. Getestet habe ich sie ohne Browser, zum Beispiel so:'),
+                code(String.raw`
+./mvnw spring-boot:run              # mit Gradle: ./gradlew bootRun
+curl -s localhost:9000/seeAllContacts | jq .
+curl -s -X POST localhost:9000/addContact \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "Ada", "email": "ada@example.org"}'`),
+                p('Die Aufgaben dazu: <a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task10.md">API mit Endpoints</a> und <a href="https://github.com/Martin1088/Java-With-Screenreader/blob/main/selfWrittenTutorial/task11.md">Spring Boot mit MySQL in Docker</a>.'),
+              ],
+            },
+            {
+              id: 'tip-flask-venv',
+              platform: 'both',
+              title: 'Flask: virtuelle Umgebung und Start im Terminal',
+              body: [
+                p('Jedes Flask-Projekt bekommt eine eigene virtuelle Umgebung. So bleiben die Pakete getrennt, und die Ausgabe beim Installieren bleibt kurz:'),
+                code(String.raw`
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+pip install -q Flask               # -q: keine seitenlange Installationsausgabe
+flask --app app run --debug`),
+                list(
+                  'Am Anfang des Prompts sagt <code>(.venv)</code> an, dass die Umgebung aktiv ist.',
+                  '<code>--debug</code> lädt nach jeder Änderung neu. Fehler erscheinen als Traceback im Terminal – wie in Python üblich von unten lesen.',
+                  'Meine Flask-Projekte liegen in <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/FlaskTutorial">FlaskTutorial</a>; eine Übungsaufgabe für eine Mitglieder-API mit Validierung und Statuscodes in <a href="https://github.com/Martin1088/Python-With-Screenreader/blob/main/tutorial/task01.md">tutorial/task01.md</a>.',
+                ),
+              ],
+            },
+            {
+              id: 'tip-pandas-text',
+              platform: 'both',
+              title: 'pandas-Tabellen als Text lesen',
+              body: [
+                p('Ein DataFrame wird als breite Tabelle mit abgeschnittenen Spalten ausgegeben. Diese Befehle bringen die Daten in eine Form, die sich vorlesen lässt:'),
+                code(`
+print(df.shape)                  # (Zeilen, Spalten) – zuerst die Größe
+df.info()                        # eine Zeile pro Spalte: Name, Anzahl Werte, Typ
+print(df.head(3).T)              # die ersten 3 Datensätze, Spalten untereinander
+print(df.iloc[0].to_string())    # ein Datensatz, ein Feld pro Zeile`),
+                p('Das ist dieselbe Idee wie <code>\\G</code> in MySQL: Datensätze untereinander statt nebeneinander. Meine Übungen mit pandas und Entscheidungsbäumen liegen im Ordner <a href="https://github.com/Martin1088/Python-With-Screenreader/tree/main/data_science/jupyter">data_science/jupyter</a>.'),
               ],
             },
           ],
