@@ -256,7 +256,7 @@ Customer ||--o{ Account : owns
                 list(
                   '<code>*</code> marks required fields, <code>--</code> separates the key from the other columns.',
                   '<code>||--o{</code> means: exactly one customer, zero to many accounts. One side on the left, the other on the right – easy to remember when it is read aloud, too.',
-                  'More examples – ERD, class, activity and sequence diagrams – in the <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">tutorial in my repository</a>.',
+                  'More ERDs from my apprenticeship – used cars, a company, a courier service – in the <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/database">database</a> folder of my repository; class, activity and sequence diagrams in the <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">tutorial</a>.',
                 ),
                 p('Checking without an image: <code>plantuml -tutxt erd.puml</code> renders the diagram as text, <code>plantuml -checkonly erd.puml</code> only checks the syntax.'),
               ],

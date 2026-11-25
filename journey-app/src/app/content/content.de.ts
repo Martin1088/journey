@@ -256,7 +256,7 @@ Kunde ||--o{ Konto : besitzt
                 list(
                   '<code>*</code> markiert Pflichtfelder, <code>--</code> trennt den Schlüssel von den übrigen Spalten.',
                   '<code>||--o{</code> heißt: genau ein Kunde, null bis viele Konten. Links steht die eine Seite, rechts die andere – das lässt sich auch vorgelesen gut merken.',
-                  'Mehr Beispiele – ERD, Klassen-, Aktivitäts- und Sequenzdiagramme – im <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">Tutorial in meinem Repository</a>.',
+                  'Mehr ERDs aus meiner Ausbildung – Gebrauchtfahrzeuge, Unternehmen, Kurierdienst – im Ordner <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/database">database</a> meines Repositorys; Klassen-, Aktivitäts- und Sequenzdiagramme im <a href="https://github.com/Martin1088/Plantuml-With-Screenreader/tree/main/Tutorial">Tutorial</a>.',
                 ),
                 p('Ohne Bild prüfen: <code>plantuml -tutxt erd.puml</code> rendert das Diagramm als Text, <code>plantuml -checkonly erd.puml</code> prüft nur die Syntax.'),
               ],
