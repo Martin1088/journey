@@ -65,7 +65,7 @@
   },
   "search": {
     "metaTitle": "Suche | Martin Jurk",
-    "metaDescription": "Projekte, Coaching-Angebote und alle Praxis-Tipps durchsuchen: Screenreader, Terminal, SQL, Git, Rust, Kubernetes, NeoVim.",
+    "metaDescription": "Projekte, Coaching-Angebote und alle Praxis-Tipps durchsuchen: Screenreader, Terminal, SQL, Git, Rust, IntelliJ, RustRover, Kubernetes.",
     "title": "Die Seite durchsuchen",
     "intro": "Die Suche findet Projekte, Coaching-Angebote, Abschnitte, Tipp-Titel und Befehle. Ergebnisse erscheinen beim Tippen.",
     "label": "Suchbegriff",

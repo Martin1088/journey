@@ -630,6 +630,27 @@ public class Flugzeug implements Fahrzeug {
               ],
             },
             {
+              id: 'tip-jetbrains-mac',
+              platform: 'mac',
+              title: 'IntelliJ and RustRover on the Mac: work fast with cursor routing',
+              body: [
+                p('For Java I use IntelliJ IDEA, for Rust RustRover – both from JetBrains, with the same shortcuts. With VoiceOver and a braille display they become fast once you set up two things: screen reader support and cursor routing.'),
+                steps(
+                  'Turn on screen reader support: <kbd>Cmd</kbd>+<kbd>,</kbd> opens the settings; under “Appearance &amp; Behavior” › “Appearance”, tick “Support screen readers” and restart the IDE.',
+                  'Connect the braille display in VoiceOver (VoiceOver Utility, <kbd>VO</kbd>+<kbd>F8</kbd>, “Braille” category). The routing keys above each braille cell then work in the IDE’s editor too.',
+                ),
+                p('<strong>Cursor routing</strong> means: a routing key above a character puts the text cursor exactly there. Instead of walking to an error character by character with the arrow keys, I find the spot on the braille display and press once – the cursor is there, and I can start typing.'),
+                list(
+                  '<kbd>F2</kbd> / <kbd>Shift</kbd>+<kbd>F2</kbd> jumps to the next / previous error, <kbd>Cmd</kbd>+<kbd>F1</kbd> reads the error message. I then find the exact position in the line with cursor routing.',
+                  '<kbd>Option</kbd>+<kbd>Enter</kbd> shows quick fixes as a list, such as a missing import.',
+                  '<kbd>Cmd</kbd>+<kbd>L</kbd> jumps to the line and column from a compiler message, <kbd>Cmd</kbd>+<kbd>E</kbd> lists recently opened files.',
+                  '<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> (“Find Action”) finds any command by its name – no searching through menus.',
+                  '<kbd>Ctrl</kbd>+<kbd>R</kbd> runs the last selected run configuration, <kbd>Cmd</kbd>+<kbd>6</kbd> opens the list of all problems in the project.',
+                ),
+                why('<strong>Why cursor routing:</strong> speech tells me <em>what</em> is wrong, the braille display shows me <em>where</em>. One key press takes me there – that saves many arrow keys on every error.'),
+              ],
+            },
+            {
               id: 'tip-mac-terminal',
               platform: 'mac',
               title: 'Terminal on the Mac: clipboard and tools',
@@ -885,7 +906,7 @@ Host gitlab-server
             'I took over as technical lead for two data platforms: the <a href="https://github.com/samply/itcc-federated-data-hub">ITCC Federated Data Hub</a> for the international integration of paediatric cancer data across clinical sites, with federated ingestion of FHIR and genetic data, pseudonymised storage in S3 and Apache Iceberg, and deployment on Kubernetes. And <strong>LeMeDart</strong>, a data hub with partners across Germany: central data intake from REDCap, pseudonymisation and storage.',
             'I was responsible for architecture, backend services, data processing and deployment, and secured the Java-based Samply Exporter with multiple Spring Security filter chains and group-based authorisation via OIDC.',
           ],
-          tipsHeading: 'Practical tips: Kubernetes, editor, architecture',
+          tipsHeading: 'Practical tips: Kubernetes, architecture',
           tips: [
             {
               id: 'tip-kubectl',
@@ -899,24 +920,6 @@ kubectl get pods --no-headers -o custom-columns=NAME:.metadata.name,STATUS:.stat
 kubectl logs deploy/api --tail=20
 kubectl get events --sort-by=.lastTimestamp | tail -n 10`),
                 p('The same goes for <code>kubectl describe</code> as for logs: into a file or through <code>less</code>, then search for <code>Events</code> or <code>Error</code>.'),
-              ],
-            },
-            {
-              id: 'tip-neovim-quiet',
-              platform: 'both',
-              title: 'Quieten NeoVim for the screen reader',
-              body: [
-                p('Line numbers, icons and inline diagnostics look nice but get read out with every line. In my configuration (<code>init.lua</code>) I turn them off and fetch information on demand:'),
-                code(`
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.signcolumn = "no"
-vim.diagnostic.config({ virtual_text = false, signs = false })`),
-                list(
-                  '<kbd>]d</kbd> / <kbd>[d</kbd> jumps to the next / previous diagnostic, <kbd>Ctrl</kbd>+<kbd>W</kbd> <kbd>d</kbd> shows the message (NeoVim 0.10+)',
-                  '<code>:lua vim.diagnostic.setqflist()</code> and <code>:copen</code> list all errors one below the other',
-                  'In distributions such as AstroNvim, icons can be turned off via <code>icons_enabled</code>',
-                ),
               ],
             },
             {

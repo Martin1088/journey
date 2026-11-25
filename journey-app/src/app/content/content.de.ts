@@ -630,6 +630,27 @@ public class Flugzeug implements Fahrzeug {
               ],
             },
             {
+              id: 'tip-jetbrains-mac',
+              platform: 'mac',
+              title: 'IntelliJ und RustRover auf dem Mac: schnell arbeiten mit Cursor-Routing',
+              body: [
+                p('Für Java nutze ich IntelliJ IDEA, für Rust RustRover – beide von JetBrains, mit denselben Tastenkürzeln. Mit VoiceOver und Braillezeile werden sie schnell, wenn man zwei Dinge einrichtet: die Screenreader-Unterstützung und das Cursor-Routing.'),
+                steps(
+                  'Screenreader-Unterstützung einschalten: <kbd>Cmd</kbd>+<kbd>,</kbd> öffnet die Einstellungen, unter „Appearance &amp; Behavior“ › „Appearance“ den Haken bei „Support screen readers“ setzen und die IDE neu starten.',
+                  'In VoiceOver die Braillezeile verbinden (VoiceOver-Dienstprogramm, <kbd>VO</kbd>+<kbd>F8</kbd>, Bereich „Braille“). Die Routing-Tasten über jeder Braillezelle funktionieren dann auch im Editor der IDE.',
+                ),
+                p('<strong>Cursor-Routing</strong> heißt: Eine Routing-Taste über einem Zeichen setzt den Textcursor genau dorthin. Statt mit Pfeiltasten zeichenweise zu einem Fehler zu laufen, ertaste ich die Stelle auf der Braillezeile und drücke einmal – der Cursor steht, und ich kann sofort tippen.'),
+                list(
+                  '<kbd>F2</kbd> / <kbd>Umschalt</kbd>+<kbd>F2</kbd> springt zum nächsten / vorigen Fehler, <kbd>Cmd</kbd>+<kbd>F1</kbd> liest die Fehlermeldung vor. Die genaue Stelle in der Zeile finde ich dann mit Cursor-Routing.',
+                  '<kbd>Option</kbd>+<kbd>Enter</kbd> zeigt Schnellkorrekturen als Liste, etwa einen fehlenden Import.',
+                  '<kbd>Cmd</kbd>+<kbd>L</kbd> springt zu Zeile und Spalte aus einer Compilermeldung, <kbd>Cmd</kbd>+<kbd>E</kbd> listet die zuletzt geöffneten Dateien.',
+                  '<kbd>Cmd</kbd>+<kbd>Umschalt</kbd>+<kbd>A</kbd> („Find Action“) findet jeden Befehl über seinen Namen – kein Suchen in Menüs.',
+                  '<kbd>Ctrl</kbd>+<kbd>R</kbd> startet die zuletzt gewählte Ausführung, <kbd>Cmd</kbd>+<kbd>6</kbd> öffnet die Liste aller Probleme im Projekt.',
+                ),
+                why('<strong>Warum Cursor-Routing:</strong> Sprache sagt mir, <em>was</em> falsch ist, die Braillezeile zeigt mir, <em>wo</em>. Mit einem Tastendruck bin ich dort – das spart bei jedem Fehler viele Pfeiltasten.'),
+              ],
+            },
+            {
               id: 'tip-mac-terminal',
               platform: 'mac',
               title: 'Terminal auf dem Mac: Zwischenablage und Werkzeuge',
@@ -885,7 +906,7 @@ Host gitlab-server
             'Ich habe die technische Leitung für zwei Datenplattformen übernommen: den <a href="https://github.com/samply/itcc-federated-data-hub" lang="en">ITCC Federated Data Hub</a> für die internationale Integration pädiatrischer Krebsdaten über Klinikstandorte hinweg, mit föderierter Annahme von FHIR- und genetischen Daten, pseudonymisierter Speicherung in S3 und Apache Iceberg und Deployment auf Kubernetes. Dazu <strong>LeMeDart</strong>, ein Data Hub mit Partnern in ganz Deutschland: zentrale Datenannahme aus REDCap, Pseudonymisierung und Speicherung.',
             'Ich war verantwortlich für Architektur, Backend-Services, Datenverarbeitung und Deployment und habe den Java-basierten Samply-Exporter mit mehreren Spring-Security-Filter-Chains und gruppenbasierter Autorisierung über OIDC abgesichert.',
           ],
-          tipsHeading: 'Praxis-Tipps: Kubernetes, Editor, Architektur',
+          tipsHeading: 'Praxis-Tipps: Kubernetes, Architektur',
           tips: [
             {
               id: 'tip-kubectl',
@@ -899,24 +920,6 @@ kubectl get pods --no-headers -o custom-columns=NAME:.metadata.name,STATUS:.stat
 kubectl logs deploy/api --tail=20
 kubectl get events --sort-by=.lastTimestamp | tail -n 10`),
                 p('Für <code>kubectl describe</code> gilt dasselbe wie bei Logs: in eine Datei oder durch <code>less</code>, dann mit Suche nach <code>Events</code> oder <code>Error</code> springen.'),
-              ],
-            },
-            {
-              id: 'tip-neovim-quiet',
-              platform: 'both',
-              title: 'NeoVim für den Screenreader ruhig stellen',
-              body: [
-                p('Zeilennummern, Icons und eingeblendete Diagnosen sehen gut aus, werden aber bei jeder Zeile mitgelesen. In meiner Konfiguration (<code>init.lua</code>) schalte ich sie ab und hole mir Informationen gezielt, wenn ich sie brauche:'),
-                code(`
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.signcolumn = "no"
-vim.diagnostic.config({ virtual_text = false, signs = false })`),
-                list(
-                  '<kbd>]d</kbd> / <kbd>[d</kbd> springt zur nächsten / vorigen Diagnose, <kbd>Strg</kbd>+<kbd>W</kbd> <kbd>d</kbd> zeigt die Meldung an (NeoVim 0.10+)',
-                  '<code>:lua vim.diagnostic.setqflist()</code> und <code>:copen</code> listen alle Fehler untereinander',
-                  'In Distributionen wie AstroNvim lassen sich Icons über <code>icons_enabled</code> abschalten',
-                ),
               ],
             },
             {
