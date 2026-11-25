@@ -233,6 +233,31 @@ git diff --word-diff   # shows which word changed, not just the line`),
               ],
             },
             {
+              id: 'tip-docker-mysql',
+              platform: 'both',
+              title: 'MySQL with Docker instead of XAMPP',
+              body: [
+                p('XAMPP ships MySQL, but you control it through a graphical control panel and phpMyAdmin in the browser – both tedious with a screen reader. With Docker, MySQL starts with a single command, and everything else happens in the terminal:'),
+                code(String.raw`
+docker run -d --name mysql-test \
+  -e MYSQL_ROOT_PASSWORD=secret \
+  -e MYSQL_DATABASE=test \
+  -p 3306:3306 \
+  -v mysql-data:/var/lib/mysql \
+  mysql:8.4
+
+docker logs --tail 5 mysql-test               # wait for "ready for connections"
+docker exec -it mysql-test mysql -uroot -p test`),
+                list(
+                  'In PowerShell, write the <code>docker run</code> command on one line without the backslashes.',
+                  '<code>-v mysql-data:/var/lib/mysql</code> keeps the data in a volume. It survives even when the container is deleted.',
+                  '<code>docker stop mysql-test</code> and <code>docker start mysql-test</code> replace the start and stop buttons in the control panel.',
+                  'Programs in Java, PHP or Python connect via <code>localhost:3306</code>, just as with XAMPP.',
+                ),
+                why('<strong>Why:</strong> every exercise gets its own clean database, and the command can be kept in a text file and repeated. A path of clicks in a control panel is much harder to look up again.'),
+              ],
+            },
+            {
               id: 'tip-plantuml-erd',
               platform: 'both',
               title: 'A first ERD as text: planning databases with PlantUML',
